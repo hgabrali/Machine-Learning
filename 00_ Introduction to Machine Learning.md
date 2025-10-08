@@ -117,6 +117,10 @@ Makine Öğrenimi (ML) çözümü geliştirmek, sadece bir algoritma çalıştı
 
 ## Why Data Types are important?
 
+
+
+
+
 ### 🛠️ ML Veri Türleri ve Ön İşleme Gereksinimleri
 
 **Veri Hazırlama (Data Preparation)**, Makine Öğreniminde (ML) çok kritik bir adımdır. Ham veri genellikle dağınık, eksik veya tutarsızdır ve veri temizlenmeden etkili bir model kurulamaz. Her bir veri türü, modelin onu anlaması için farklı ön işleme metotları (preprocessing methods) gerektirir.
@@ -130,6 +134,11 @@ Makine Öğrenimi (ML) çözümü geliştirmek, sadece bir algoritma çalıştı
 
 
 ## 🛠️ Veri Hazırlamanın Genel Adımları (Data Preparation Steps)
+
+<img width="1117" height="498" alt="image" src="https://github.com/user-attachments/assets/34ec9365-9998-47b4-bbce-a8042302ca8e" />
+
+<img width="599" height="378" alt="image" src="https://github.com/user-attachments/assets/7886dd38-1076-4490-a15e-88f868fd165b" />
+
 
 Bu adımlar, Makine Öğrenimi (ML) projesinin başlangıcında yapılır ve modelin öğrenme verimliliğini doğrudan etkiler.
 
