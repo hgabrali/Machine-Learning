@@ -1,4 +1,4 @@
-# Features Preparation
+# 💡 Features Preparation
 
 
 * Features are the inputs you give to a machine learning model so it can make predictions. They’re the measurable properties or characteristics that describe each data point.
