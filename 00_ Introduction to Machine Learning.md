@@ -103,3 +103,72 @@ Makine Öğrenimi (ML) çözümü geliştirmek, sadece bir algoritma çalıştı
 | **7** 🛡️ | Monitor the model as churn patterns change over time and retrain when needed. | **7. Model Monitoring** |
 
 **Doğru Yaşam Döngüsü Sıralaması:** **4 → 3 → 1 → 6 → 5 → 2 → 7**
+
+---
+# 📊 Makine Öğreniminde Temel Veri Türleri (Key Data Types in Machine Learning)
+
+<img width="645" height="325" alt="image" src="https://github.com/user-attachments/assets/51b4a160-d9e4-4aad-85b3-07c8771f7518" />
+
+
+<img width="682" height="676" alt="image" src="https://github.com/user-attachments/assets/5bda3bed-5ee4-4832-bbe4-186c6f124bed" />
+
+<img width="911" height="424" alt="image" src="https://github.com/user-attachments/assets/62409c9e-277b-4f22-90b3-cda6fc8bc4c8" />
+
+
+## Why Data Types are important?
+
+### 🛠️ ML Veri Türleri ve Ön İşleme Gereksinimleri
+
+**Veri Hazırlama (Data Preparation)**, Makine Öğreniminde (ML) çok kritik bir adımdır. Ham veri genellikle dağınık, eksik veya tutarsızdır ve veri temizlenmeden etkili bir model kurulamaz. Her bir veri türü, modelin onu anlaması için farklı ön işleme metotları (preprocessing methods) gerektirir.
+
+| Ana Veri Tipi | Alt Tip | Örnekler | Neden Önemli? (Gerekçe) | Temel Ön İşleme Metotları |
+| :--- | :--- | :--- | :--- | :--- |
+| **Niceliksel** (Quantitative) 🔢 | **Kesikli** (Discrete) | 5 çocuk, 96 işçi, 3 dizüstü bilgisayar (Sayılabilir tam sayılar). | Model, büyüklükleri farklı olan sayıları orantısızca önemli görebilir. Ölçeklendirmenin yapılmaması model performansı düşer. | **Ölçeklendirme (Scaling):** Normalizasyon (Normalization) veya Standartizasyon (Standardization). |
+| | **Sürekli** (Continuous) | 3.25 kg, 1.32 mil, 7.25 inç (Aralık içinde herhangi bir değeri alabilen sayılar). | Sürekli veriler genellikle büyük bir değer aralığına sahiptir. Bu, farklı özelliklerin model üzerindeki etkisinin dengelenmesi gerektiği anlamına gelir. | **Ölçeklendirme (Scaling):** Normalizasyon veya Standartizasyon. Eksik değerler için Ortalama/Medyan ile doldurma. |
+| **Niteliksel** (Qualitative/Categorical) 🏷️ | **Nominal** (Nominal) | Kalem, Silgi, İnek, Köpek (Sırasız kategoriler). | **Bilgisayarlar kelimeleri anlamaz.** Bu kategorik etiketlerin, modelin işleyebileceği sayısal formata çevrilmesi gerekir. Sıralama önemsizdir. | **One-Hot Encoding** (Her kategori için yeni bir ikili [binary] sütun oluşturma). |
+| | **Sırasal** (Ordinal) | Mükemmel, İyi, Kötü; Fantastik, Tamam, Beğenmedim (Sıralı kategoriler). | Sayısala çevrilirken, etiketler arasındaki **sıralamanın veya rütbenin korunması** çok önemlidir. | **Label Encoding** (Sıraya göre 1, 2, 3 gibi sayısal değerler atama). |
+
+
+## 🛠️ Veri Hazırlamanın Genel Adımları (Data Preparation Steps)
+
+Bu adımlar, Makine Öğrenimi (ML) projesinin başlangıcında yapılır ve modelin öğrenme verimliliğini doğrudan etkiler.
+
+1.  **Eksik Değerleri Yönetme (Handling missing values) ❓:** Boş hücreleri doldurma (imputation) veya kaldırma.
+2.  **Kopya ve Hataları Kaldırma (Removing duplicates and errors) ❌:** Veri setinin temizliğini sağlama.
+3.  **Kategorik Değişkenleri Kodlama (Encoding categorical variables) 🏷️:** Kategorik verileri sayısal formata çevirme.
+4.  **Sayısal Değerleri Ölçeklendirme (Scaling or normalizing numerical values) ⚖️:** Sayısal özelliklerin model üzerindeki etkisini dengeleme.
+5.  **Veriyi Ayırma (Splitting data) 🪓:** Veriyi eğitim (training) ve test (test) setlerine bölme.
+
+> **Unutmayın:** Başarılı bir ML projesinin temeli, daima **temizlenmiş ve doğru şekilde hazırlanmış** veriye dayanır.
+
+
+☝🏼 Key Idea: Knowing your data type is the first step in data preparation. It tells you which preprocessing methods and which algorithms can be applied.  
+
+## 📊 Makine Öğreniminde Temel Veri Türleri (Key Data Types in Machine Learning)
+
+
+**Ana Fikir:** Veri türünü bilmek, veri hazırlığının (data preparation) ilk adımıdır; hangi ön işleme yöntemlerini (preprocessing methods) ve hangi algoritmaların uygulanacağını belirler.
+
+| Veri Tipi | Alt Tip | Açıklama (İngilizce Terim) | Önemi (Why it Matters) | Örnek Senaryo |
+| :--- | :--- | :--- | :--- | :--- |
+| **Sayısal** (Numeric / Quantitative) 🔢 | **Sürekli** (Continuous) | Belli bir aralıkta herhangi bir reel değeri alabilir (Can take any real number value within a range). | Sayıların ölçekleri çok farklı olabilir (örneğin maaş binlerle ifade edilirken, yaş onlarla ifade edilir). Model, daha büyük sayıları "daha önemli" olarak algılayabilir, bu yüzden ayar (scaling) gereklidir. | Kilo (Weight), Boy (Height) veya Sıcaklık (Temperature) değerleri. |
+| | **Kesikli** (Discrete) | Sayılabilir miktarları temsil eder ve yalnızca tam sayı değerleri alır (Represents countable quantities and only takes integer values). | Sayısal verilerle aynı ölçek sorunlarına sahip olabilir. | Satılan ürün sayısı (The number of products sold) veya bir mağazadaki müşteri sayısı. |
+| **Kategorik** (Categorical / Qualitative) 🏷️ | **Nominal** (Nominal) | Sıralanmamış kategori veya etiketlerdir; aralarında anlamlı bir sıra yoktur (Unordered categories). | Bilgisayarlar kelimeleri anlamaz. Bu kelimelerin sayılara dönüştürülmesi gerekir, ancak sıralama önemli olmadığı için her etikete rastgele bir sayı atanabilir. | Cinsiyet (Gender: male, female), Renkler (Colors: red, blue), veya ürün tipleri. |
+| | **Sırasal** (Ordinal) | Anlamlı bir rütbe veya sıraya sahip sıralanmış kategorilerdir (Ordered categories with a meaningful rank or order). | Kelimeler sayılara dönüştürülürken **sıralama korunmalıdır** (örneğin: Lise < Lisans < Yüksek Lisans). | Müşteri memnuniyet anketi cevapları: Kötü (poor), Orta (fair), İyi (good), Mükemmel (excellent). |
+| **Metin** (Text Data) 📝 | **Yapılandırılmamış** (Unstructured) | İncelemeler, tweet'ler veya e-postalar gibi yapılandırılmamış verilerdir (Unstructured words and sentences). | Bilgisayarlar metni sadece karakter dizileri olarak görür. Metinden öğrenmek için, metni sayılarla (örneğin, kelime sayarak) temsil etmemiz gerekir. | IMDb'den film incelemeleri listesi (A list of movie reviews from IMDb). |
+| **Zaman Serisi** (Time Series Data) ⌚ | **Sürekli** (Continuous) | Düzenli aralıklarla (günlük, aylık vb.) toplanan verilerdir (Data collected at regular intervals). | Sıradan verilerin aksine, **sıralama önemlidir**. Dünün değeri bugünü etkiler ve iyi tahminler yapmak için trendler veya mevsimsellik yakalanmalıdır. | Apple hisse senedinin günlük kapanış fiyatı (Daily closing price of Apple stock). |
+| **İkili** (Boolean / Binary Data) ✔️ | **İkili** (Binary) | Genellikle 0/1 veya Doğru/Yanlış olan iki olası değere sahiptir (Two possible values, often 0/1 or True/False). | İkili özellikler zaten sayısal olsa da, bir sınıf nadir ise (örneğin, e-postaların sadece %2'si spam ise) modelin her zaman "spam değil" tahmin ederek hile yapmaması için dengeleme (balancing) gerekebilir. | Bir müşterinin reklama tıklayıp tıklamadığını gösteren bir sütun ("1" tıklandı, "0" tıklanmadı). |
+| **Görüntü** (Image Data) 🖼️ | **Yoğun** (Dense) | Gri tonlamalı (grayscale) veya RGB'den oluşan piksellerden yapılmıştır (Made up of pixels). | Tek bir görüntü **milyonlarca sayıya (piksele)** karşılık gelebilir. Modelin aşırı yüklenmemesi için görüntülerin işlenmesi özel teknikler gerektirir. | Bir hastanın beyninin MRI taraması (MRI scan of a patient's brain). |
+
+
+## 🔢 Temel Veri Türlerine Somut Örnekler
+
+Aşağıdaki tablo, farklı veri türlerinin gerçek hayattaki karşılıklarını göstermektedir.
+
+| İş Senaryosu | Veri Türü (ML Kategorisi) | Açıklama |
+| :--- | :--- | :--- |
+| **Customer satisfaction survey** with answers: poor, fair, good, excellent. | **Categorical (Ordinal)** 🏷️ | Sıralanmış kategoriler (ordered categories). |
+| **Daily closing price of Apple stock.** | **Time Series (Numeric, Continuous)** ⌚ | Zaman içinde takip edilen sayılar (numbers tracked over time). |
+| **MRI scan of a patient's brain.** | **Image Data** 🖼️ | Piksel değerleri (pixel values). |
+| **A column showing "1" if a customer clicked an ad, "0" if not.** | **Boolean (Binary)** ✔️ | Evet/Hayır sonucu (yes/no outcome). |
+| **A list of movie reviews from IMDb.** | **Text Data** 📝 | Yapılandırılmamış kelimeler ve cümleler (unstructured words and sentences). |
