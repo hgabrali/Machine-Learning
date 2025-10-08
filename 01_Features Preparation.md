@@ -1,5 +1,29 @@
 # Features Preparation
 
+
+* Features are the inputs you give to a machine learning model so it can make predictions. They’re the measurable properties or characteristics that describe each data point.
+
+  <img width="563" height="329" alt="image" src="https://github.com/user-attachments/assets/07bb778d-d2af-42d1-9119-bd9be9d612ef" />
+
+## 🛠️ Özellik Hazırlamada Temel Adımlar (Feature Preparation Steps)
+
+Özellik Hazırlama (**Feature Preparation**) ham veriyi temiz, yapılandırılmış ve tutarlı bir forma dönüştüren kritik süreçtir.
+
+| Adım No. | Aşama Adı (İngilizce Terim) | Amaç ve Açıklama | Somut Örnekler |
+| :---: | :--- | :--- | :--- |
+| **1** ❓ | **Handling Missing Data** (Eksik Veri Yönetimi) | Veri setinde hiç veri girişi olmayan boş hücreleri (NaN) ele alma. Veri kaybını en aza indirerek veri setinin bütünlüğünü korumak. | **Sayısal:** Yaş (**Age**) verisindeki boşlukları, ortalama (**mean**) veya medyan (**median**) ile doldurmak (**Imputation**).<br>**Kategorik:** Eksik değeri "**Bilinmiyor**" (**Unknown**) adında yeni bir kategori olarak işaretlemek. |
+| **2** ❗ | **Handling Outliers** (Aykırı Değer Yönetimi) | Veri setinin geri kalanından önemli ölçüde farklı olan aşırı değerleri tespit etmek ve düzeltmek. Modelin bu uç değerlerden yanlış öğrenmesini engellemek. | Gelir verisinde 1.000.000.000 USD gibi bir değerin tespiti. Bu değeri kaldırabilir veya kabul edilebilir bir üst sınırla (**capping**) değiştirebiliriz. |
+| **3** 🏷️ | **Handling Categorical Data** (Kategorik Veri Yönetimi) | Metin tabanlı kategorik özellikleri (Örn: şehir adları, renkler) ML algoritmalarının anlayabileceği sayısal formata çevirme. | **Nominal:** "Kırmızı", "Mavi", "Yeşil" gibi sırasız renkler için **One-Hot Encoding** kullanmak.<br>**Ordinal:** "Kötü", "Orta", "İyi" gibi sıralı derecelendirmeler için **Label Encoding** kullanmak (1, 2, 3 gibi). |
+| **4** ⚖️ | **Feature Scaling** (Özellik Ölçeklendirme) | Sayısal özelliklerin değer aralıklarını ortak bir standarda getirmek. Modelin, büyük değer aralığına sahip özelliklere haksız yere daha fazla önem vermesini önler. | **Normalizasyon (Normalization):** Veriyi 0 ile 1 arasına ölçeklendirme.<br>**Standartizasyon (Standardization):** Veriyi ortalaması 0 ve standart sapması 1 olacak şekilde dönüştürme. |
+| **5** ✨ | **Feature Creation and Transformation** (Özellik Oluşturma ve Dönüştürme) | Mevcut özelliklerden yeni ve daha bilgilendirici özellikler türetme veya mevcut özellikleri dönüştürme. Modelin öğrenmesine yeni bakış açıları katmak. | Müşterinin doğum tarihinden "**Müşteri Yaşı**" veya "**Müşteri Olma Süresi**" gibi yeni bir özellik türetme. İki sütunu çarparak yeni bir etkileşim terimi (**interaction term**) oluşturma. |
+| **6** 🎯 | **Feature Selection** (Özellik Seçimi) | Tahmin hedefiyle en ilgili olan özelliklerin alt kümesini seçme. Alakasız veya gereksiz özellikleri kaldırarak modelin karmaşıklığını ve eğitim süresini azaltmak. | Bir ev fiyatı tahmini modelinde, adresin kapı numarasını veya rengini kaldırıp, sadece metrekare ve oda sayısı gibi daha alakalı özelliklere odaklanmak. |
+5.  **Veriyi Ayırma (Splitting data) 🪓:** Veriyi eğitim (training) ve test (test) setlerine bölme.
+
+> **Unutmayın:** Başarılı bir ML projesinin temeli, daima **temizlenmiş ve doğru şekilde hazırlanmış** veriye dayanır.
+
+
+
+
 <img width="827" height="513" alt="image" src="https://github.com/user-attachments/assets/0214c465-8578-49a7-802a-4ffe3d6ef59d" />
 
 <img width="801" height="477" alt="image" src="https://github.com/user-attachments/assets/9601f514-bb33-4be4-9bfd-bc982d76f904" />
