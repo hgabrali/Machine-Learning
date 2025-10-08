@@ -69,4 +69,37 @@ Aşağıdaki tablo, görselde verilen örneklerin hangi ML türüyle çözüldü
 
 # How Machine Learning Works: Overview of a DS Lifecycle
 
+<img width="616" height="616" alt="image" src="https://github.com/user-attachments/assets/c28b5887-6412-4a29-a2ef-6e49c7b9787e" />
+
+
 [Data Science Lifecycle in more detail](https://www.youtube.com/watch?v=4Cp6PkBKqX4)
+
+## 🧠 How Machine Learning Works: Overview of a DS Lifecycle
+
+Makine Öğrenimi (ML) çözümü geliştirmek, sadece bir algoritma çalıştırmaktan ibaret değildir; bu, iş problemiyle başlayan ve sürekli takiple biten yedi aşamalı döngüsel bir süreçtir.
+
+| Aşama No. | Aşama Adı | Görev Tanımı ve Amacı | Örnek Uygulama (Müşteri Kaybı Çözümünde) |
+| :---: | :--- | :--- | :--- |
+| **1** ❓ | **Problem Definition** | **Net bir soru** belirleyerek projenin amacını tanımlar. Başarılı bir ML projesi için gerekli ilk adımdır. | **Soru:** "Müşteriler bizi neden terk ediyor ve tam olarak neyi tahmin etmek istiyoruz?" |
+| **2** 🧺 | **Data Collection** | Tanımlanan problem için gerekli olan **ilgili verileri** (çeşitli kaynaklardan) toplar. | İşlem günlükleri, müşteri profilleri ve destek hattı verilerini toplamak. |
+| **3** 🧹 | **Data Preparation** | Ham veriler dağınıktır; bu aşamada veriler **temizlenir, organize edilir** ve ML modelinin kullanabileceği formata dönüştürülür. | Eksik değerleri temizlemek, çift kayıtları (duplicate) kaldırmak ve "müşteri bekleme süresi" gibi yeni özellikler oluşturmak. |
+| **4** 🔎 | **Data Exploration** | Model kurulmadan önce veriyi anlamak, **kalıpları, eğilimleri** ve aykırı değerleri (outlier) görselleştirmeler ve istatistiklerle keşfetmek. | Müşterilerin ayda 3 kereden fazla destek birimiyle iletişime geçtiğinde ayrılma olasılığının daha yüksek olduğunu keşfetmek. |
+| **5** 🧠 | **Model Building** | Uygun algoritma seçilir ve tarihsel (eğitim) verileri kullanılarak **model eğitilir**. | **Lojistik Regresyon** gibi bir model seçmek ve bu modeli tarihsel kayıp (churn) verileriyle eğitmek. |
+| **6** ⚖️ | **Model Evaluation** | Modelin **görülmemiş test verileri** üzerindeki performansını kontrol eder. Performans düşüklüğünde, model hiper parametreleri ayarlanır veya başka algoritmalar denenir. | Doğruluk (**accuracy**) ve geri çağırma (**recall**) metrikleriyle performansı ölçmek, ardından hiper parametreleri ayarlayarak sonuçları iyileştirmek. |
+| **7** 🚀 | **Model Deployment & Monitoring** | Model gerçek zamanlı tahminler yapabilmesi için üretim ortamına alınır (**deploy** edilir). İş bitmemiştir; modelin zamanla değişen veri kalıplarına uyum sağlaması için **izlenmesi ve gerektiğinde yeniden eğitilmesi** gerekir. | Modeli üretime almak, böylece satış ekibinin anlık kayıp riski puanlarını görmesini sağlamak ve kayıp kalıpları değiştikçe modeli izleyip yeniden eğitmek. |
+
+## ✅ Müşteri Kaybı (Churn) Senaryosu İçin Doğru Sıralama
+
+İlk görseldeki adımlar, yukarıdaki yaşam döngüsü aşamalarına göre sıralanmıştır.
+
+| Adım No. | Açıklama | Karşılığı Olan Aşama |
+| :---: | :--- | :--- |
+| **4** ❓ | Ask: "Why are customers leaving us, and what exactly do we want to predict?" | **1. Problem Definition** |
+| **3** 📊 | Collect transaction logs, customer profiles, and support call data. | **2. Data Collection** |
+| **1** 🧹 | Clean missing values, remove duplicates, and create new features... | **3. Data Preparation** |
+| **6** 🧠 | Choose logistic regression as a model and train it on historical data. | **5. Model Building** |
+| **5** ⚖️ | Measure performance with accuracy and recall, then tweak hyperparameters... | **6. Model Evaluation** |
+| **2** 🚀 | Deploy the model into production so the sales team can see churn-risk scores... | **7. Model Deployment** |
+| **7** 🛡️ | Monitor the model as churn patterns change over time and retrain when needed. | **7. Model Monitoring** |
+
+**Doğru Yaşam Döngüsü Sıralaması:** **4 → 3 → 1 → 6 → 5 → 2 → 7**
