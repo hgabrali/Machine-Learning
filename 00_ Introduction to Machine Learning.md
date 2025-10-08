@@ -1,7 +1,7 @@
 # Introduction to Machine Learning
 
-☝🏼
-## In summary:
+
+## ☝🏼 In summary:
 * AI → systems that mimic human intelligence.
 * ML → algorithms that learn from data.
 * Deep Learning → ML powered by neural networks.
