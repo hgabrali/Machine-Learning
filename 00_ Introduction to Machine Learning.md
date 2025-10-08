@@ -65,3 +65,8 @@ Aşağıdaki tablo, görselde verilen örneklerin hangi ML türüyle çözüldü
 | **Predict how much revenue a new lead will generate in their first year** 💰 (Yeni bir potansiyel müşterinin ilk yılında ne kadar gelir getireceğini tahmin etme) | **Supervised Learning** (Gözetimli Öğrenme) 📈 | Regression (Regresyon) | Sonuç **sürekli bir sayıdır** (gelir miktarı). Sayısal bir değer tahmin edildiği için regresyon kullanılır. |
 | **Grouping customers into segments based on shopping behavior** 🛍️ (Alışveriş davranışına göre müşterileri segmentlere ayırma) | **Unsupervised Learning** (Gözetimsiz Öğrenme) 🔗 | Clustering (Kümeleme) | Amaç, benzer davranış sergileyen müşterileri **etiket bilgisi olmadan** gruplamaktır. Bu, keşif amaçlı bir görevdir. |
 | **Predict which new leads are most likely to become paying customers** ✅ (Hangi yeni potansiyel müşterilerin ödeme yapan müşteriye dönüşme olasılığının en yüksek olduğunu tahmin etme) | **Supervised Learning** 🎯 | Classification (Sınıflandırma) | Sonuç **kategoriktir** (Evet/Hayır). Potansiyel müşteri, ödeme yapacak (Evet) veya yapmayacak (Hayır) olarak sınıflandırılır. |
+
+
+# How Machine Learning Works: Overview of a DS Lifecycle
+
+[Data Science Lifecycle in more detail](https://www.youtube.com/watch?v=4Cp6PkBKqX4)
