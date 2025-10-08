@@ -51,3 +51,17 @@ Machine Learning (ML) is a branch of Artificial Intelligence (AI) that teaches c
 | **Unsupervised** 🧩 | **K-Means Kümeleme** | Kümeleme (Clustering) | Etiketsiz verileri, benzerliklerine göre belirlenen K adet gruba (kümeye) ayırır. Örneğin, pazarlama için müşteri segmentasyonu yapmak. |
 | **Unsupervised** ⬇️ | **Temel Bileşen Analizi (PCA)** | Boyut Azaltma (Dimensionality Reduction) | Veri setindeki gürültüyü azaltmak ve temel bilgiyi koruyarak değişken sayısını düşürmek için kullanılır. |
 | **Unsupervised** 🔗 | **Hiyerarşik Kümeleme** | Kümeleme (Clustering) | Veri noktaları arasında bir hiyerarşi veya ağaç yapısı (dendrogram) oluşturarak kümeler oluşturur. |
+
+
+
+## 🎯 ML Kullanım Senaryoları: Analiz ve Karşılaştırma
+
+Aşağıdaki tablo, görselde verilen örneklerin hangi ML türüyle çözüldüğünü ve neden o türün kullanılması gerektiğini açıklamaktadır.
+
+| İş Senaryosu (Girdi) | ML Türü | Temel ML Görevi | Açıklama / Gerekçe |
+| :--- | :--- | :--- | :--- |
+| **Predicting the winner of the next football match** ⚽ (Bir sonraki futbol maçının galibini tahmin etme) | **Supervised Learning** (Gözetimli Öğrenme) 🧑‍🏫 | Classification (Sınıflandırma) | Sonuç **kategoriktir** (Kazan/Kaybet/Berabere). Geçmiş etiketli verilere (maç sonuçları) dayanarak bir kategori (sınıf) tahmin edilir. |
+| **Discover hidden sub-groups within your existing customers** 🕵️ (Mevcut müşterileriniz arasında gizli alt grupları keşfetme) | **Unsupervised Learning** (Gözetimsiz Öğrenme) 🧩 | Clustering (Kümeleme) | Veri **etiketsizdir**. Algoritma, herhangi bir ön bilgi (label) olmadan müşteriler arasındaki doğal benzerlikleri bulur ve gruplar. |
+| **Predict how much revenue a new lead will generate in their first year** 💰 (Yeni bir potansiyel müşterinin ilk yılında ne kadar gelir getireceğini tahmin etme) | **Supervised Learning** (Gözetimli Öğrenme) 📈 | Regression (Regresyon) | Sonuç **sürekli bir sayıdır** (gelir miktarı). Sayısal bir değer tahmin edildiği için regresyon kullanılır. |
+| **Grouping customers into segments based on shopping behavior** 🛍️ (Alışveriş davranışına göre müşterileri segmentlere ayırma) | **Unsupervised Learning** (Gözetimsiz Öğrenme) 🔗 | Clustering (Kümeleme) | Amaç, benzer davranış sergileyen müşterileri **etiket bilgisi olmadan** gruplamaktır. Bu, keşif amaçlı bir görevdir. |
+| **Predict which new leads are most likely to become paying customers** ✅ (Hangi yeni potansiyel müşterilerin ödeme yapan müşteriye dönüşme olasılığının en yüksek olduğunu tahmin etme) | **Supervised Learning** 🎯 | Classification (Sınıflandırma) | Sonuç **kategoriktir** (Evet/Hayır). Potansiyel müşteri, ödeme yapacak (Evet) veya yapmayacak (Hayır) olarak sınıflandırılır. |
