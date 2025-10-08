@@ -5,6 +5,28 @@
 
   <img width="563" height="329" alt="image" src="https://github.com/user-attachments/assets/07bb778d-d2af-42d1-9119-bd9be9d612ef" />
 
+  * Makine Öğreniminde (ML) bir veri sütununu veya değişkenini ifade etmek için kullanılan pek çok terim vardır ve bunlar bağlama göre hafifçe farklı anlamlara gelebilir.
+
+İşte Feature (Özellik) kelimesi ile aynı veya benzer kavramları ifade eden temel terimleri karşılaştırmalı olarak gösteren bir tablo.
+
+## 💡 ML'de 'Feature' (Özellik) Yerine Kullanılan Teknik Terimler
+
+| Terim (İngilizce) | Türkçe Karşılığı | ML Bağlamındaki Anlamı | Neden Bu Terim Kullanılır? |
+| :--- | :--- | :--- | :--- |
+| **Feature** 📊 | **Özellik** | Modelin bir tahmin yapmak için kullandığı **tek bir ölçülebilir değişken** (sütun). ML'deki en yaygın terimdir. | Bir nesnenin veya durumun ayırt edici niteliğini belirtmek için kullanılır. Modelin girdi değerleridir. |
+| **Variable** | **Değişken** | Bir veri setindeki herhangi bir sütun veya nitelik. İstatistik ve veri analizinde en sık kullanılan genel terimdir. | Değeri değişebilen herhangi bir niceliği veya niteliği ifade etmek için kullanılır. |
+| **Attribute** | **Nitelik / Öznitelik** | Bir veri örneğinin (satırın) bir özelliğini tanımlayan sütun. Özellikle veri modelleme (data modeling) ve veritabanı (database) terminolojisinde yaygındır. | Bir nesnenin veya varlığın (entity) belirgin bir kalitesini veya özelliğini vurgular. |
+| **Predictor** | **Tahmin Edici** | Özellikle **Regresyon** modellerinde, tahmin edilmek istenen hedef değişkeni (**Target**) etkileyen girdi değişkeni. | Amacı, hedef değeri tahmin etmeye yardımcı olmak olduğu için işlevine odaklanır. |
+| **Covariate** | **Eş Değişken** | İstatistiksel modellemede, genellikle hedef değişken ile ilişkili olan ve **kontrol edilen** girdi değişkeni. | Özellikle deney tasarımı ve istatistiksel hipotez testlerinde yaygındır; modelin sonucunu etkileyen ikincil değişkenleri ifade eder. |
+| **Input** | **Girdi** | Modele beslenen verinin genel birimi veya tek bir değişkeni. | Modelin işlem yapması için dışarıdan alınan veriyi vurgulayan basit bir terimdir. |
+| **Dimension** | **Boyut** | Veri setindeki toplam **özellik (sütun)** sayısını ifade eder. | Özellikle Boyut Azaltma (Dimensionality Reduction) gibi tekniklerde, veri setinin karmaşıklığını ifade etmek için kullanılır. |
+
+### 📝 Özet: ML Terimleri Arasındaki Farklar
+
+Bir ML projesinde, teknik olarak bir veri sütununa genellikle **Feature (Özellik)** denir. Ancak bu sütun aynı zamanda bir **Variable (Değişken)** veya **Attribute (Nitelik/Öznitelik)** olarak da adlandırılabilir.
+
+Eğer bu sütun bir tahminde kullanılıyorsa, ona **Predictor (Tahmin Edici)** demek de doğrudur.
+
 ## 🛠️ Özellik Hazırlamada Temel Adımlar (Feature Preparation Steps)
 
 Özellik Hazırlama (**Feature Preparation**) ham veriyi temiz, yapılandırılmış ve tutarlı bir forma dönüştüren kritik süreçtir.
