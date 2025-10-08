@@ -21,8 +21,24 @@
 
 > **Unutmayın:** Başarılı bir ML projesinin temeli, daima **temizlenmiş ve doğru şekilde hazırlanmış** veriye dayanır.
 
+## Neden Özellik Hazırlama Önemlidir? (Why is Feature Preparation Important?) 💡
 
+Ham veri (**raw data**) nadiren kullanıma hazır bir formatta gelir. Genellikle şunları içerir:
 
+* **Eksik değerler** (**Missing values**) ❌
+* **İlgisiz veya gereksiz bilgiler** (**Irrelevant or redundant information**) ❌
+* **Sayısal özellikler için farklı ölçekler** (Örn: price in thousands vs. age in years). ❌
+* **Karışık formatlar** (text, numbers, categories). ❌
+
+Bu ham veriyi düzeltmeden doğrudan bir modele beslersek, sonuçları:
+
+* **Düşük doğruluk** (Poor accuracy).
+* **Daha yavaş eğitim** (Slower training).
+* **Yeni veriyi genelleştiremeyen modeller** (Models that can't generalize to new data).
+
+> 👆 **Ana Fikir:** Özellik hazırlama (**Feature preparation**) dağınık ham veriyi **temiz, yapılandırılmış ve tutarlı** bir forma dönüştürür. Bu, modelin daha hızlı öğrenmesini, daha iyi performans göstermesini ve yeni veriyi genellemesini sağlar.
+
+---
 
 <img width="827" height="513" alt="image" src="https://github.com/user-attachments/assets/0214c465-8578-49a7-802a-4ffe3d6ef59d" />
 
@@ -33,7 +49,7 @@
 
 <img width="920" height="459" alt="image" src="https://github.com/user-attachments/assets/884a702f-b29e-4350-bc86-ef002a69efc1" />
 
-
+---
 # 🛠️ Data Preparation Techniques for Machine Learning
 
 Data preparation is the crucial process of transforming raw data into a form more suitable for modeling. The required steps depend on the specific data and the algorithms to be used.
