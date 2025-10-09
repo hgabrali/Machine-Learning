@@ -167,3 +167,14 @@ Bu tablo, Lojistik Regresyon (Logistic Regression) model nesnesinin, eğitilmiş
 ### Adım 4 → Modeli Eğitme (Fit the Model)
 * **Fitting = training (eğitme)** demektir. Model, eğitim verilerine (`X_train`, `y_train`) bakar ve her bir özellik için **katsayıları (weights)** öğrenir.
 * Eğitimden sonra, model artık "boş" değildir — yeni yolcular için hayatta kalma olasılıklarını tahmin edebilen **matematiksel bir formül** içerir.
+
+## 🔮Step 5: ML Modeli Tahmin Aşaması (Make Predictions)
+
+Model eğitimini tamamladıktan sonra, test verisi üzerinde tahminler yapmak ve bu çıktıları analiz etmek için aşağıdaki adımlar uygulanır.
+
+| Aşama No. | Yapılan İşlem (Metot) | Çıktı Tipi ve Kod Kullanımı | Temel Formül ve Yorumlama |
+| :---: | :--- | :--- | :--- |
+| **1** 🏷️ | **Sınıf Etiketlerini Tahmin Etme** | **Çıktı:** İkili sınıf etiketi (0 veya 1). <br> **Kod:** `.predict(X_test)` | **Yorum:** Tahminin eşik değerine (varsayılan 0.5) göre nihai evet/hayır kararıdır. <br>— **0:** Hayatta kalmadı. <br>— **1:** Hayatta kaldı. |
+| **2** 📈 | **Olasılıkları Tahmin Etme** | **Çıktı:** Her bir sınıf için olasılıklar. İki sütunlu dizi verir. <br>— **Sütun 0:** Sınıf 0'a (Hayatta kalmama) ait olma olasılığı. <br>— **Sütun 1:** Sınıf 1'e (Hayatta kalma) ait olma olasılığı. <br> **Kod:** `.predict_proba(X_test)` | **Yorum:** Lojistik Regresyon'un temeli **olasılıklara** dayanır. Olasılıklar, modelin tahminindeki **güven düzeyini** gösterir. <br> *Örn: [0.10, 0.89] → %89 hayatta kalma şansı.* |
+| **3** 📖 | **Sonuçları Birleştirme ve Okuma** | **Çıktı:** Üç temel bilgi sütunu: Actual, Predicted, Prob_Survived. | **Okuma:** <br>— **Actual:** Gerçekleşen sonuç. <br>— **Predicted:** Modelin kararı (eşik sonrası). <br>— **Prob_Survived:** Modelin karar vermek için kullandığı temel olasılık. Bu, modelin **emin olduğu** veya **sınırda kaldığı** durumları (0.5 civarı) görmeyi sağlar. |
+| **4** ⚖️ | **Eşiğin Rolü (Threshold)** | **Varsayılan Eşik:** 0.5. **Esas:** False Positive (Yanlış Pozitif) veya False Negative (Yanlış Negatif) maliyetine göre eşiğin manuel ayarlanması. <br> **Kod:** `.predict_proba()` çıktısı kullanılarak manuel kontrol edilir. | **Kural:** <br>— Sınıf $\ge 0.5 \rightarrow$ Tahmin 1. <br>— Olasılık $< 0.5 \rightarrow$ Tahmin 0. <br><br> **Ayarlama:** <br>— **Düşük Eşik:** **Recall'ı** (Hassasiyeti) artırır (daha fazla vaka yakalar). <br>— **Yüksek Eşik:** **Precision'ı** (Kesinliği) artırır (daha muhafazakâr tahmin yapar). |
