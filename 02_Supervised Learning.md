@@ -137,4 +137,21 @@ Bu süreç, temizlenmiş veri setini (`df_lr`) alır ve Lojistik Regresyon (Logi
 | **Kontrol** | **Kümelerin Boyutu** | Bölme sonrası, eğitim ve test kümelerindeki sütun sayısı aynı kalır (Örn: (711, 11) ve (178, 11)). Satır sayısı bölünürken, sütunlar korunur. | **Aynı Özellik Uzayı (Same Feature Space):** Modelin doğru çalışması için, hem eğitim hem de test kümelerinin aynı özellik setine sahip olması hayati önem taşır. |
 
 
+# 📈 Lojistik Regresyon: Katsayılar ve Intercept Özeti
 
+* **Intercept** = Varsayılan Tahmin. Intercept, özellikler dikkate alınmadan önce modelin **başlangıç temel tahminidir**.
+* **Katsayılar (Coefficients)** = Özellikler tarafından yapılan ayarlamalar.
+    * **Pozitif katsayı** → Özellik, hayatta kalma olasılığını **artırır**.
+    * **Negatif katsayı** → Özellik, hayatta kalma olasılığını **azaltır**.
+
+---
+
+## 🧠 Summary: Step 3 & Step 4 (Modeli Eğitme Özeti)
+
+### Adım 3 → Algoritmayı Seçme (Choose the Algorithm)
+* İkili sınıflandırma için basit ama güçlü bir algoritma olan **Lojistik Regresyon**'u seçtik.
+* Bu aşamada, `model` yalnızca **boş bir algoritma nesnesidir**; nasıl öğreneceğini bilir, ancak Titanic verilerinden henüz bir şey öğrenmemiştir.
+
+### Adım 4 → Modeli Eğitme (Fit the Model)
+* **Fitting = training (eğitme)** demektir. Model, eğitim verilerine (`X_train`, `y_train`) bakar ve her bir özellik için **katsayıları (weights)** öğrenir.
+* Eğitimden sonra, model artık "boş" değildir — yeni yolcular için hayatta kalma olasılıklarını tahmin edebilen **matematiksel bir formül** içerir.
