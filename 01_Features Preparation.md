@@ -20,7 +20,27 @@
 | **Covariate** | **Eş Değişken** | İstatistiksel modellemede, genellikle hedef değişken ile ilişkili olan ve **kontrol edilen** girdi değişkeni. | Özellikle deney tasarımı ve istatistiksel hipotez testlerinde yaygındır; modelin sonucunu etkileyen ikincil değişkenleri ifade eder. |
 | **Input** | **Girdi** | Modele beslenen verinin genel birimi veya tek bir değişkeni. | Modelin işlem yapması için dışarıdan alınan veriyi vurgulayan basit bir terimdir. |
 | **Dimension** | **Boyut** | Veri setindeki toplam **özellik (sütun)** sayısını ifade eder. | Özellikle Boyut Azaltma (Dimensionality Reduction) gibi tekniklerde, veri setinin karmaşıklığını ifade etmek için kullanılır. |
+---
+# 🛠️ Feature Preparation: The 5 Essential Steps
 
+**Feature preparation** is the process of turning that raw data into a clean, structured form that models can actually learn from.
+
+The quality of features has a huge impact on model performance. **Garbage in, garbage out** – if your features are poor, the model’s predictions will be poor, regardless of how advanced the algorithm is.
+
+---
+
+## The 5 Key Steps
+
+| Step | Purpose (Why) | Techniques (How) | Notes / Watch Outs |
+| :--- | :--- | :--- | :--- |
+| **Step 1: Handling Missing Values** ❓ | Most ML algorithms can’t handle missing data directly. | **Deletion:** Drop rows/columns if only a few values are missing. **Imputation:** Fill with mean/median (numeric), mode/“Unknown” (categorical). | Watch out for **bias** if the pattern of missingness is systematic (i.e., not random). |
+| **Step 2: Handling Outliers** ❗ | Extreme values can distort statistics, scaling, and the model’s learning process. | **Detection:** Boxplots, IQR method, Z-scores. **Handling:** Remove (if data errors), Cap at thresholds (winsorization), or Transform (e.g., log). | **Keep them** if they are meaningful data points (e.g., in fraud detection or anomaly scenarios). |
+| **Step 3: Handling Categorical Data** 🏷️ | ML models require numerical input, not text strings. | **Label Encoding:** Used for ordinal (ranked) features. **One-Hot Encoding:** Used for nominal (unordered) features. | **`pd.get_dummies()`** is great for fast prototyping; **`OneHotEncoder`** is preferred for production-safe code (handles unseen categories). |
+| **Step 4: Feature Scaling** ⚖️ | Many distance-based and gradient-descent models are highly sensitive to feature magnitudes and range differences. | **Min-Max Scaling:** Rescales values into the [0, 1] range. **Standardization (Z-score):** Rescales to mean=0, std=1 (a good default). | **When not needed:** Scaling is generally not required for tree-based models (e.g., Decision Trees, Random Forests). |
+| **Step 5: Feature Engineering** ✨ | Raw data often doesn’t capture the full story — engineered features can significantly boost predictive performance. | **Creation:** Create new features (e.g., `FamilySize = SibSp + Parch + 1`). **Transformation:** Transform skewed variables (e.g., log Fare). **Binning:** Group continuous values into categories (e.g., Age groups). **Extraction:** Extract information from strings/dates (e.g., Title from Name). | This step relies heavily on **Domain Expertise** to identify powerful predictive relationships. |
+
+
+---
 ### 📝 Özet: ML Terimleri Arasındaki Farklar
 
 Bir ML projesinde, teknik olarak bir veri sütununa genellikle **Feature (Özellik)** denir. Ancak bu sütun aynı zamanda bir **Variable (Değişken)** veya **Attribute (Nitelik/Öznitelik)** olarak da adlandırılabilir.
