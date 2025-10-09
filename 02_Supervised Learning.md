@@ -122,3 +122,8 @@ Bu tablo, Lojistik Regresyon (Logistic Regression) modeli için veri setindeki m
 **Özet Çıkarım:** Modellemeye hazır veri setinde artık sadece **temiz, işlenmiş (engineered) ve tamamen sayısal** özellikler (AgeGroup_num, FamilySize, Title_Mr, Embarked_S vb.) kalmıştır.
 
 Tüm bu hazırlık adımları, modelin **hızlı, tutarlı ve doğru öğrenmesini** sağlamak için kritik öneme sahiptir.
+
+## 🚢 Step 1 & 2:
+
+<img width="660" height="253" alt="image" src="https://github.com/user-attachments/assets/14ffd280-314c-4e58-bb12-aa111eca7f9e" />
+
