@@ -146,7 +146,19 @@ Bu süreç, temizlenmiş veri setini (`df_lr`) alır ve Lojistik Regresyon (Logi
 
 ---
 
-## 🧠 Summary: Step 3 & Step 4 (Modeli Eğitme Özeti)
+
+
+## 🧠 Step 3 & 4: ML Modeli Kurulumu ve Eğitimi
+
+Bu tablo, Lojistik Regresyon (Logistic Regression) model nesnesinin, eğitilmiş modele dönüşme sürecini ve elde edilen temel çıktıların (Katsayılar ve Kesişim) yorumunu açıklamaktadır.
+
+| Aşama No. | Aşama Adı (İngilizce Terim) | Yapılan İşlem ve Kod | Açıklama ve Elde Edilen Çıktı |
+| :---: | :--- | :--- | :--- |
+| **3** 🎯 | **Choose the Algorithm** (Algoritma Seçimi) | **Kullanılan Algoritma:** Lojistik Regresyon (Logistic Regression) - İkili Sınıflandırma için. <br> **Kod:** `LogisticRegression(max_iter=1000)` <br> *(`max_iter` gibi parametreler hiperparametredir.)* | **Boş Nesne:** Bu aşamada model, yalnızca yöntemi bilen **"boş bir algoritma nesnesidir"**. Eğitilmemiştir; hangi özelliklerin önemli olduğunu bilmez. |
+| **4** 🏋️ | **Fit the Model** (Modeli Eğitme) | **Kod:** `model.fit(X_train, y_train)` | **Eğitim:** Model, X_train verilerine bakar ve y_train hedefini açıklayan kalıpları bulmak için iç parametrelerini ayarlar. <br> **Sonuç:** Model artık **eğitilmiş bir modeldir** ve yeni yolcular için tahmin yapabilen matematiksel formülü içerir. |
+| **Çıktı 1** ➕➖ | **Model Katsayıları** (`model.coef_`) | **Kullanım:** Katsayıların değerlerini kontrol etmek. <br> **Örnek Kod:** `model.coef_` | **Yorum:** Her sayı bir özelliğe karşılık gelir.<br> **Pozitif Katsayı (+):** Özellik, hayatta kalma olasılığını artırır (Örn: **Sex** (kadın=1)).<br> **Negatif Katsayı (-):** Özellik, hayatta kalma olasılığını azaltır (Örn: **Pclass** (büyük sayı = düşük sınıf)).<br> **Büyüklük:** Katsayının mutlak değeri, etkinin gücünü gösterir. |
+| **Çıktı 2** 📉 | **Kesişim** (`model.intercept_`) | **Kullanım:** Modelin başlangıç tahminini görmek. <br> **Örnek Kod:** `model.intercept_` | **Yorum:** Kesişim (Intercept), modelin herhangi bir özelliğe bakmadan önceki **başlangıç temel tahminidir**.<br> **Basit Anlamı:** Yolcu hakkında hiçbir şey bilmeseydik elde edeceğimiz **varsayılan hayatta kalma şansı** (log-odds cinsinden) bu değerdir (~2.84). Diğer özellikler bu başlangıç olasılığını yukarı veya aşağı hareket ettirir. |
+
 
 ### Adım 3 → Algoritmayı Seçme (Choose the Algorithm)
 * İkili sınıflandırma için basit ama güçlü bir algoritma olan **Lojistik Regresyon**'u seçtik.
