@@ -123,9 +123,18 @@ Bu tablo, Lojistik Regresyon (Logistic Regression) modeli için veri setindeki m
 
 Tüm bu hazırlık adımları, modelin **hızlı, tutarlı ve doğru öğrenmesini** sağlamak için kritik öneme sahiptir.
 
-##  🚀 Step 1 & 2: Your First ML Model (Veri Bölme)
-
-
+## 🚀 İlk ML Modeli: Veri Bölme Adımları (Step 1 & 2)
 
 <img width="660" height="253" alt="image" src="https://github.com/user-attachments/assets/14ffd280-314c-4e58-bb12-aa111eca7f9e" />
+
+
+Bu süreç, temizlenmiş veri setini (`df_lr`) alır ve Lojistik Regresyon (Logistic Regression) sınıflandırma modelini kurmak için hazır hale getirir.
+
+| Aşama No. | Aşama Adı (İngilizce Terim) | Yapılan İşlemler | Neden Önemli? (Gerekçe) |
+| :---: | :--- | :--- | :--- |
+| **1** 🪓 | **Split Features (X) and Target (y)** (Özellikleri ve Hedefi Ayırma) | Veri setindeki tüm girdi sütunları (**Features / X**), tahmin edilmek istenen **çıktı sütunundan (Target / y)** ayrılır. <br>— **X:** Hayatta kalmayı tahmin etmek için kullanılacak sütunlar. <br>— **y:** `Survived` sütunu (tahmin hedefi). | **Veri Sızıntısını (Data Leakage) Önler:** Hedef değişkenin (y) özellik setine (X) sızmasını engeller. Aksi takdirde, model cevabı ezberleyerek gerçek performansı yansıtmayacak şekilde "hile" yapar. |
+| **2** ✂️ | **Split into Train/Test** (Eğitim/Test Olarak Bölme) | Ayrılmış X ve y kümeleri, modelin **öğrenmesi** ve **değerlendirilmesi** için iki parçaya bölünür. <br>— **Training Set:** Modeli eğitmek için kullanılır (genellikle %70-%80). <br>— **Test Set:** Modelin genelleme yeteneğini ölçmek için sadece en sonda kullanılır (genellikle %20-%30). | **Genellemeyi Sağlar:** Modelin **görülmemiş** yeni verilere ne kadar iyi tepki verdiğini test eder (gerçek hayatı taklit eder). Modelin eğitimde yapay olarak yüksek skor almasını engeller. |
+| **Kontrol** | **Kümelerin Boyutu** | Bölme sonrası, eğitim ve test kümelerindeki sütun sayısı aynı kalır (Örn: (711, 11) ve (178, 11)). Satır sayısı bölünürken, sütunlar korunur. | **Aynı Özellik Uzayı (Same Feature Space):** Modelin doğru çalışması için, hem eğitim hem de test kümelerinin aynı özellik setine sahip olması hayati önem taşır. |
+
+
 
