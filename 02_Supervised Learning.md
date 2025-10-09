@@ -101,3 +101,24 @@ Bu tablo, Gözetimli Öğrenme projesindeki temel adımları, her adımın amac�
 | **Predict** 🔮 | Modelin görülmemiş test verisi üzerinde kullanılması. | Sayı/sınıf tahminleri için `.predict(X_test)` kullanılır. Sınıflandırma olasılıkları için `.predict_proba(X_test)` kullanılır (eşik ayarı için faydalıdır). | Modelin yeni veriyi nasıl genellediğini gösterir. |
 | **Evaluate** ⚖️ | Tahminleri, görev türünüze uygun metriklerle `y_test` ile karşılaştırma. | **Sınıflandırma Metrikleri:** Accuracy (genel doğruluk), Precision/Recall & F1 (sınıf dengesizliğine duyarlı), ROC AUC / PR AUC (sıralama kalitesi), Confusion Matrix (hata tipleri). **Regresyon Metrikleri:** MAE (ortalama mutlak hata), RMSE (büyük hataları cezalandırır), R² (açıklanan varyans). | Metrikler, modelinizin iş hedefinize ne kadar iyi ulaştığını objektif olarak ölçmenizi sağlar. |
 
+---
+
+## 🚢 Step 0:  İlk ML Model Hazırlığı (Titanic Veri Seti)
+
+Bu tablo, Lojistik Regresyon (Logistic Regression) modeli için veri setindeki metin tabanlı ve gereksiz sütunların nasıl temizlenip sayısal forma dönüştürüldüğünü özetler.
+
+| Adım No. | İşlem Kategorisi | Uygulanan Özellik (Feature) | Yöntem ve Açıklama |
+| :---: | :--- | :--- | :--- |
+| **1** 🔢 | **Nominal Kodlama** (Text to Numeric) | **Embarked** (Biniş Limanı) 🛳️ | **One-Hot Encoding** (Nominal): Limanlar arasında sıra olmadığı için her liman değeri (`S`, `C`, `Q`) için yeni ikili (binary) sütunlar oluşturuldu. |
+| **2** 🏷️ | **Sırasal Kodlama** (Ordinal Encoding) | **AgeGroup** (Yaş Grubu) | **Label Encoding** (Ordinal): Yaş grupları arasında doğal bir sıra olduğu için (Child < Teen < Adult vb.) 0'dan 4'e kadar sayısal değerlere eşlendi (`AgeGroup_num`). |
+| **3** ✨ | **Özellik Mühendisliği** (Gruplama) | **Title** (Başlık) | **Nadir Gruplama:** Veri setindeki az sayıda geçen başlıklar (`Mlle`, `Ms`, `Mme`, vb.) "**Other**" kategorisi altında toplandı. Bu, encoding sonrası oluşacak gereksiz sütun sayısını azalttı. |
+| **4** 🔢 | **Nominal Kodlama** (Gruplanmış) | **Title** (Başlık) | **One-Hot Encoding** (Nominal): Gruplanmış başlıklar (`Mr`, `Mrs`, `Miss`, `Master`, `Other`) için ikili (binary) sütunlar oluşturuldu. |
+| **5** ❌ | **Gereksiz Sütunları Kaldırma** (Removal) | **PassengerId, Name, Ticket** | **Gerekçe:** Tahmin gücü olmayan (ID), ham metin içeren veya rastgele tanımlayıcı olan sütunlar kaldırıldı. |
+| **6** 🗑️ | **Yedekleri Kaldırma** (Removal) | **Age, AgeGroup, SibSp, Parch** | **Gerekçe:** Bu sütunlar kullanılarak zaten daha iyi, işlenmiş (engineered) versiyonları oluşturulduğu için kaldırıldılar (yerine **AgeGroup_num** ve **FamilySize** kullanılıyor). |
+| **7** ⚖️ | **Korelasyon Nedeniyle Kaldırma** | **Fare** | **Gerekçe:** **Fare**, **Pclass** (Yolcu Sınıfı) ve **Cabin** gibi diğer özelliklerle yüksek oranda ilişkili olduğu için kaldırıldı. |
+
+## 🎉 Final Takeaway: Model Ready!
+
+**Özet Çıkarım:** Modellemeye hazır veri setinde artık sadece **temiz, işlenmiş (engineered) ve tamamen sayısal** özellikler (AgeGroup_num, FamilySize, Title_Mr, Embarked_S vb.) kalmıştır.
+
+Tüm bu hazırlık adımları, modelin **hızlı, tutarlı ve doğru öğrenmesini** sağlamak için kritik öneme sahiptir.
