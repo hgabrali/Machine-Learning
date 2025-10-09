@@ -50,6 +50,26 @@ Veri türünü bilmek, **ön işleme (preprocessing method)** ve hangi algoritma
 | **5** ✨ | **Feature Creation and Transformation** (Özellik Oluşturma ve Dönüştürme) | Mevcut özelliklerden yeni ve daha bilgilendirici özellikler türetme veya mevcut özellikleri dönüştürme. Modelin öğrenmesine yeni bakış açıları katmak. | Müşterinin doğum tarihinden "**Müşteri Yaşı**" veya "**Müşteri Olma Süresi**" gibi yeni bir özellik türetme. İki sütunu çarparak yeni bir etkileşim terimi (**interaction term**) oluşturma. |
 | **6** 🎯 | **Feature Selection** (Özellik Seçimi) | Tahmin hedefiyle en ilgili olan özelliklerin alt kümesini seçme. Alakasız veya gereksiz özellikleri kaldırarak modelin karmaşıklığını ve eğitim süresini azaltmak. | Bir ev fiyatı tahmini modelinde, adresin kapı numarasını veya rengini kaldırıp, sadece metrekare ve oda sayısı gibi daha alakalı özelliklere odaklanmak. |
 
+## 🛠️ Feature Preparation Steps and Techniques
+
+| Step No. | Phase (English Term) | Primary Goal | Key Methods and Comparison |
+| :---: | :--- | :--- | :--- |
+| **1** ❓ | **Handling Missing Data** (Eksik Veri Yönetimi) | To handle missing values (NaN/Null) to maintain dataset integrity and ensure the model can function. | **1. Deletion (Kaldırma):** Used only when very few rows/columns are missing. **2. Imputation (Doldurma):** Filling missing data with statistical values:<br>— **Numeric:** Filling with Mean, Median, or Group Mean.<br>— **Categorical:** Filling with the Mode or a new category like "Unknown." |
+| **2** ❗ | **Handling Outliers** (Aykırı Değer Yönetimi) | To prevent extreme values (outliers) from distorting model learning and predictions. | **1. Detection:** Using Boxplots, Z-Score, or IQR method.<br>**2. Treatment:**<br>— **Removal (Kaldırma):** Removing the observations (risk of data loss).<br>— **Capping/Winsorization (Kısıtlama):** Setting the value at a specific upper or lower threshold.<br>— **Transformation (Dönüştürme):** Using Log Transform to normalize the distribution. |
+| **3** 🏷️ | **Handling Categorical Data** (Kategorik Veri Yönetimi) | To convert text-based categorical features (Nominal/Ordinal) into a numerical format that ML algorithms can process. | **1. One-Hot Encoding:** Ideal for **Nominal** (unordered) data. Creates a new binary column for each category.<br>**2. Label Encoding:** Ideal for **Ordinal** (ranked) data. Assigns numerical ranks to categories (e.g., Poor=1, Good=2).<br>**3. Target Encoding:** Effective for high-cardinality (many unique values) categorical data. |
+| **4** ⚖️ | **Feature Scaling** (Özellik Ölçeklendirme) | To bring the value ranges of numerical features to a common standard, preventing the model from unfairly prioritizing features with larger ranges. | **1. Normalization (Min-Max Scaling):** Scales values between **0 and 1**. Sensitive to outliers.<br>**2. Standardization (Z-Score Scaling):** Transforms data to a distribution with a mean of **0** and a standard deviation of **1**. More robust to outliers. |
+| **5** ✨ | **Feature Creation and Transformation** (Özellik Oluşturma ve Dönüştürme) | To derive new, more informative features or transform existing ones to improve model learning. | **1. Feature Extraction:** Deriving new information (e.g., **Age** or **Customer Tenure** from Date of Birth).<br>**2. Binning:** Grouping a continuous feature into categorical bins (e.g., Income into Low, Medium, High groups).<br>**3. Interaction Features:** Creating a new feature from the combination/multiplication of two different features. |
+| **6** 🎯 | **Feature Selection** (Özellik Seçimi) | To select a subset of features most relevant to the prediction goal, reducing model complexity and training time. | **1. Filter Methods:** Selecting features based on statistical tests (e.g., correlation, Chi-square).<br>**2. Wrapper Methods:** Searching for the best feature combination using the model itself (e.g., RFE).<br>**3. Embedded Methods:** The model determines feature importance during training (e.g., Lasso). |
+
+
+
+
+
+
+
+
+
+----
 # Proposal for Improving Practice Sessions and Portfolio Development
 
 This table outlines suggested changes to the practice session structure, focusing on active learning, portfolio readiness, and clear learning outcomes.
