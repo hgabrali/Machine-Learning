@@ -71,6 +71,20 @@ Bu ham veriyi düzeltmeden doğrudan bir modele beslersek, sonuçları:
 
 <img width="920" height="459" alt="image" src="https://github.com/user-attachments/assets/884a702f-b29e-4350-bc86-ef002a69efc1" />
 
+
+## ✨ Feature Preparation (Özellik Hazırlama) Adımları ve Yöntemleri
+
+| Adım No. | Aşama (İngilizce Terim) | Temel Amaç | Uygulanan Başlıca Yöntemler ve Karşılaştırması |
+| :---: | :--- | :--- | :--- |
+| **1** ❓ | **Handling Missing Data** (Eksik Veri Yönetimi) | Eksik değerleri (NaN/Null) ele alarak veri setinin bütünlüğünü korumak ve modelin çalışmasını sağlamak. | **1. Kaldırma (Deletion):** Yalnızca çok az sayıda satır/sütun eksikse kullanılır. **2. Doldurma (Imputation):** Eksik veriyi istatistiksel değerlerle doldurmak: — **Sayısal:** Ortalama (Mean), Medyan (Median) veya Grup Ortalaması (Group Mean) ile doldurma. — **Kategorik:** En sık tekrar eden değer (Mode) veya "Bilinmiyor" etiketi ile doldurma. |
+| **2** ❗ | **Handling Outliers** (Aykırı Değer Yönetimi) | Aykırı değerlerin (extreme values) modelin öğrenmesini bozmasını veya tahminleri çarpıtmasını engellemek. | **1. Tespit:** Kutu Grafikleri (Boxplots), Z-Skoru (Z-Score) veya IQR (Interquartile Range) metodu ile tespit etme. **2. Ele Alma:** — **Kaldırma (Removal):** Verinin bir kısmını kaybetme riskiyle kaldırma. — **Kısıtlama (Capping/Winsorization):** Değeri belirli bir üst veya alt eşiğe sabitleme. — **Dönüştürme (Transformation):** Logaritmik dönüşüm (Log Transform) gibi yöntemlerle dağılımı normale yakın hale getirme. |
+| **3** 🏷️ | **Handling Categorical Data** (Kategorik Veri Yönetimi) | Metin tabanlı kategorik özellikleri (Nominal/Ordinal) ML algoritmalarının anlayabileceği sayısal formata çevirmek. | **1. One-Hot Encoding:** **Nominal** (sırasız) veriler için idealdir. Her kategori için yeni bir ikili sütun oluşturur (dummy variables). **2. Label Encoding:** **Ordinal** (sıralı) veriler için idealdir. Kategorilere rütbelerine göre sayısal değerler atar (Örn: Kötü=1, İyi=2). **3. Target Encoding:** Yüksek kardinaliteli (çok fazla farklı değer içeren) kategorik veriler için etkilidir. |
+| **4** ⚖️ | **Feature Scaling** (Özellik Ölçeklendirme) | Sayısal özelliklerin değer aralıklarını ortak bir standarda getirerek, modelin bir özelliğe diğerinden haksız yere daha fazla önem vermesini önlemek. | **1. Normalizasyon (Min-Max Scaling):** Değerleri **0 ile 1** arasına ölçeklendirir. Aykırı değerlere hassastır. **2. Standartizasyon (Z-Score Scaling):** Veriyi ortalaması **0** ve standart sapması **1** olacak şekilde dönüştürür. Aykırı değerlere karşı daha dayanıklıdır. |
+| **5** ✨ | **Feature Creation and Transformation** (Özellik Oluşturma ve Dönüştürme) | Modelin öğrenmesini geliştirecek yeni, daha anlamlı özellikler türetmek veya mevcut özelliklerin dağılımını düzeltmek. | **1. Özellik Çıkarma:** Mevcut sütunlardan yeni bilgi türetme (Örn: Doğum tarihinden **Yaş** veya **Müşteri Olma Süresi**). **2. İndisleme (Binning):** Sürekli bir özelliği kategorik aralıklara ayırma (Örn: Maaşı Düşük, Orta, Yüksek gruplarına ayırma). **3. Etkileşim Özellikleri (Interaction Features):** İki farklı özelliğin çarpımından veya kombinasyonundan yeni bir özellik oluşturma. |
+| **6** 🎯 | **Feature Selection** (Özellik Seçimi) | Modelin karmaşıklığını ve eğitim süresini azaltmak için tahmin hedefiyle en ilgili olan özelliklerin alt kümesini seçmek. | **1. Filtre Yöntemleri (Filter Methods):** İstatistiksel testlerle (korelasyon, Ki-kare) en iyi özellikleri seçme. **2. Sarıcı Yöntemler (Wrapper Methods):** Modelin kendisini kullanarak en iyi özellik kombinasyonunu arama (Örn: RFE). **3. Gömülü Yöntemler (Embedded Methods):** Modelin eğitim süreci sırasında özellik önemini belirlemesi (Örn: Lasso). |
+
+
+
 ---
 # 🛠️ Data Preparation Techniques for Machine Learning
 
