@@ -50,3 +50,94 @@ Metin, koşullu olasılığın yanı sıra **saf olasılıkların (pure probabil
 * **İşleyiş:** Burada amaç, koşullu olasılık hesaplamak yerine, yeni üretilen verinin gerçekçi olma olasılığını **maksimize etmektir (maximize probability)**.
     * **Görüntü Üretimi (Image Generation - Örn: StyleGAN):** Model, rastgele piksellerin insan yüzü oluşturma olasılığını **maksimize etmeye** çalışır.
     * **Metin Üretimi (Text Generation):** Model, rastgele kelimelerin anlamlı ve bağlamına uygun bir metin oluşturma olasılığını **maksimize etmeye** çalışır.
+ 
+    * # 💡 Makine Öğrenmesinde Bayes Teoremi ve İlgili Konular
+
+Bayes Teoremi, makine öğrenmesinde **olasılıksal sınıflandırma** algoritmalarının temelini oluşturur. Özellikle **Naïve Bayes Sınıflandırıcıları** gibi yaygın algoritmaları anlamak için bu kavramlara derinlemesine hakim olmak kritiktir.
+
+---
+
+## 📐 Bayes Teoremi'nin Formülü ve Bileşenleri
+
+Bayes Teoremi, bir olayın gerçekleşme olasılığını, önceden bilinen koşullu ve marjinal olasılıkları kullanarak hesaplar.
+
+$$\huge P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
+
+| Terim | Adı | Açıklama (Makine Öğrenmesi) |
+| :--- | :--- | :--- |
+| $\mathbf{P(A|B)}$ | **Sonsal Olasılık (Posterior)** | Verilen veri ($B$) ile örneğin belli bir sınıfa ($A$) ait olma olasılığı. (Hedefimiz budur!) |
+| $\mathbf{P(B|A)}$ | **Olabilirlik (Likelihood)** | Verilen sınıf ($A$) için verinin ($B$) gözlemlenme olasılığı. |
+| $\mathbf{P(A)}$ | **Önsel Olasılık (Prior)** | $B$ olayı hakkında hiçbir bilgi olmadan $A$ sınıfının genel olasılığı. |
+| $\mathbf{P(B)}$ | **Kanıt (Evidence)** | Sonsal olasılığı normalize eden sabittir. |
+
+---
+
+## 🤖 Naive Bayes Sınıflandırıcı Çeşitleri ve Karşılaştırması
+
+Naïve Bayes, **özelliklerin birbirinden bağımsız olduğu** (saf varsayım) varsayımına dayanır ve basitliği ile öne çıkar.
+
+| Algoritma Adı | Temel Özellik Varsayımı | Uygulama Alanı | Örnek Veri Tipi | Avantajları |
+| :--- | :--- | :--- | :--- | :--- |
+| **Gaussian Naïve Bayes** | Özellikler **Normal (Gauss) dağılımı**na uyar. | Sürekli sayısal verilerin olduğu sınıflandırma problemleri. | Boy, kilo, sıcaklık gibi sürekli değerler. | Hızlı ve küçük veri kümelerinde başarılıdır. |
+| **Multinomial Naïve Bayes** | Özellikler **Multinomial dağılımı**na uyar (sayım verileri). | Metin sınıflandırma (spam, duygu analizi). | Bir belgedeki kelimelerin frekansı (sayımı). | Metin verilerinde en başarılı çeşitlerdendir. |
+| **Bernoulli Naïve Bayes** | Özellikler **Bernoulli dağılımı**na uyar (ikili/Boolean). | Belge varlığı/yokluğu, ikili özelliklerin olduğu sınıflandırmalar. | Kelimenin bir belgede bulunup bulunmaması (1/0). | İkili özellik setleri için etkilidir. |
+
+---
+
+## 🧠 Bilinmesi Gereken Kritik Ek Konular
+
+Bayes algoritmalarını etkili kullanmak için anlaşılması gereken temel kavramlar:
+
+### 1. Koşullu Bağımsızlık Varsayımı (Conditional Independence)
+* **Açıklama:** Naïve Bayes'in "saf" kısmı buradan gelir. Hedef sınıf verildiğinde, girdilerin (özelliklerin) birbirlerinden bağımsız olduğu varsayılır. Bu, hesaplama karmaşıklığını önemli ölçüde azaltır.
+* **Matematiksel İfade:** $P(x_1, x_2, \dots, x_n | C) = \prod_{i=1}^{n} P(x_i | C)$
+
+### 2. Sıfır Frekans Problemi ve Çözümü
+* **Problem:** Eğitim verisinde hiç görülmeyen bir özellik-sınıf kombinasyonu test verisinde ortaya çıkarsa, ilgili **Olabilirlik** ($P(B|A)$) sıfır olur. Bu durumda, sonuç **Sonsal Olasılık** da sıfırlanır.
+* **Çözüm:** **Laplace Yumuşatması (Laplace Smoothing)** kullanılır. Tüm sayımlara küçük bir pozitif değer ($\alpha$, genellikle 1) eklenerek sıfır olasılıklar engellenir.
+
+### 3. Maksimum Sonsal Olasılık (Maximum A Posteriori - MAP) Karar Kuralı
+* **Açıklama:** Sınıflandırma yaparken Naïve Bayes, olası tüm sınıflar ($C_k$) arasından **en yüksek sonsal olasılığa** sahip olan sınıfı seçer. Bu, modelin tahmin mekanizmasıdır.
+* **Formül:**
+    $$\hat{C} = \underset{C_k}{\operatorname{argmax}} \, P(C_k|D) = \underset{C_k}{\operatorname{argmax}} \, P(D|C_k) \cdot P(C_k)$$
+
+### 4. Bayes Ağları (Bayesian Networks) 🌐
+* **Açıklama:** Naïve Bayes'in bağımsızlık varsayımının ötesine geçen, özellikler arasındaki **bağımlılıkları** modelleyebilen daha gelişmiş olasılıksal grafik modellerdir.
+* **Önemi:** Özellikler arasındaki nedensel ilişkileri (Yönlendirilmiş Asiklik Grafikler - DAG) kullanarak daha doğru, ancak daha karmaşık çıkarımlar sağlar.
+
+---
+
+## ✉️ Örnek Uygulama: E-posta Spam Tespiti (Multinomial NB)
+
+**Amaç:** "Ücretsiz para" e-postasını sınıflandırmak.
+
+### 1. Önsel Olasılıklar (Prior)
+
+| Sınıf | Sayım | $P(C)$ |
+| :--- | :--- | :--- |
+| Spam | 3 | $3/5 = 0.6$ |
+| Ham | 2 | $2/5 = 0.4$ |
+
+### 2. Olabilirlikler (Likelihood) - Laplace Yumuşatması Uygulanmış
+
+Kullanılan kelimeler: "Ücretsiz" ve "Para".
+
+* $P(\text{Ücretsiz}|\text{Spam}) = 3/17$
+* $P(\text{Para}|\text{Spam}) = 2/17$
+
+* $P(\text{Ücretsiz}|\text{Ham}) = 1/14$
+* $P(\text{Para}|\text{Ham}) = 1/14$
+
+### 3. Sonsal Olasılık Hesabı
+
+MAP kuralını uygulayarak:
+
+* **Spam Puanı:** $P(\text{Spam}|D) \propto P(\text{Ücretsiz}|\text{Spam}) \cdot P(\text{Para}|\text{Spam}) \cdot P(\text{Spam})$
+    * Spam Puanı $\propto (3/17) \cdot (2/17) \cdot 0.6 \approx 0.0124$
+
+* **Ham Puanı:** $P(\text{Ham}|D) \propto P(\text{Ücretsiz}|\text{Ham}) \cdot P(\text{Para}|\text{Ham}) \cdot P(\text{Ham})$
+    * Ham Puanı $\propto (1/14) \cdot (1/14) \cdot 0.4 \approx 0.0020$
+
+**Sonuç:** $0.0124 > 0.0020$ olduğu için model, e-postayı **SPAM** olarak sınıflandırır. ✅
+
+
