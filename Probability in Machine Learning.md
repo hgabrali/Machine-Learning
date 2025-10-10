@@ -184,4 +184,17 @@ $\mathbf{P(\text{H ve F})}$ değeri (kesişim) bilinmediği sürece, **Birleşim
 **Doğru İfade:**
 > **Not enough information is given to calculate $P(\text{fever or headache})$.**
 > (Baş ağrısı veya ateş olasılığını hesaplamak için yeterli bilgi verilmemiştir.)
+>
+> ## 📌 Açıklamanın Özeti: Neden Yetersiz Bilgi?
+
+Açıklama, temel olasılık kurallarından yola çıkarak şunları söylüyor:
+
+1.  **Olaylar Ortaktır (Joint Events) 🤝:** Problem metninde, iki olayın (**baş ağrısı** ve **ateş**) **ayrık (disjoint)** olduğu, yani aynı anda gerçekleşemeyeceği söylenmiyor. Dolayısıyla, bazı kişilerin **hem baş ağrısı hem de ateş** yaşama ihtimali vardır. Bu tür çakışan olaylara **ortak olaylar (joint events)** denir.
+
+2.  **Kesişim Bilinmeli ❓:** İki olayın birleşim olasılığını ($P(A \text{ veya } B)$) hesaplamak için genel **Toplama Kuralı (Addition Rule)**'nı kullanmak zorunludur:
+    $$\mathbf{P(A \text{ veya } B)} = P(A) + P(B) - P(A \text{ ve } B)$$
+
+3.  **Sonuç 🛑:** Bu nedenle, $P(\text{ateş veya baş ağrısı})$ olasılığını bulmak için, olayların kesişim olasılığı olan **$P(\text{ateş VE baş ağrısı})$** değerini **bilmeniz gerekir**. Bu bilgi problem metninde verilmediği için, olasılık hesaplanamaz.
+
+---
 
