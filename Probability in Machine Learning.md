@@ -72,13 +72,13 @@ $$\huge P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
 
 ## 🤖 Naive Bayes Sınıflandırıcı Çeşitleri ve Karşılaştırması
 
-Naïve Bayes, **özelliklerin birbirinden bağımsız olduğu** (saf varsayım) varsayımına dayanır ve basitliği ile öne çıkar.
+Naive Bayes, **özelliklerin birbirinden bağımsız olduğu** (saf varsayım) varsayımına dayanır ve basitliği ile öne çıkar.
 
 | Algoritma Adı | Temel Özellik Varsayımı | Uygulama Alanı | Örnek Veri Tipi | Avantajları |
 | :--- | :--- | :--- | :--- | :--- |
-| **Gaussian Naïve Bayes** | Özellikler **Normal (Gauss) dağılımı**na uyar. | Sürekli sayısal verilerin olduğu sınıflandırma problemleri. | Boy, kilo, sıcaklık gibi sürekli değerler. | Hızlı ve küçük veri kümelerinde başarılıdır. |
-| **Multinomial Naïve Bayes** | Özellikler **Multinomial dağılımı**na uyar (sayım verileri). | Metin sınıflandırma (spam, duygu analizi). | Bir belgedeki kelimelerin frekansı (sayımı). | Metin verilerinde en başarılı çeşitlerdendir. |
-| **Bernoulli Naïve Bayes** | Özellikler **Bernoulli dağılımı**na uyar (ikili/Boolean). | Belge varlığı/yokluğu, ikili özelliklerin olduğu sınıflandırmalar. | Kelimenin bir belgede bulunup bulunmaması (1/0). | İkili özellik setleri için etkilidir. |
+| **Gaussian Naive Bayes** | Özellikler **Normal (Gauss) dağılımına** (Normal/Gaussian Distribution) uyar. | Sürekli sayısal verilerin olduğu sınıflandırma problemleri. | Boy, kilo, sıcaklık gibi sürekli değerler. | Hızlı ve küçük veri kümelerinde başarılıdır. |
+| **Multinomial Naive Bayes** | Özellikler **Multinomial dağılımına** (Multinomial Distribution) uyar (sayım verileri). | Metin sınıflandırma (spam, duygu analizi). | Bir belgedeki kelimelerin frekansı (sayımı). | Metin verilerinde en başarılı çeşitlerdendir. |
+| **Bernoulli Naive Bayes** | Özellikler **Bernoulli dağılımına** (Bernoulli Distribution) uyar (ikili/Boolean). | Belge varlığı/yokluğu, ikili özelliklerin olduğu sınıflandırmalar. | Kelimenin bir belgede bulunup bulunmaması (1/0). | İkili özellik setleri için etkilidir. |
 
 ---
 
@@ -95,9 +95,11 @@ Bayes algoritmalarını etkili kullanmak için anlaşılması gereken temel kavr
 * **Çözüm:** **Laplace Yumuşatması (Laplace Smoothing)** kullanılır. Tüm sayımlara küçük bir pozitif değer ($\alpha$, genellikle 1) eklenerek sıfır olasılıklar engellenir.
 
 ### 3. Maksimum Sonsal Olasılık (Maximum A Posteriori - MAP) Karar Kuralı
+
 * **Açıklama:** Sınıflandırma yaparken Naïve Bayes, olası tüm sınıflar ($C_k$) arasından **en yüksek sonsal olasılığa** sahip olan sınıfı seçer. Bu, modelin tahmin mekanizmasıdır.
 * **Formül:**
-    $$\hat{C} = \underset{C_k}{\operatorname{argmax}} \, P(C_k|D) = \underset{C_k}{\operatorname{argmax}} \, P(D|C_k) \cdot P(C_k)$$
+
+$$\hat{C} = \underset{C_k}{\operatorname{argmax}} \, P(C_k|D) = \underset{C_k}{\operatorname{argmax}} \, P(D|C_k) \cdot P(C_k)$$
 
 ### 4. Bayes Ağları (Bayesian Networks) 🌐
 * **Açıklama:** Naïve Bayes'in bağımsızlık varsayımının ötesine geçen, özellikler arasındaki **bağımlılıkları** modelleyebilen daha gelişmiş olasılıksal grafik modellerdir.
