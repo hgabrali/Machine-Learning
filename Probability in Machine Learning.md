@@ -239,3 +239,70 @@ $$P(B|H) = \frac{1}{2} = \mathbf{0.5}$$
 ### ✅ Sonuç
 
 Bir kullanıcının **hata deneyimlediği** bilgisi verildiğinde, bu kullanıcının **Versiyon B**'yi test etmiş olma olasılığı $\mathbf{1/2}$ (**%50**) olarak bulunur.
+
+
+---
+
+<img width="966" height="326" alt="image" src="https://github.com/user-attachments/assets/c8262fec-89f0-4c5b-ac2f-3c45b1eb903f" />
+
+# 🔬 Bayes Teoremi Uygulaması: Tıbbi Test Analizi
+
+Bu, bir kişinin test sonucu pozitif çıktığında **gerçekte hasta olma olasılığını (Sonsal Olasılık)** hesaplayan klasik bir Bayes Teoremi problemidir.
+
+### 🎯 Aranan Olasılık
+
+İstenen olasılık, testin pozitif çıktığı bilgisi **verildiğinde** kişinin hasta olma olasılığıdır: $\mathbf{P(\text{hasta} | \text{test poz.})}$.
+
+**Bayes Teoremi Formülü:**
+$$P(\text{hasta} | \text{test poz.}) = \frac{P(\text{test poz.} | \text{hasta}) \cdot P(\text{hasta})}{P(\text{test poz.})}$$
+
+---
+
+### 1. Parametrelerin Tanımlanması ve Giriş Verileri
+
+| Veri | Tanım | Değer |
+| :--- | :--- | :--- |
+| **Önsel Olasılık** | $P(\text{hasta})$ (Hastalık yaygınlığı) | $1\% = \mathbf{0.01}$ |
+| **Olabilirlik (True Positive)** | $P(\text{test poz.} | \text{hasta})$ (Hasta iken testin pozitif çıkması) | $95\% = \mathbf{0.95}$ |
+| **True Negative** | $P(\text{test neg.} | \text{sağlıklı})$ (Sağlıklı iken testin negatif çıkması) | $90\% = \mathbf{0.90}$ |
+
+---
+
+### 2. Eksik Olasılıkların Hesaplanması (Tümleyen Kuralı)
+
+Bayes formülünü tamamlamak için gerekli değerler:
+
+#### A) Sağlıklı Olma Olasılığı ($P(\text{sağlıklı})$)
+$$P(\text{sağlıklı}) = 1 - P(\text{hasta}) = 1 - 0.01 = \mathbf{0.99}$$
+
+#### B) Yanlış Pozitif Olasılığı ($P(\text{test poz.} | \text{sağlıklı})$)
+Sağlıklı bir kişide testin pozitif çıkma olasılığı (False Positive):
+$$P(\text{test poz.} | \text{sağlıklı}) = 1 - P(\text{test neg.} | \text{sağlıklı}) = 1 - 0.90 = \mathbf{0.10}$$
+
+---
+
+### 3. Kanıtın Hesaplanması ($P(\text{test poz.})$)
+
+Kanıt (payda), hem doğru pozitifler hem de yanlış pozitifler dahil olmak üzere **tüm pozitif test sonuçlarının** toplam olasılığıdır (Toplam Olasılık Kuralı):
+
+$$P(\text{test poz.}) = \big(P(\text{test poz.} | \text{hasta}) \cdot P(\text{hasta})\big) + \big(P(\text{test poz.} | \text{sağlıklı}) \cdot P(\text{sağlıklı})\big)$$
+
+$$P(\text{test poz.}) = (0.95 \cdot 0.01) + (0.10 \cdot 0.99)$$$$P(\text{test poz.}) = 0.0095 + 0.0990$$$$\mathbf{P(\text{test poz.})} = \mathbf{0.1085}$$
+
+---
+
+### 4. Sonsal Olasılığın Hesaplanması (Final)
+
+Tüm değerleri Bayes Teoremi formülüne yerleştirelim:
+
+$$P(\text{hasta} | \text{test poz.}) = \frac{0.0095}{0.1085}$$
+
+$$P(\text{hasta} | \text{test poz.}) \approx \mathbf{0.08755}$$
+
+### ✅ Nihai Sonuç ve Yorum
+
+Test sonucu pozitif çıkan bir kişinin **gerçekten hasta olma olasılığı** yaklaşık olarak **%8.76**'dır ($\mathbf{0.0876}$).
+
+Bu düşük sonuç şaşırtıcıdır ve temel olarak şundan kaynaklanır:
+> **Hastalık nadirdir.** Popülasyonun sadece %1'i hastadır. Test oldukça doğru olsa da, çok sayıda sağlıklı insanın yanlış pozitif ($0.10 \cdot 0.99 = 0.0990$) sonuç vermesi, doğru pozitif sonuçlardan ($0.95 \cdot 0.01 = 0.0095$) sayıca çok daha fazladır.
+
