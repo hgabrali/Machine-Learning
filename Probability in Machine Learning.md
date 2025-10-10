@@ -198,3 +198,44 @@ Açıklama, temel olasılık kurallarından yola çıkarak şunları söylüyor:
 
 ---
 
+<img width="870" height="357" alt="image" src="https://github.com/user-attachments/assets/f76afc36-6297-45df-9f2a-011289ddd967" />
+
+
+## 🐞 Koşullu Olasılık Çözümü: Yazılım Testi
+
+Bu problem, **Bayes Teoremi'nin temelini oluşturan** bir **Koşullu Olasılık (Conditional Probability)** problemidir. Bir kullanıcının hata deneyimlediği bilgisi **verildiğinde**, Versiyon B'yi test etme olasılığını bulmayı amaçlar.
+
+### 📝 1. Olay Tanımları ve Formül
+
+* **B:** Kullanıcının **Versiyon B**'yi test etmesi.
+* **H:** Kullanıcının **Hata (Bug)** deneyimlemesi.
+
+Aranan olasılık: $P(B|H)$ (Hata deneyimlediğine göre, Versiyon B'yi test etme olasılığı).
+
+$$\mathbf{P(B|H)} = \frac{P(B \cap H)}{P(H)}$$
+
+### 📊 2. Verilerin Özetlenmesi
+
+Toplam kullanıcı sayısı: $4000 + 5000 = \mathbf{9000}$
+
+| Kategori | Değer | Olay Sayısı (N) | Olasılık (P) |
+| :--- | :--- | :--- | :--- |
+| **Versiyon B Kullanıcıları** | 5000 | $N(B)$ | $P(B) = 5000/9000$ |
+| **Toplam Hata Deneyimleyenler** | 3000 | $N(H)$ | $P(H) = 3000/9000$ |
+| **Versiyon B ve Hata Kesişimi** | 1500 | $N(B \cap H)$ | $P(B \cap H) = 1500/9000$ |
+
+### 🧠 3. Hesaplama (Kullanıcı Sayılarıyla)
+
+Olasılıklar yerine, hesaplamanın daha basit olması için doğrudan **kullanıcı sayılarını** kullanabiliriz, çünkü payda ($N(\text{Toplam})$) sadeleşecektir:
+
+$$\mathbf{P(B|H)} = \frac{N(\text{B ve H})}{N(H)} = \frac{\text{Versiyon B ile hata deneyimleyenler}}{\text{Toplam hata deneyimleyenler}}$$
+
+$$P(B|H) = \frac{1500}{3000}$$
+
+$$P(B|H) = \frac{1}{2} = \mathbf{0.5}$$
+
+---
+
+### ✅ Sonuç
+
+Bir kullanıcının **hata deneyimlediği** bilgisi verildiğinde, bu kullanıcının **Versiyon B**'yi test etmiş olma olasılığı $\mathbf{1/2}$ (**%50**) olarak bulunur.
