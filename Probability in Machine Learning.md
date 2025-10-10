@@ -65,12 +65,10 @@ $$\huge P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}$$
 
 | Terim | Adı | Açıklama (Makine Öğrenmesi) |
 | :--- | :--- | :--- |
-| $\mathbf{P(A|B)}$ | **Sonsal Olasılık (Posterior)** | Verilen veri ($B$) ile örneğin belli bir sınıfa ($A$) ait olma olasılığı. (Hedefimiz budur!) |
-| $\mathbf{P(B|A)}$ | **Olabilirlik (Likelihood)** | Verilen sınıf ($A$) için verinin ($B$) gözlemlenme olasılığı. |
-| $\mathbf{P(A)}$ | **Önsel Olasılık (Prior)** | $B$ olayı hakkında hiçbir bilgi olmadan $A$ sınıfının genel olasılığı. |
-| $\mathbf{P(B)}$ | **Kanıt (Evidence)** | Sonsal olasılığı normalize eden sabittir. |
-
----
+| **P(A|B)** | **Sonsal Olasılık (Posterior)** | Verilen veri (B) ile örneğin belli bir sınıfa (A) ait olma olasılığı. (Hedefimiz budur!) |
+| **P(B|A)** | **Olabilirlik (Likelihood)** | Verilen sınıf (A) için verinin (B) gözlemlenme olasılığı. |
+| **P(A)** | **Önsel Olasılık (Prior)** | B olayı hakkında hiçbir bilgi olmadan A sınıfının genel olasılığı. |
+| **P(B)** | **Kanıt (Evidence)** | Sonsal olasılığı normalize eden sabittir. |
 
 ## 🤖 Naive Bayes Sınıflandırıcı Çeşitleri ve Karşılaştırması
 
