@@ -384,3 +384,56 @@ $$\mathbf{P(X \le 3)} = \mathbf{0.75}$$
 
 Rastgele seçilen bir taksi yolculuğunda yolcu sayısının 3 veya daha az olma olasılığı $\mathbf{0.75}$'tir (veya **%75**).
 
+---
+---
+
+<img width="827" height="529" alt="image" src="https://github.com/user-attachments/assets/c48b6a1e-6605-4e0e-a500-d76c386a4d64" />
+
+<img width="674" height="524" alt="image" src="https://github.com/user-attachments/assets/4c938733-bd84-49ce-b1d1-f1ebfef7b961" />
+
+# 📉 Dört Normal Dağılımın (Gaussian) Karşılaştırmalı Analizi
+
+Bu analiz, dört farklı Normal Dağılımın (Çan Eğrisi) iki temel parametresi olan **Ortalama ($\mu$)** ve **Standart Sapma ($\sigma$)** değerlerinin grafikte nasıl yorumlandığını gösterir.
+
+### 🧠 Normal Dağılım Parametrelerinin Yorumlanması
+
+* **Ortalama ($\mu$) Konumu:** Eğrinin **en yüksek noktası (tepesi)** $\mu$ değerine denk gelir.
+* **Standart Sapma ($\sigma$) Yayılımı:** Eğri ne kadar **dar ve uzunsa**, $\sigma$ o kadar **küçüktür** (düşük varyans). Eğri ne kadar **geniş ve alçaksa**, $\sigma$ o kadar **büyüktür** (yüksek varyans).
+
+---
+
+### 1. Dağılımların Detaylı Analizi Tablosu
+
+| Dağılım | Renk/Çizgi Tipi | Ortalama ($\mu$) Yorumu (Tepe Noktası) | Standart Sapma ($\sigma$) Yorumu (Genişlik/Yükseklik) |
+| :--- | :--- | :--- | :--- |
+| **normal\_A** | Mavi, Düz | $\mathbf{x \approx -2.5}$ civarındadır. | En **dar** ve en **yüksek** eğridir. **En küçük $\sigma$** değerine sahiptir. |
+| **normal\_B** | Turuncu, Kesik | $\mathbf{x \approx 0}$ civarındadır. | normal\_A'dan daha geniş, ancak diğerlerinden küçüktür. |
+| **normal\_C** | Yeşil, Nokta-Kesik | $\mathbf{x \approx 1.5}$ civarındadır. | normal\_B'den daha geniştir. |
+| **normal\_D** | Kırmızı, Noktalı | $\mathbf{x \approx 4}$ civarındadır. | En **geniş** ve en **alçak** eğridir. **En büyük $\sigma$** değerine sahiptir. |
+
+---
+
+### 2. Sıralamaların Özeti
+
+| Parametre | Sıralama (Küçükten Büyüğe) |
+| :--- | :--- |
+| **Ortalama ($\mu$)** | $\mu_{\text{normal\_A}} < \mu_{\text{normal\_B}} < \mu_{\text{normal\_C}} < \mu_{\text{normal\_D}}$ |
+| **Standart Sapma ($\sigma$)** | $\sigma_{\text{normal\_A}} < \sigma_{\text{normal\_B}} < \sigma_{\text{normal\_C}} < \sigma_{\text{normal\_D}}$ |
+
+---
+
+### 3. ✅ Doğru İfadelerin Seçimi
+
+Bu sıralamalara göre, grafiği doğru yorumlayan ifadeler şunlardır:
+
+* $$\mathbf{\sigma_{\text{normal\_D}} > \sigma_{\text{normal\_A}}}$$
+    (En geniş olan D, en dar olan A'dan büyüktür.)
+
+* $$\mathbf{\mu_{\text{normal\_D}} > \mu_{\text{normal\_C}}}$$
+    (En sağdaki D, C'den daha büyük ortalamaya sahiptir.)
+
+* $$\mathbf{\sigma_{\text{normal\_C}} > \sigma_{\text{normal\_B}}}$$
+    (C, B'den daha yayvan/geniş bir dağılıma sahiptir.)
+
+
+
