@@ -305,4 +305,82 @@ Test sonucu pozitif çıkan bir kişinin **gerçekten hasta olma olasılığı**
 
 Bu düşük sonuç şaşırtıcıdır ve temel olarak şundan kaynaklanır:
 > **Hastalık nadirdir.** Popülasyonun sadece %1'i hastadır. Test oldukça doğru olsa da, çok sayıda sağlıklı insanın yanlış pozitif ($0.10 \cdot 0.99 = 0.0990$) sonuç vermesi, doğru pozitif sonuçlardan ($0.95 \cdot 0.01 = 0.0095$) sayıca çok daha fazladır.
+> 
+
+---
+---
+
+<img width="966" height="582" alt="image" src="https://github.com/user-attachments/assets/a5111561-ea89-40d6-80df-f1ed8bdea4b9" />
+
+# 🎲 Binom Dağılımı (Binomial Distribution) Problemi Çözümü
+
+Bu problem, sabit sayıda denemeden (20 zar atışı), belirli sayıda (7 kez) başarı elde etme olasılığını hesapladığımız klasik bir **Binom Dağılımı** örneğidir.
+
+### 📝 Binom Dağılımı Formülü
+
+$n$ denemeden $k$ kez başarı elde etme olasılığı:
+
+$$P(X=k) = C(n, k) \cdot p^k \cdot (1-p)^{n-k}$$
+
+---
+
+### 1. Problemin Parametreleri
+
+| Parametre | Tanım | Değer |
+| :--- | :--- | :--- |
+| **$n$** (Deneme Sayısı) | Zar atışı sayısı | $\mathbf{20}$ |
+| **$k$** (İstenen Başarı) | "4" gelme sayısı | $\mathbf{7}$ |
+| **$p$** (Başarı Olasılığı) | Bir atışta '4' gelme olasılığı | $\mathbf{1/6}$ |
+| **$1-p$** (Başarısızlık Olasılığı) | '4' dışında bir sayı gelme olasılığı | $1 - 1/6 = \mathbf{5/6}$ |
+| **$n-k$** (Başarısızlık Sayısı) | Başarısız atış sayısı | $20 - 7 = \mathbf{13}$ |
+
+---
+
+### 2. Formülün Uygulanması
+
+Bulunan değerler formülde yerine konur. $C(20, 7)$ ifadesi, kombinasyon gösterimi olan $\binom{20}{7}$ şeklinde yazılır:
+
+$$P(X=7) = \binom{20}{7} \cdot \left(\frac{1}{6}\right)^7 \cdot \left(\frac{5}{6}\right)^{13}$$
+
+### ✅ Doğru Seçenek
+
+Bu matematiksel ifadeye karşılık gelen seçenek, **dördüncü (alttan birinci) seçenektir**.
+
+$$P(X=7) = \binom{20}{7} \cdot \left(\frac{1}{6}\right)^7 \cdot \left(\frac{5}{6}\right)^{13}$$
+
+---
+---
+
+<img width="763" height="616" alt="image" src="https://github.com/user-attachments/assets/f69d8cc5-702d-47bc-9460-cc0addb2f6fd" />
+
+# 🚕 Ayrık Olasılık Çözümü: Kümülatif Dağılım
+
+Bu, bir taksi yolculuğunda yolcu sayısının ($X$) **3 veya daha az** olma olasılığını hesaplayan bir **Ayrık Olasılık Dağılımı** problemidir. İstenen olasılık $\mathbf{P(X \le 3)}$'tür.
+
+### 📝 Çözüm: Kümülatif Olasılık Hesaplama
+
+$P(X \le 3)$ olasılığı, $X$'in 0, 1, 2 veya 3 olduğu ayrı olasılıkların toplamına eşittir:
+
+$$P(X \le 3) = P(X=0) + P(X=1) + P(X=2) + P(X=3)$$
+
+### 1. Tablodan Olasılıkları Alma
+
+| Yolcu Sayısı ($x_i$) | Olasılık ($p_i$) |
+| :--- | :--- |
+| $X=0$ | $0.10$ |
+| $X=1$ | $0.25$ |
+| $X=2$ | $0.25$ |
+| $X=3$ | $0.15$ |
+
+### 2. Olasılıkları Toplama
+
+İstenen kümülatif olasılığı bulmak için değerleri toplarız:
+
+$$P(X \le 3) = 0.10 + 0.25 + 0.25 + 0.15$$
+
+$$\mathbf{P(X \le 3)} = \mathbf{0.75}$$
+
+### ✅ Sonuç
+
+Rastgele seçilen bir taksi yolculuğunda yolcu sayısının 3 veya daha az olma olasılığı $\mathbf{0.75}$'tir (veya **%75**).
 
