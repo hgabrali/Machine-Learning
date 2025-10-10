@@ -97,9 +97,7 @@ Bayes algoritmalarını etkili kullanmak için anlaşılması gereken temel kavr
 ### 3. Maksimum Sonsal Olasılık (Maximum A Posteriori - MAP) Karar Kuralı
 
 * **Açıklama:** Sınıflandırma yaparken Naïve Bayes, olası tüm sınıflar ($C_k$) arasından **en yüksek sonsal olasılığa** sahip olan sınıfı seçer. Bu, modelin tahmin mekanizmasıdır.
-* **Formül:**
 
-$$\hat{C} = \underset{C_k}{\operatorname{argmax}} \, P(C_k|D) = \underset{C_k}{\operatorname{argmax}} \, P(D|C_k) \cdot P(C_k)$$
 
 ### 4. Bayes Ağları (Bayesian Networks) 🌐
 * **Açıklama:** Naïve Bayes'in bağımsızlık varsayımının ötesine geçen, özellikler arasındaki **bağımlılıkları** modelleyebilen daha gelişmiş olasılıksal grafik modellerdir.
