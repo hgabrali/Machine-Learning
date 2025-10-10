@@ -138,4 +138,50 @@ MAP kuralını uygulayarak:
 
 **Sonuç:** $0.0124 > 0.0020$ olduğu için model, e-postayı **SPAM** olarak sınıflandırır. ✅
 
+---
+---
+
+<img width="930" height="347" alt="image" src="https://github.com/user-attachments/assets/ebf529b1-ea70-4f52-b2cc-874a6a8607f4" />
+
+## ❓ Olasılık Problemi Çözümü: Yetersiz Bilgi
+
+Bu, **Birleşim Olasılığı (Probability of Union)** hesaplama problemidir. Temel kural, iki olayın **kesişiminin ($P(A \text{ ve } B)$)** bilinmesini gerektirir.
+
+### 💊 Deney Verileri
+
+* **Toplam Hasta Sayısı:** 100
+* **Baş Ağrısı Yaşayanlar (Headache - H):** 50
+* **Ateş Yaşayanlar (Fever - F):** 50
+
+**Olasılıklar (Prior):**
+* $P(H) = \frac{50}{100} = 0.5$
+* $P(F) = \frac{50}{100} = 0.5$
+
+### 🎯 İstenen Olasılık
+
+Doktorlar, bir hastanın **Baş Ağrısı VEYA Ateş** yaşama olasılığını, yani $\mathbf{P(H \cup F)}$'i bulmak istiyor.
+
+### 📝 Olasılıkların Birleşim Kuralı (The Addition Rule)
+
+Genel kural şudur:
+$$\mathbf{P(A \text{ veya } B)} = P(A) + P(B) - P(A \text{ ve } B)$$
+
+Bu kuralı uygulamak için $\mathbf{P(\text{Baş Ağrısı ve Ateş})}$ terimine ihtiyacımız var. Bu, aynı anda hem baş ağrısı hem de ateş yaşayan hastaların oranını ifade eder. Soruda bu **kesişim olasılığı** (yani kaç hastanın çifte semptom yaşadığı) **verilmemiştir**.
+
+### ❌ Geçersiz Varsayımların İncelenmesi
+
+| Varsayım | Kural | Neden Geçersiz? |
+| :--- | :--- | :--- |
+| **Ayrık Olaylar** (Mutually Exclusive) | $P(A \text{ veya } B) = P(A) + P(B) = 1$ | Hiçbir hastanın iki semptomu birden yaşamadığı varsayılır. Soruda bu bilgi **yoktur**. |
+| **Bağımsız Olaylar** (Independent) | $P(A \text{ ve } B) = P(A) \cdot P(B) = 0.25$ | Tıbbi semptomlar genellikle **bağımlıdır**. İlaç, semptomlardan birini tetikleyebilir veya engelleyebilir. Bu varsayımın doğru olduğu **garanti edilemez**. |
+
+### 🛑 Sonuç
+
+$\mathbf{P(\text{H ve F})}$ değeri (kesişim) bilinmediği sürece, **Birleşim Olasılığı** doğru bir şekilde hesaplanamaz.
+
+* **Ek Bilgi Gereksinimi:** Kaç hasta **sadece** baş ağrısı, kaç hasta **sadece** ateş ve kaç hasta **hem** baş ağrısı **hem de** ateş yaşadı?
+
+**Doğru İfade:**
+> **Not enough information is given to calculate $P(\text{fever or headache})$.**
+> (Baş ağrısı veya ateş olasılığını hesaplamak için yeterli bilgi verilmemiştir.)
 
