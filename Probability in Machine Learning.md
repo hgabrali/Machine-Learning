@@ -686,3 +686,97 @@ $$P(X=2, Y=2) = 0.1$$
 Doğru hesaplama ve tablodan okunan değer şudur:
 
 $$\mathbf{P(X=2, Y=2) = 0.1}$$
+
+---
+
+<img width="699" height="354" alt="image" src="https://github.com/user-attachments/assets/43b4b95f-fd08-4fdd-aa5f-fccf8190a6ea" />
+
+
+### Koşullu Olasılık Hesaplaması: $P(X=3 \mid Y=1)$ 🎯
+
+Bu problem, ortak olasılık dağılımı tablosu kullanılarak koşullu olasılığın hesaplanmasını gerektirir.
+
+#### Koşullu Olasılık Formülü
+$$P(X=x \mid Y=y) = \frac{P(X=x, Y=y)}{P(Y=y)}$$
+
+---
+
+#### 1. Payda Hesaplaması: Marjinal Olasılık $P(Y=1)$ ➕
+
+$P(Y=1)$, $Y=1$ sütunundaki tüm değerlerin toplamıdır:
+
+| $X$ Değeri | $P(X, Y=1)$ |
+| :---: | :---: |
+| 1 | $0.05$ |
+| 2 | $0.10$ |
+| 3 | $0.15$ |
+| **Toplam** | $\mathbf{0.30}$ |
+
+$$P(Y=1) = 0.05 + 0.10 + 0.15 = 0.30$$
+
+---
+
+#### 2. Pay Değeri: Ortak Olasılık $P(X=3, Y=1)$
+
+Tablodan okunan değer:
+$$P(X=3, Y=1) = 0.15$$
+
+---
+
+#### 3. Nihai Hesaplama (Final Calculation)
+
+$$P(X=3 \mid Y=1) = \frac{P(X=3, Y=1)}{P(Y=1)} = \frac{0.15}{0.30}$$
+
+$$\mathbf{P(X=3 \mid Y=1) = 0.5}$$
+
+---
+
+<img width="731" height="167" alt="image" src="https://github.com/user-attachments/assets/52ab6daf-7543-4fc5-937b-cb656964b808" />
+
+
+### Kovaryans Hesaplaması: $\text{Cov}(X, Y)$ 🔗
+
+Bu analiz, $\text{Cov}(X, Y) = E[XY] - E[X]E[Y]$ formülüne dayanmaktadır.
+
+#### Ortak Olasılık Dağılımı Tablosu
+| $X \setminus Y$ | 0 | 1 | **$P(X=x)$** |
+| :---: | :---: | :---: | :---: |
+| 0 | $0.2$ | $0.1$ | $0.3$ |
+| 1 | $0.1$ | $0.6$ | $0.7$ |
+| **$P(Y=y)$** | $0.3$ | $0.7$ | **1.0** |
+
+---
+
+#### 1. Beklenen Değerlerin Hesaplanması (Expected Values)
+
+* **$E[X]$:** $(0 \cdot 0.3) + (1 \cdot 0.7) = \mathbf{0.7}$
+* **$E[Y]$:** $(0 \cdot 0.3) + (1 \cdot 0.7) = \mathbf{0.7}$
+
+---
+
+#### 2. Çarpımın Beklenen Değeri ($E[XY]$)
+
+| $x$ | $y$ | $x \cdot y$ | $P(x, y)$ | $(x \cdot y) \cdot P(x, y)$ |
+| :---: | :---: | :---: | :---: | :---: |
+| 0 | 0 | 0 | 0.2 | 0.0 |
+| 0 | 1 | 0 | 0.1 | 0.0 |
+| 1 | 0 | 0 | 0.1 | 0.0 |
+| 1 | 1 | 1 | 0.6 | 0.6 |
+
+$$E[XY] = 0.0 + 0.0 + 0.0 + 0.6 = \mathbf{0.6}$$
+
+---
+
+#### 3. Kovaryansın Hesaplanması (Final Covariance)
+
+$$\text{Cov}(X, Y) = E[XY] - E[X] E[Y]$$
+$$\text{Cov}(X, Y) = 0.6 - (0.7) \cdot (0.7)$$
+$$\text{Cov}(X, Y) = 0.6 - 0.49$$
+
+$$\mathbf{\text{Cov}(X, Y) = 0.11}$$
+
+---
+
+
+
+
