@@ -437,6 +437,7 @@ Bu sıralamalara göre, grafiği doğru yorumlayan ifadeler şunlardır:
 
 
 ---
+<img width="1199" height="587" alt="image" src="https://github.com/user-attachments/assets/f66e93f1-f141-456d-8302-054b7308bc2f" />
 
 ### Fayda: Dağılımın Standartlaştırılmasının Faydaları
 
