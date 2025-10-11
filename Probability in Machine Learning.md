@@ -603,3 +603,4 @@ Bu analiz, bir veri setinin **QQ Plot** (Kuantil-Kuantil Grafiği) kullanılarak
 
 ---
 
+<img width="361" height="149" alt="image" src="https://github.com/user-attachments/assets/dc036e40-7f62-4faf-88c7-6b21cf5e2af5" />
