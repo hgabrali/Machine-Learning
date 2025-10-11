@@ -596,6 +596,8 @@ Bu analiz, bir veri setinin **QQ Plot** (Kuantil-Kuantil Grafiği) kullanılarak
 ---
 
 <img width="1077" height="490" alt="image" src="https://github.com/user-attachments/assets/2d51ea35-a613-4ae1-9d9c-8db533ba4c7b" />
+---
+<img width="1076" height="492" alt="image" src="https://github.com/user-attachments/assets/4b7028bb-a6b7-4750-b775-4937b2213b2e" />
 
 ---
 
