@@ -446,3 +446,149 @@ Bu sıralamalara göre, grafiği doğru yorumlayan ifadeler şunlardır:
 | **Standard Scale Transformation** 📏 | It transforms datasets into a standard scale, making it easier to compare between different datasets. |
 | **Statistical Simplification** 📊 | It simplifies statistical analysis, particularly when using techniques that assume a standard normal distribution. |
 | **Machine Learning Performance** 🚀 | Standardizing features in machine learning can improve the convergence rate of optimization algorithms and prevent some features from dominating others, leading to improved model performance. |
+---
+
+<img width="717" height="243" alt="image" src="https://github.com/user-attachments/assets/df2a2ea2-7d39-49a5-a0e9-afaebd94f442" />
+
+### Kurtosis Analizi: Game A vs. Game B Dağılım Karşılaştırması ⚖️
+
+Kurtosis, bir dağılımın **kuyruklarının ağırlığını** ve aşırı uç değerlere sahip olma eğilimini ölçer. Yüksek Kurtosis, daha ağır kuyruklar demektir.
+
+| Kriter (Criterion) | Game A Analizi (Game A Analysis) | Game B Analizi (Game B Analysis) |
+| :--- | :--- | :--- |
+| **Kazanma/Kaybetme Değerleri** | $\{-1, +2\}$ | $\{-2, -0.50, +0.50, +5\}$ |
+| **Aralık (Range)** | Küçük aralık ($\text{Range} = 3$ birim). | Büyük aralık ($\text{Range} = 7$ birim). |
+| **Uç Değerler (Extremes)** | Tüm olası sonuçlar birbirine nispeten yakındır. | Çok daha **uç sonuçlar** ($\text{+5}$ ve $\text{-2}$) mevcuttur. |
+| **Kuyruk Ağırlığı (Tail Weight)** | Kuyruklar **hafif** olma eğilimindedir. | Kuyruklar **ağır** olma eğilimindedir (daha fazla aşırı değer olasılığı). |
+| **Kurtosis Sonucu** | Daha küçüktür ($\text{Smaller}$). | Daha büyüktür ($\text{Larger}$). |
+
+#### Nihai Sonuç (Final Conclusion)
+
+<img width="742" height="406" alt="image" src="https://github.com/user-attachments/assets/f7b0f71d-02a3-45e1-8d98-b306052c9c88" />
+
+
+Game B, Game A'ya kıyasla dağılımının merkezinden çok daha uzakta yer alan büyük uç değerlere sahip olduğu için, **Game B'nin kurtosis değeri, Game A'nın kurtosis değerinden daha büyüktür.**
+
+$$\text{Game A's kurtosis is smaller than Game B's kurtosis.}$$
+$$\text{Kurtosis}(\text{A}) < \text{Kurtosis}(\text{B})$$
+
+---
+
+<img width="521" height="455" alt="image" src="https://github.com/user-attachments/assets/979a8b6f-a4af-4fcb-b5ef-b1f61ba89819" />
+
+### Bağımsız Normal Dağılımlı Değişkenlerin Toplamı Analizi ➕
+
+**Verilenler (Given):**
+* $X \sim \text{Normal}(3, 1^2)$
+* $Y \sim \text{Normal}(2, 2^2)$
+
+**Kural (Rule):** $X$ ve $Y$ bağımsız ise, $Z = X + Y$ de Normal dağılım izler: $Z \sim \text{Normal}(\mu_Z, \sigma_Z^2)$.
+
+---
+
+#### 1. Ortalama ($\mu_Z$) Hesaplanması (Mean Calculation)
+
+Bağımsız değişkenlerin ortalaması, bireysel ortalamaların toplamıdır:
+$$\mu_Z = \mu_X + \mu_Y$$
+
+| Değişken | Ortalama ($\mu$) |
+| :---: | :---: |
+| $X$ | $\mu_X = 3$ |
+| $Y$ | $\mu_Y = 2$ |
+
+$$\mu_Z = 3 + 2 = 5$$
+
+---
+
+#### 2. Varyans ($\sigma_Z^2$) Hesaplanması (Variance Calculation)
+
+Bağımsız değişkenlerin varyansı, bireysel varyansların toplamıdır:
+$$\sigma_Z^2 = \sigma_X^2 + \sigma_Y^2$$
+
+| Değişken | Varyans ($\sigma^2$) |
+| :---: | :---: |
+| $X$ | $\sigma_X^2 = 1^2 = 1$ |
+| $Y$ | $\sigma_Y^2 = 2^2 = 4$ |
+
+$$\sigma_Z^2 = 1 + 4 = 5$$
+
+---
+
+#### 3. Standart Sapma ($\sigma_Z$) Hesaplanması (Standard Deviation)
+
+Standart sapma, varyansın kareköküdür:
+$$\sigma_Z = \sqrt{\sigma_Z^2}$$
+
+$$\sigma_Z = \sqrt{5}$$
+
+---
+
+#### Sonuç (Final Result)
+
+$Z = X + Y$ değişkeni, $\text{Normal}(\mu, \sigma^2)$ dağılımına sahiptir:
+$$\mu = 5, \quad \sigma = \sqrt{5}$$
+
+---
+
+<img width="680" height="646" alt="image" src="https://github.com/user-attachments/assets/8995caa0-e725-45a3-a22e-c8194d872070" />
+
+### Kutu Grafiği Analizi: Class A vs. Class B Test Skorları 📊
+
+Bu analizde, medyan (merkez) ve çeyrekler arası aralık (yayılım) karşılaştırılmıştır.
+
+| İstatistiksel Ölçü | Tanım (Definition) | Class A Değerleri | Class B Değerleri |
+| :--- | :--- | :--- | :--- |
+| **Medyan (Median)** 🔴 | Kutunun içindeki yatay kırmızı çizgidir. | Yaklaşık $\mathbf{74}$ | Yaklaşık $\mathbf{85}$ |
+| **IQR (Çeyrekler Arası Aralık)** 📐 | Kutunun yüksekliğidir ($\text{Q3} - \text{Q1}$). | $\text{Q3} \approx 79, \text{Q1} \approx 60 \implies \text{IQR} \approx \mathbf{19}$ | $\text{Q3} \approx 90, \text{Q1} \approx 80 \implies \text{IQR} \approx \mathbf{10}$ |
+
+---
+
+#### Temel Sonuçlar (Key Findings)
+
+* **Medyan Karşılaştırması:** Class B'nin medyan skoru ($\mathbf{85}$), Class A'nın medyan skorundan ($\mathbf{74}$) **daha yüksektir**. ($\text{Class B}$ daha iyi bir merkezi eğilime sahiptir.)
+* **IQR Karşılaştırması:** Class A'nın IQR'ı ($\mathbf{19}$), Class B'nin IQR'ından ($\mathbf{10}$) **daha büyüktür**. ($\text{Class A}$'nın skorları daha fazla yayılmıştır/dağınıktır.)
+
+### Kutu Grafiği Analizi: İfadelerin Karşılaştırılması (Comparison of Statements) 🎯
+
+Aşağıdaki tablo, Class A ve Class B için hesaplanan Medyan ve IQR değerlerine göre verilen ifadelerin doğruluğunu kontrol etmektedir.
+
+| İfade (Statement) | Değerler (Values) | Sonuç (Result) |
+| :--- | :--- | :--- |
+| **Class A's median score is higher than Class B's median score.** | $74 > 85$ | Yanlış (False) ❌ |
+| **Class B's interquartile range (IQR) is larger than Class A's interquartile range.** | $10 > 19$ | Yanlış (False) ❌ |
+| **Class A's interquartile range (IQR) is larger than Class B's interquartile range.** | $19 > 10$ | **Doğru (True)** ✅ |
+| **Class B's median score is higher than Class A's median score.** | $85 > 74$ | **Doğru (True)** ✅ |
+
+#### Analiz Özeti
+
+Grafiğe göre, **Class B** daha yüksek bir merkezi eğilime (Medyan = 85) sahipken, **Class A** daha büyük bir yayılıma ($\text{IQR} = 19$) sahiptir.
+
+### Kutu Grafiği Sonuçları: Doğru İfadeler (Final Box Plot Conclusions) ✅
+
+Analiz sonucunda, verilen dört seçenek arasından **iki ifadenin** doğru olduğu belirlenmiştir. Bu durum, veri setinin hem merkezindeki hem de yayılımındaki farklılıkları yansıtmaktadır.
+
+| İfade (Statement) | Dayanak (Evidence) | Sonuç (Result) |
+| :--- | :--- | :--- |
+| **Class A's interquartile range (IQR) is larger than Class B's interquartile range.** | $\text{IQR(A): 19} \quad > \quad \text{IQR(B): 10}$ | **Doğru (True)** |
+| **Class B's median score is higher than Class A's median score.** | $\text{Median(B): 85} \quad > \quad \text{Median(A): 74}$ | **Doğru (True)** |
+
+---
+
+#### Özet (Summary)
+
+Class B'nin **daha yüksek bir performansa** (daha yüksek medyan) sahip olduğu, ancak Class A'nın skorlarının **daha dağınık** (daha büyük IQR) olduğu sonucuna varılmıştır.
+
+---
+
+<img width="560" height="599" alt="image" src="https://github.com/user-attachments/assets/d7d014ed-90f3-4423-b5c5-f7d020806d74" />
+
+### QQ Plot Analizi: Normal Dağılımın Değerlendirilmesi 📐📊
+
+Bu analiz, bir veri setinin **QQ Plot** (Kuantil-Kuantil Grafiği) kullanılarak Normal ($\text{Gaussian}$) dağılıma ne kadar uyduğunu değerlendirmektedir.
+
+| Kriter (Criterion) | Gözlem (Observation) | Sonuç (Implication) |
+| :--- | :--- | :--- |
+| **Genel Kural** | Veri noktaları düz çizgiyi takip ediyorsa, veri Normal dağılıma uyar. Veri noktaları çizgiden sapıyorsa, dağılım göstermez. | QQ Plot, verinin dağılım uyumunu belirlemenin en iyi yoludur. |
+| **Merkez Bölge** 🟢 | Veri noktalarının büyük bir kısmı ($-1$'den $1$'e kadar olan kısım), turuncu çizginin üzerinde çok yakındır. | Verinin merkezinin Normal dağılıma **güçlü bir şekilde** uyduğunu gösterir. |
+| **Kuyruklar (Uçlar)** ⚠️ | Noktalar, hem alt kuyrukta (yaklaşık $-1$'den sonra) hem de üst kuyrukta (yaklaşık $1$'den sonra) çizgiden hafifçe sapmaktadır. | Dağılımın kusursuz Normal olmadığını gösterir, ancak sapma küçüktür. |
+| **Nihai Karar** ✅ | Sapmaların büyüklüğü, tüm veri setini "Normal Dağılmış Değil" olarak sınıflandırmak için genellikle yeterli değildir. | **The data looks normally distributed.** (Veri, Normal dağılmış görünüyor.) |
