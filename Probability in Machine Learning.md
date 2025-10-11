@@ -592,3 +592,10 @@ Bu analiz, bir veri setinin **QQ Plot** (Kuantil-Kuantil Grafiği) kullanılarak
 | **Merkez Bölge** 🟢 | Veri noktalarının büyük bir kısmı ($-1$'den $1$'e kadar olan kısım), turuncu çizginin üzerinde çok yakındır. | Verinin merkezinin Normal dağılıma **güçlü bir şekilde** uyduğunu gösterir. |
 | **Kuyruklar (Uçlar)** ⚠️ | Noktalar, hem alt kuyrukta (yaklaşık $-1$'den sonra) hem de üst kuyrukta (yaklaşık $1$'den sonra) çizgiden hafifçe sapmaktadır. | Dağılımın kusursuz Normal olmadığını gösterir, ancak sapma küçüktür. |
 | **Nihai Karar** ✅ | Sapmaların büyüklüğü, tüm veri setini "Normal Dağılmış Değil" olarak sınıflandırmak için genellikle yeterli değildir. | **The data looks normally distributed.** (Veri, Normal dağılmış görünüyor.) |
+
+---
+
+<img width="1077" height="490" alt="image" src="https://github.com/user-attachments/assets/2d51ea35-a613-4ae1-9d9c-8db533ba4c7b" />
+
+---
+
