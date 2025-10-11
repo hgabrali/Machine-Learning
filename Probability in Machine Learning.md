@@ -436,4 +436,12 @@ Bu sıralamalara göre, grafiği doğru yorumlayan ifadeler şunlardır:
     (C, B'den daha yayvan/geniş bir dağılıma sahiptir.)
 
 
+---
 
+### Fayda: Dağılımın Standartlaştırılmasının Faydaları
+
+| Benefit (Concept) | Explanation / Impact |
+| :--- | :--- |
+| **Standard Scale Transformation** 📏 | It transforms datasets into a standard scale, making it easier to compare between different datasets. |
+| **Statistical Simplification** 📊 | It simplifies statistical analysis, particularly when using techniques that assume a standard normal distribution. |
+| **Machine Learning Performance** 🚀 | Standardizing features in machine learning can improve the convergence rate of optimization algorithms and prevent some features from dominating others, leading to improved model performance. |
