@@ -2,7 +2,7 @@
 
 Makine öğrenimi, büyük ölçüde bilinmeyen bir sonucun, elimizdeki verilere dayanarak ortaya çıkma **olasılığını hesaplama** sanatıdır. Temelde ML, bir olasılık hesaplama makinesi olarak işlev görür.
 
----
+--- 
 
 ## 1. Koşullu Olasılık (Conditional Probability) 📊
 
