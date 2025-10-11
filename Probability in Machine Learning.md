@@ -604,3 +604,85 @@ Bu analiz, bir veri setinin **QQ Plot** (Kuantil-Kuantil Grafiği) kullanılarak
 ---
 
 <img width="361" height="149" alt="image" src="https://github.com/user-attachments/assets/dc036e40-7f62-4faf-88c7-6b21cf5e2af5" />
+
+---
+<img width="706" height="335" alt="image" src="https://github.com/user-attachments/assets/0b875d7d-3e2a-46c0-a74f-107855a6e3a5" />
+
+### Ayrık Olasılık Dağılımının Beklenen Değeri ($E[X]$) Hesaplaması 🧮
+
+Bu problem, rastgele değişken $X$'in alacağı değerlerin kendi olasılıkları ile çarpılıp toplanmasıyla bulunan **Beklenen Ortalama** ($\mu$) değerini hesaplamayı gerektirir.
+
+#### Temel Formül (Expected Value Formula)
+$$\mu = E[X] = \sum_{i} x_i \cdot P(x_i)$$
+
+---
+
+#### 1. Veri Değerleri ve Olasılıklar Tablosu 🔢
+
+| $X$ Değeri ($x_i$) | Olasılık ($P(x_i)$) |
+| :---: | :---: |
+| $1$ | $0.3$ |
+| $3$ | $0.4$ |
+| $5$ | $0.3$ |
+
+---
+
+#### 2. Beklenen Değer ($E[X]$) Hesaplaması
+
+Her $x_i$ değerini karşılık gelen $P(x_i)$ olasılığı ile çarpıp toplayalım:
+
+$$E[X] = (1 \cdot 0.3) + (3 \cdot 0.4) + (5 \cdot 0.3)$$
+
+$$E[X] = 0.3 + 1.2 + 1.5$$
+
+$$E[X] = 3.0$$
+
+---
+
+#### Sonuç (Final Result)
+
+Beklenen ortalama ($\mu$) şuna eşittir:
+$$\mu = 3.0$$
+
+---
+
+<img width="709" height="414" alt="image" src="https://github.com/user-attachments/assets/3de533ee-51e0-43d5-89a5-2750bbc2fc8a" />
+
+### Ortak Olasılık Dağılımı Analizi: Çift Değer Olasılığı ($P(X=\text{even}, Y=\text{even})$) 🎲
+
+Bu problem, iki rastgele değişkenin ($X$ ve $Y$) **bir arada çift değer** alması olasılığını bulmayı gerektirir.
+
+---
+
+#### 1. Koşulun Belirlenmesi (Defining the Condition)
+
+| Değişken (Variable) | Olası Değerler (Possible Values) | Çift Değer (Even Value) |
+| :---: | :---: | :---: |
+| $X$ | $\{1, 2, 3\}$ | $X=2$ |
+| $Y$ | $\{1, 2\}$ | $Y=2$ |
+
+Koşul: $X$ ve $Y$ her ikisi de çift değer alsın.
+$$\text{Aranan Olasılık: } P(X=2, Y=2)$$
+
+---
+
+#### 2. Olasılığın Tablodan Okunması (Reading the Joint Probability)
+
+Verilen ortak olasılık dağılımı tablosu:
+
+| $X \setminus Y$ | $1$ | $2$ | $3$ |
+| :---: | :---: | :---: | :---: |
+| $1$ | $0.1$ | $0.2$ | $0.3$ |
+| $2$ | $0.2$ | **0.1** | $0.1$ |
+
+Tabloda $X=2$ satırı ile $Y=2$ sütununun kesişimi aranan olasılıktır:
+
+$$P(X=2, Y=2) = 0.1$$
+
+---
+
+#### Nihai Sonuç (Final Result) ✅
+
+Doğru hesaplama ve tablodan okunan değer şudur:
+
+$$\mathbf{P(X=2, Y=2) = 0.1}$$
