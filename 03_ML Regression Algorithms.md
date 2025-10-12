@@ -285,3 +285,104 @@ k-En Yakın Komşu (kNN) algoritması hem sınıflandırma hem de regresyon gör
 | **Örnek** | En yakın 5 noktanın çoğu Yıldız ise, yeni nokta da Yıldız olarak etiketlenir. | En yakın 5 noktanın hedef değerleri 10, 12, 11, 13, 14 ise, tahmin $12$ olur. |
 
 > **💡 Ana Çıkarım:** kNN Regresyonu, bir noktaya en yakın komşuların ortalama değerini kullanarak tahmin yapan, basit ve güçlü bir yöntemdir. Ancak etkin çalışması için **veri ölçeklendirmesi zorunludur** ve büyük veri setlerinde yavaşlama eğilimi gösterebilir.
+
+
+# 📊 Modelleri Değerlendirirken Dikkat Edilen Parametreler
+
+Regresyon modellerinin performansını karşılaştırmak için kullanılan dört temel metrik (MAE, MSE, RMSE ve $R^2$), modelin hatasını farklı açılardan ölçer ve değerlendirmenin kritik unsurlarını vurgular.
+
+---
+
+## 🔍 Temel Regresyon Metriklerinin İfadesi ve Vurgusu
+
+| 🖼️ Metrik | İfade Ettiği Anlam (Tanım) | Vurguladığı Kritik Nokta | İdeal Değer |
+| :--- | :--- | :--- | :--- |
+| **1. Ortalama Mutlak Hata (MAE)** | **Ortalama Mutlak Hata:** Tahminler ile gerçek değerler arasındaki mutlak farkların (hata büyüklüklerinin) ortalamasıdır. | Modelin **ortalama tahmin yanılması** (birim hedef değişkenle aynıdır, örn: "Ortalama $4,000 yanılma"). Aykırı değerlere karşı daha az hassastır. | **0'a Yakın** (Daha Düşük Daha İyi) |
+| **2. Hata Kareleri Ortalaması (MSE)** | **Ortalama Kare Hata:** Hataların karelerinin ortalamasıdır. | **Büyük Hataların Cezalandırılması:** Hata büyüdükçe karesi alındığı için büyük hataları **çok daha fazla** vurgular ve cezalandırır. | **0'a Yakın** (Daha Düşük Daha İyi) |
+| **3. Kök Ortalama Kare Hata (RMSE)** | **Ortalama Kare Hatanın Karekökü:** MSE'nin karekökü alınarak hata birimi tekrar hedef değişkenle aynı hale getirilir. | **Yorumlanabilir Hata Miktarı** ve **Büyük Hataların Etkisi:** MSE'nin avantajını (büyük hataları cezalandırma) korurken, sonuçları hedef değişkenin orijinal biriminde sunar. | **0'a Yakın** (Daha Düşük Daha İyi) |
+| **4. R-Kare ($R^2$) / Belirleme Katsayısı** | **Açıklanan Varyans Oranı:** Modelin, hedef değişkendeki toplam varyasyonun (değişkenliğin) ne kadarını açıkladığını gösterir. | **Modelin Açıklayıcı Gücü:** Modelin, yalnızca ortalama değeri tahmin eden basit bir temel çizgisine göre ne kadar daha iyi olduğunu gösterir. | **1'e Yakın** (Daha Yüksek Daha İyi) |
+
+---
+
+## 🛠️ Modelleri Karşılaştırmanın Önemi
+
+Tüm bu metriklerin bir DataFrame'de düzenli bir şekilde döndürülmesi ve yan yana listelenmesi, farklı regresyon algoritmalarının (Lineer, Polinom, Karar Ağacı, kNN vb.) performansını **doğrudan ve objektif bir şekilde** karşılaştırmamızı sağlar.
+
+### Karşılaştırma Karar Noktaları:
+
+| Odaklanılan Metrik | Amaç ve Çıkarım |
+| :--- | :--- |
+| **MAE** | **Günlük Yorumlama:** Müşterilere veya iş ekiplerine modelin ortalama hatasını basitçe açıklamak için kullanılır. |
+| **MSE / RMSE** | **Optimizasyon ve Risk Yönetimi:** Büyük tahmin hatalarının maliyeti yüksekse, en düşük **RMSE** değerine sahip modeli seçmek kritik olabilir. |
+| **$R^2$** | **Genel Uyum:** Modelin veriye ne kadar iyi uyduğunu ve hedef değişkendeki değişkenliğin ne kadarını başarılı bir şekilde modellediğini gösterir. |
+
+# 🚀 Regresyon Modelleri Karşılaştırması
+
+Bu bölüm, eğitilen farklı regresyon modellerinin (Lineer Regresyon, Polinom Regresyon, Karar Ağacı, Rastgele Orman ve kNN) temel performans metriklerini (MAE, MSE, RMSE, R²) yan yana getirerek en iyi modeli seçmenizi sağlayan süreci özetler.
+
+---
+
+## ⚙️ Karşılaştırma Metotları ve İfadeleri
+
+| 🖼️ Parametre | Tanım | Vurgu | İdeal Durum |
+| :--- | :--- | :--- | :--- |
+| **Model** | Karşılaştırılan regresyon algoritmasının adıdır. | Hangi algoritmanın hangi performansı sağladığını gösterir. | |
+| **MAE** | **Ortalama Mutlak Hata.** Tahmin edilen ve gerçek değerler arasındaki ortalama yanılma. | **Yorumlama kolaylığı** (hatayı orijinal birimde verir). | 0'a yakın (Daha Düşük İyidir) |
+| **MSE** | **Hata Kareleri Ortalaması.** Hataların karelerinin ortalamasıdır. | **Büyük hataları cezalandırır.** Optimizasyon için kullanışlıdır. | 0'a yakın (Daha Düşük İyidir) |
+| **RMSE** | **Kök Ortalama Kare Hata.** MSE'nin kareköküdür. | **Yorumlanabilir hata büyüklüğü** ve **büyük hataların vurgulanması**. | 0'a yakın (Daha Düşük İyidir) |
+| **R²** | **Belirleme Katsayısı.** Modelin hedef değişkendeki varyasyonun ne kadarını açıkladığı. | **Modelin açıklayıcı gücü** ve veriye ne kadar iyi uyum sağladığı. | 1'e yakın (Daha Yüksek İyidir) |
+
+---
+
+## 📈 Örnek Model Değerlendirme Sonuçları
+
+Aşağıdaki tablo, yukarıdaki metotlar kullanılarak elde edilmiş varsayımsal bir sonuç setini göstermektedir. (**Not:** Gerçek sonuçlar veri setine göre değişecektir.)
+
+| Model | MAE (Örn: $1000) | MSE (Örn: $Kare) | RMSE (Örn: $1000) | R² |
+| :--- | :--- | :--- | :--- | :--- |
+| **Lineer Regresyon** | 4.8 | 35.2 | 5.93 | 0.65 |
+| **Polynomial Regresyon** | 3.5 | 20.3 | 4.50 | 0.81 |
+| **Karar Ağacı** | 4.1 | 28.1 | 5.30 | 0.73 |
+| **Rastgele Orman** | **2.9** | **14.8** | **3.85** | **0.88** |
+| **KNN Regresyon** | 5.5 | 42.7 | 6.53 | 0.59 |
+
+### 🎯 Çıkarım
+
+Bu varsayımsal sonuçlara göre:
+
+1.  **Rastgele Orman (Random Forest)**, en düşük hata metriklerine (en düşük MAE, MSE, RMSE) ve en yüksek açıklayıcı güce ($R^2=0.88$) sahiptir.
+2.  **KNN Regresyon** en zayıf performansı göstermiştir.
+3.  **Polinom Regresyon**, Lineer Regresyondan daha iyi performans göstererek veride doğrusal olmayan bir ilişki olduğunu düşündürmektedir.
+
+**Genel Prensip:** Seçim yaparken, genellikle **en düşük RMSE** ve **en yüksek R²** değerine sahip modele odaklanılır, ancak büyük hataların maliyeti yüksekse MSE'ye daha fazla önem verilebilir.
+
+# 🚀 Regresyon Modelleri: İleri Kavramlar ve Optimizasyon
+
+Şimdiye kadar ele alınan modellerin kısıtlarını aşmak ve daha iyi genelleme (genel performans) sağlamak için makine öğreniminde sıkça kullanılan iki güçlü tekniği inceleyelim: **Düzenlileştirme (Regularization)** ve **Güçlendirme (Boosting)**.
+
+---
+
+## 1️⃣ ⚖️ Düzenlileştirme (Regularization) Regresyonu
+
+Düzenlileştirme, özellikle Lineer ve Polinom Regresyon modellerinde **aşırı uyumu (overfitting)** önlemek için maliyet fonksiyonuna (Loss Function) bir ceza terimi ekleme işlemidir.
+
+| 🖼️ Model Tipi | Açıklama | Nasıl Çalışır? | Vurgu |
+| :--- | :--- | :--- | :--- |
+| **Ridge Regresyonu ($L2$ Düzenlileştirme)** | Tüm katsayıları küçük ve sıfıra yakın tutarak **aşırı uyumu önler**. | Maliyet fonksiyonuna, katsayıların **karelerinin toplamını** ekler. Bu, hiçbir katsayının çok büyük olmamasını sağlar. | **Çoklu Doğrusallık (Multicollinearity)** olan veri setlerinde kararlı ve iyi performans sağlar. Tüm özellikler modelde kalır, ancak etkileri zayıflatılır. |
+| **Lasso Regresyonu ($L1$ Düzenlileştirme)** | Aşırı uyumu önlerken, önemsiz özelliklerin katsayılarını **tam olarak sıfır** yapabilir. | Maliyet fonksiyonuna, katsayıların **mutlak değerlerinin toplamını** ekler. | **Özellik Seçimi (Feature Selection)** yapar. Modeldeki gereksiz özellikleri eleyerek daha basit ve yorumlanabilir bir model elde etmeye yardımcı olur. |
+| **Elastic Net** | Ridge ve Lasso'nun **birleşimidir**. Her iki ceza terimini de kullanır. | Hem katsayıları küçültür hem de önemsiz katsayıları sıfıra çeker. | Özellikle yüksek boyutlu ve birbiriyle yüksek korelasyonlu özelliklere sahip veri setlerinde çok etkilidir. |
+
+> **💡 Ana Çıkarım:** Düzenlileştirme, modelin eğitim verisine çok sıkı bağlanmasını engelleyerek, **yeni verilere genelleme yeteneğini** artırır. Lineer ve Polinom Regresyonun güvenirliğini büyük ölçüde artırır.
+
+---
+
+## 2️⃣ 🚀 Güçlendirme (Boosting) Regresyonu
+
+Güçlendirme, zayıf öğrenicileri (genellikle sığ karar ağaçları) sırayla inşa eden ve her adımda önceki modellerin yaptığı **hatalara** odaklanarak performansı artırmayı hedefleyen bir topluluk (Ensemble) tekniğidir.
+
+| 🖼️ Model Tipi | Açıklama | Nasıl Çalışır? | Vurgu |
+| :--- | :--- | :--- | :--- |
+| **Gradyan Güçlendirme Regresyonu (Gradient Boosting)** | Sırayla yeni bir model eğitilir ve her yeni model, **önceki modelin hatalarını (rezidüellerini)** düzeltmeye odaklanır. | Hata düzeltme süreci **Gradyan İnişi (Gradient Descent)** ile optimize edilir. | **Yüksek Tahmin Gücü:** Piyasada en iyi performansı gösteren modeller arasındadır, ancak **eğitimi daha yavaştır** ve daha fazla hiper-parametre ayarı gerektirir. |
+| **XGBoost, LightGBM, CatBoost** | Modern, optimize edilmiş Güçlendirme algoritmalarıdır. | Hesaplama hızını ve performansını artırmak için Gradyan Güçlendirmenin (Gradient Boosting) üzerine ek optimizasyonlar ve paralelleştirme eklerler. | **Endüstri Standardı:** Makine öğrenimi yarışmalarında (Kaggle) ve ticari uygulamalarda en çok tercih edilen regresyon algoritmalarıdır. Genellikle **Rastgele Orman'dan daha iyi** performans sergilerler. |
+
+> **💡 Ana Çıkarım:** Güçlendirme modelleri, Karar Ağaçları ve Rastgele Orman gibi ağaç tabanlı yöntemlerin karmaşık ilişkileri modelleme gücünü alıp, hataları sırayla düzelterek **tahmin doğruluğunu maksimize eder**.
