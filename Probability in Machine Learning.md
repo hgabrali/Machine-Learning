@@ -940,3 +940,86 @@ Bayesçilik, olasılığı, bilinmeyene olan kişisel inancın veya kesinliğin 
 | **Temel Kavram** | **Önsel (Prior) 🤔:** Veri gözlenmeden önce parametrelerin ($\theta$) olası değerleri hakkındaki inancımızdır. Önsel dağılım $P(\theta)$ olarak ifade edilir. Bayesçiler, veriyi **ön bilgi** ile birleştirir. |
 | **Amaç** | **Önsel İnancı Gözlemlere Dayalı Güncellemek 🔄:** Amaç, Bayes Teoremi'ni kullanarak önsel inancı, gözlemlenen verilerle birleştirmek ve daha doğru bir **sonsal (Posterior)** inanç elde etmektir. |
 | **Parametreler** | Popülasyon parametreleri **rastgele değişkenler** olarak kabul edilir ve bunlar hakkında bir olasılık dağılımı (inanç) vardır. |
+
+
+<img width="1178" height="460" alt="image" src="https://github.com/user-attachments/assets/24a11c98-87af-4091-bf0f-58b1e4fe0ed2" />
+
+# 🧠 Bayesçi İstatistik ve Bernoulli Dağılımı Örneği
+
+Bayesçi İstatistik, olasılığı inanç derecesi olarak ele alan bir çıkarım yöntemidir. Bernoulli dağılımı ise bu yöntemin temellerini anlamak için kullanılan en yaygın ve en basit örneği sağlar.
+
+## 1. Bayesçi İstatistik Temel Kavramları 🎯
+
+Bayesçi çıkarım, parametreleri ($\theta$) **sabit** değerler olarak değil, **rastgele değişkenler** olarak ele alır.
+
+| Bayesçi Terim | Formül | Açıklama |
+| :--- | :--- | :--- |
+| **Önsel Dağılım (Prior) 💡** | $P(\theta)$ | Veri gözlenmeden önce model parametresi ($\theta$) hakkındaki **başlangıç inancımızdır**. Parametrelerin muhtemel değerlerine ait olasılık dağılımını ifade eder. |
+| **Olabilirlik Fonksiyonu (Likelihood) 🔍** | $P(\text{Veri} \mid \theta)$ | Belirli bir $\theta$ parametre değeri verildiğinde, **gözlemlenen veriyi** elde etme olasılığının ne kadar yüksek olduğunu ölçer. Bu, Sıklıkçı istatistiğin de temelini oluşturan veriye dayalı kısımdır. |
+| **Sonsal Dağılım (Posterior) 🏆** | $P(\theta \mid \text{Veri})$ | Önsel inancın, yeni gözlemlenen veriler ışığında **güncellenmiş halidir**. Bayes Teoremi kullanılarak elde edilen bu dağılım, parametre hakkındaki nihai inancımızı temsil eder. |
+| **Bayes Teoremi** | $P(\theta \mid \text{Veri}) \propto P(\text{Veri} \mid \theta) \cdot P(\theta)$ | Sonsal $\propto$ Olabilirlik $\times$ Önsel demektir. Sonsal dağılımın, Olabilirlik ve Önsel dağılımların çarpımı ile orantılı olduğunu gösterir. |
+
+## 2. Bernoulli Dağılımı (Bernoulli Distribution) 🪙
+
+Bernoulli dağılımı, yalnızca **iki olası sonuçlu** (dichotomous outcome) tek bir rastgele deneyi tanımlar (Örn: Başarı/Başarısızlık, Evet/Hayır, Tura/Yazı).
+
+| Terim | Formül | Açıklama |
+| :--- | :--- | :--- |
+| **Amaç** | $X \sim \text{Bernoulli}(\theta)$ | Tek bir denemenin sonucunu modellemek. |
+| **Parametre** | $\theta$ (veya $p$) | Başarı olasılığıdır. $\theta \in [0, 1]$ aralığındadır. Başarısızlık olasılığı ise $1 - \theta$'dır. |
+| **Olasılık Kütle Fonksiyonu (PMF)** | $P(X=x) = \theta^x (1-\theta)^{1-x}$ | $x=1$ (Başarı) için $\theta$, $x=0$ (Başarısızlık) için $1-\theta$ sonucunu verir. |
+| **Örnek** | Hileli bir madeni paranın tek bir atışta Tura gelme olasılığı $\theta$'dır. | $X=1$ Tura gelme, $X=0$ Yazı gelme durumunu temsil eder. |
+
+## 3. Bernoulli Örneği Üzerinden Bayesçi Çıkarım (Beta-Binomial Model)
+
+Bayesçi istatistikte, bir madeni paranın hileli olup olmadığını (yani $\theta$ parametresini) tahmin etmek için Bernoulli dağılımı kullanılır.
+
+| Aşama | Uygulama | Terimsel Açıklama |
+| :--- | :--- | :--- |
+| **1. Önsel Seçimi** | $\theta \sim \text{Beta}(\alpha, \beta)$ | Bernoulli/Binomial olabilirlik fonksiyonu için yaygın olarak **Konjuge Önsel (Conjugate Prior)** olan **Beta Dağılımı** kullanılır. Beta dağılımı, $\theta$ hakkındaki başlangıç inancımızı temsil eder. $\alpha$ ve $\beta$, sırasıyla 'başarı' ve 'başarısızlık' sayısı hakkındaki ön bilgimiz gibi düşünülebilir. |
+| **2. Veri (Likelihood) Toplama** | $X = \{x_1, \dots, x_n\}$ | $n$ kez yapılan madeni para atışı verisi toplanır. Toplam başarı sayısı $k = \sum x_i$ olsun. Olabilirlik fonksiyonu, Binomial dağılımın formunu alır: $P(\text{Veri} \mid \theta) = \theta^k (1-\theta)^{n-k}$. |
+| **3. Sonsal Hesaplama** | $\theta \mid \text{Veri} \sim \text{Beta}(\alpha', \beta')$ | Bayes Teoremi uygulandığında, Sonsal Dağılım da yine bir **Beta Dağılımı** çıkar. <br>**Güncellenmiş Parametreler:** <br>$\alpha' = \alpha + k$ <br>$\beta' = \beta + (n-k)$ |
+| **Sonuç** | Yeni sonsal dağılım, hem eski inancımızı ($\alpha, \beta$) hem de yeni gözlemlenen veriyi ($k, n-k$) birleştirir. $\theta$'nın artık **en olası** değeri, Sonsal Beta Dağılımının modu veya ortalaması olarak alınır. |
+
+<img width="1126" height="502" alt="image" src="https://github.com/user-attachments/assets/d55cd874-50ae-4306-a5a4-932963ef3c4f" />
+
+# 🧠 Bayesçi İstatistik: (Final Summary)
+
+## 1. Bayesçiler Önsel İnançları Günceller (Bayesians update prior beliefs) 🔄
+
+* **Açıklama:** Bayesçi yaklaşımın temel işlevi, **Önsel İnanç (Prior Belief - $P(\theta)$)** olarak adlandırılan başlangıçtaki bilgimizi veya varsayımımızı, gözlemlenen yeni verilerle (**Olabilirlik / Likelihood**) birleştirerek **Sonsal İnanç (Posterior Belief - $P(\theta \mid \text{Veri})$)** elde etmektir.
+* **Örnek:** Bir madeni paranın hileli olduğuna inanıyorsunuz ($\theta \approx 0.7$ Tura). Bu, sizin önsel inancınızdır. Parayı 100 kez attınız ve sadece 48 kez tura geldi. Bayes Teoremi, sizin ilk inancınızı bu yeni veriyle birleştirerek $\theta$'nın muhtemelen $0.5$'e daha yakın olduğunu gösteren yeni (sonsal) bir dağılım oluşturur.
+
+---
+
+## 2. Bilgi İçermeyen Önsellerle MAP, MLE ile Aynıdır (MAP with uninformative priors is just MLE) ⚖️
+
+* **MLE (Maksimum Olabilirlik Tahmincisi / Maximum Likelihood Estimator):** Sadece veriyi esas alır ve veriyi en olası kılan parametreyi bulur.
+* **MAP (Maksimum Sonsal Tahmini / Maximum A Posteriori):** Bayesçi bir yöntemdir. Veri ve Önsel inancın çarpımını maksimize eder.
+* **Bilgi İçermeyen Önsel (Uninformative Prior):** Bu, parametrenin tüm olası değerlerinin eşit olasılığa sahip olduğunu varsayan bir önseldir (Örn: Düzgün Dağılım / Uniform Distribution).
+* **Karşılaştırma:** Eğer önsel, tüm olasılıklara eşit ağırlık veriyorsa (yani hiçbir bilgi içermiyorsa), MAP formülünün önsel kısmı sabit bir sayıya döner. (Bu durumda MAP'i maksimize etmek, sadece **Olabilirlik (Likelihood)** kısmını maksimize etmeye eşittir).
+* $$\text{Sonsal} \propto \text{Olabilirlik} \times \text{Önsel (Sabit)}$$
+* Böylece, MAP tahminleri ($P(\text{Veri} \mid \theta) \cdot P(\theta)$) ile MLE tahminleri ($P(\text{Veri} \mid \theta)$) matematiksel olarak aynı sonucu verir.
+
+---
+
+## 3. Yeterli Veri Olduğunda, MLE ve MAP Tahminleri Yakınsar (With enough data, MLE and MAP estimates usually converge) 📈
+
+* **Açıklama:** Veri setinin büyüklüğü ($n$) çok yüksek olduğunda, veriden gelen bilgi (Olabilirlik) önsel inanca göre çok daha baskın hale gelir.
+* **Yakınsama:** Önselin ne kadar güçlü olursa olsun, çok büyük bir veri seti her iki yöntemi de verinin kendisini en iyi açıklayan parametreye doğru iter. Bu nedenle, ML ve İstatistik uygulamalarında, büyük veri setleriyle çalışırken MLE ve MAP tahminleri genellikle **aynı sonuca** ulaşır.
+
+---
+
+## 4. Sınırlı Veri veya Güçlü Önsel İnanç Olduğunda İyidir (Good for instances when you have limited data or strong prior beliefs) 👍
+
+* **Sınırlı Veri:** Sıklıkçı MLE, az veriyle çalışırken aşırı uyum (overfitting) eğilimi gösterir ve güvenilmez sonuçlar verebilir. Bayesçi yaklaşım, bu boşluğu **Önsel Bilgiyle** doldurarak daha mantıklı ve stabilize edilmiş sonuçlar üretir.
+* **Güçlü Önsel İnanç:** Eğer elinizde güvenilir bir uzman görüşü, eski deneyler veya ön bilgiler varsa, Bayesçilik bu bilgiyi resmi olarak modele dahil etmenin tek yoludur.
+
+---
+
+## 5. Yanlış Önseller, Yanlış Sonuçlar (Wrong priors, wrong conclusions) 🛑
+
+* **Açıklama:** Bayesçi yaklaşımın temel riskini ve felsefi eleştirisini özetler.
+* Eğer bir araştırmacı, konuyla ilgili olmayan, hatalı veya aşırı önyargılı bir önsel seçerse, model bu yanlış inancı kabul eder ve veri ne kadar iyi olursa olsun sonuçlar hatalı ve yanıltıcı olabilir.
+* **Örnek:** Bir paranın adil olduğunu ispatlamaya çalışıyorsunuz. Ancak başlangıcı $\theta \approx 0.99$ (neredeyse her zaman tura) gibi yanlış bir önselle belirlerseniz, parayı 100 kez attığınızda bile (50 tura gelse bile), sonsal inanç $0.5$'e yakınsamayacak, inatla $0.9$'un üzerinde kalacaktır.
+
