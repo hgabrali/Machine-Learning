@@ -911,3 +911,32 @@ En Küçük Kareler (LS), genellikle regresyonda kullanılan basit bir maliyet f
 | **Gereken Varsayım** | Verinin (veya hatanın) **olasılık dağılımını** bilmek zorunludur (örneğin: Normal, Bernoulli, Poisson). | Hatanın dağılımı hakkında **açık bir varsayım yapmaz**, sadece varyansın sabit olduğunu varsayar (Homoscedasticity). |
 | **ML'deki Karşılığı** | Çapraz Entropi (Cross-Entropy Loss), Lojistik Regresyon, Yapay Sinir Ağları (NN). | Ortalama Karesel Hata (Mean Squared Error - MSE) ve Basit Lineer Regresyon. |
 | **Eşitlik Durumu** | Eğer hata terimleri **Normal Dağılım'a** sahipse, MLE'yi maksimize etmek, LS'yi minimize etmeye eşdeğerdir. |
+
+
+# 🔬 Sıklıkçı Yaklaşım (Frequentist Statistics)
+
+Bu yaklaşım, olasılık ve bilgi kavramlarını tamamen farklı yorumlayan iki ana ekolden (Sıklıkçı ve Bayesçi) biridir.
+
+Sıklıkçılık, olasılığı, uzun vadede bir olayın gerçekleşme sıklığı olarak görür.
+
+## 1. Sıklıkçı Yaklaşım (Frequentist Statistics) 📏
+
+| Kavram | Açıklama |
+| :--- | :--- |
+| **Olasılık Anlayışı** | **Uzun Vadeli Olay Sıklığı (Long-term Frequency):** Olasılık, bir deneyi sonsuz kez tekrarladığımızda bir sonucun ne sıklıkla ortaya çıkacağının limitidir. Örnek: Bir madeni paranın tura gelme olasılığı %50'dir, çünkü parayı binlerce kez attığımızda tura gelme sıklığı bu değere yakınsar. |
+| **Temel Kavram** | **Olabilirlik (Likelihood):** Elimizdeki veriler (gözlemler) verildiğinde, belirli bir model parametresinin ($\theta$) ne kadar olası olduğunu ölçer. Bu, genellikle $P(\text{Veri} \mid \theta)$ olarak ifade edilir. Sıklıkçılar, sadece veriye bakarak çalışır. |
+| **Amaç** | **Veriyi En Olası Üreten Modeli Bulmak:** Amaç, gözlemlenen veriyi en iyi açıklayan ve en yüksek olabilirlik değerini veren **sabit model parametrelerini** bulmaktır (Örn: p-değerleri, Güven Aralıkları hesaplama). |
+| **Parametreler** | Popülasyon parametreleri ($\mu, \sigma$ vb.) **sabit ancak bilinmeyen** değerler olarak kabul edilir. |
+
+# 🧠 Bayesçi Yaklaşım (Bayesian Statistics)
+
+Bayesçilik, olasılığı, bilinmeyene olan kişisel inancın veya kesinliğin derecesi olarak görür.
+
+## 2. Bayesçi Yaklaşım (Bayesian Statistics) 💡
+
+| Kavram | Açıklama |
+| :--- | :--- |
+| **Olasılık Anlayışı** | **İnanç Derecesi (Degree of Belief or Certainty):** Olasılık, bir kişinin veya sistemin, eldeki bilgi ışığında bir önermenin doğru olduğuna ne kadar inandığının sübjektif ölçüsüdür. Yeni bilgi geldikçe bu inanç güncellenir. |
+| **Temel Kavram** | **Önsel (Prior) 🤔:** Veri gözlenmeden önce parametrelerin ($\theta$) olası değerleri hakkındaki inancımızdır. Önsel dağılım $P(\theta)$ olarak ifade edilir. Bayesçiler, veriyi **ön bilgi** ile birleştirir. |
+| **Amaç** | **Önsel İnancı Gözlemlere Dayalı Güncellemek 🔄:** Amaç, Bayes Teoremi'ni kullanarak önsel inancı, gözlemlenen verilerle birleştirmek ve daha doğru bir **sonsal (Posterior)** inanç elde etmektir. |
+| **Parametreler** | Popülasyon parametreleri **rastgele değişkenler** olarak kabul edilir ve bunlar hakkında bir olasılık dağılımı (inanç) vardır. |
