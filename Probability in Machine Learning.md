@@ -1023,3 +1023,57 @@ Bayesçi istatistikte, bir madeni paranın hileli olup olmadığını (yani $\th
 * Eğer bir araştırmacı, konuyla ilgili olmayan, hatalı veya aşırı önyargılı bir önsel seçerse, model bu yanlış inancı kabul eder ve veri ne kadar iyi olursa olsun sonuçlar hatalı ve yanıltıcı olabilir.
 * **Örnek:** Bir paranın adil olduğunu ispatlamaya çalışıyorsunuz. Ancak başlangıcı $\theta \approx 0.99$ (neredeyse her zaman tura) gibi yanlış bir önselle belirlerseniz, parayı 100 kez attığınızda bile (50 tura gelse bile), sonsal inanç $0.5$'e yakınsamayacak, inatla $0.9$'un üzerinde kalacaktır.
 
+---
+
+##### Asagidaki tablolarda, Maksimum Olabilirlik Tahmini (Maximum Likelihood Estimation - MLE), Maksimum Sonsal Tahmini (Maximum A Posteriori - MAP) ve Düzenlileştirme (Regularization) kavramlarının Makine Öğreniminde (Machine Learning) nasıl birleştiğini ve bu birleşimin arkasındaki Bayesçi (Bayesian) mantığı açıklamaktadır.
+
+# 💡 Temel İstatistiksel Tahmin Yöntemleri
+
+| Kavram | Ne İşe Yarar? (İşlevi) | Kullanım Zamanı ve Yeri |
+| :--- | :--- | :--- |
+| **Maksimum Olabilirlik Tahmini (Maximum Likelihood Estimation - MLE) 🎯** | Verilen $\theta$ parametrelerinin, **gözlemlenen veriyi** oluşturma olasılığını ($P(\text{Veri} \mid \theta)$) maksimize eden parametre değerlerini bulur. | Temel olarak **Sıklıkçı (Frequentist)** bir yaklaşımdır. Veri setinin büyük ve önsel (prior) bilgiye gerek duyulmadığı durumlarda, tahminci (estimator) olarak kullanılır. |
+| **Maksimum Sonsal Tahmini (Maximum A Posteriori - MAP) 🧠** | Veri ve **Önsel İnanç** ($P(\theta)$) birleştiğinde, $\theta$ parametresinin en olası değerini bulur. Sonsal dağılımın en yüksek noktasıdır. | Temel olarak **Bayesçi (Bayesian)** bir yaklaşımdır. Sınırlı veri olduğunda veya model parametreleri hakkında güçlü bir önsel bilgi olduğunda kullanılır. |
+| **Düzenlileştirme (Regularization) ⚖️** | **Kayıp Fonksiyonuna (Loss Function)** bir ceza terimi ekleyerek modelin katsayılarının (coefficients) mutlak değerlerini veya karelerini sınırlar. Modelin karmaşıklığını azaltır. | **Aşırı Uyum (Overfitting)** riskini azaltmak ve modelin genelleştirme (generalization) yeteneğini artırmak için Regresyon ve Sinir Ağları (Neural Networks) gibi birçok ML modelinde kullanılır (Örn: Ridge, Lasso). |
+
+# 🤝 MAP ve Düzenlileştirmenin (Regularization) Birleşimi
+
+## 2. Logaritma Dönüşümü ve Eşitlik 💡
+
+Metnin en kritik kısmı, çarpma (çarpım) işlemini toplama işlemine dönüştürerek (logaritma alarak) Bayesçi formül ile Regresyon formülü arasındaki eşleşmeyi göstermesidir:
+
+### 1. Bayesçi Çıkarım (Sol Taraf):
+$$\text{Amacımız} \rightarrow \text{Maksimumlaştırmak}[P(\text{Veri} \mid \text{Model}) \times P(\text{Model})]$$
+
+### 2. Logaritma Alınması:
+$$\text{Maksimumlaştırmak}[\log(P(\text{Veri} \mid \text{Model})) + \log(P(\text{Model}))]$$
+
+### 3. Regresyon (Sağ Taraf): Logaritma dönüşümünden çıkan terimler, bilinen Regresyon terimleriyle eşleşir:
+
+| Bayesçi Terim (Logaritmalı) | Regresyon Terimi |
+| :--- | :--- |
+| $\log(P(\text{Veri} \mid \text{Model}))$ | **Maksimumlaştırmak** $\log(P(\text{Veri} \mid \text{Model}))$ aynı zamanda **Kare Kaybı (Square Loss / Hata Karesi Toplamı)**'nı minimize etmeye eşittir. |
+| $\log(P(\text{Model}))$ | **Maksimumlaştırmak** $\log(P(\text{Model}))$), **Katsayıların Karelerinin Toplamını (Sum of Squares of Coefficients)** minimize etmeye eşittir. Bu terim, **Düzenlileştirme Terimi (Regularization Term)** olarak bilinir. |
+
+### 4. Nihai Sonuç: 🚀
+* **Yeni Kayıp = Kare Kaybı + Düzenlileştirme Terimi**
+* MAP, Kare Kaybını (Hata) minimize etmeyi ve katsayıların karelerinin toplamını (Model Karmaşıklığı) minimize etmeyi birleştirir. Bu, **Ridge Regresyon'un (L2 Düzenlileştirme)** maliyet fonksiyonudur.
+
+---
+
+## 3. P(Model)'in Anlamı (The Probability of a Model) 🧠
+
+Metin, bir modelin olasılığının ($P(\text{Model})$) ne anlama geldiğini açıklıyor:
+
+* **Varsayım:** Modelin katsayılarının ($a_1, a_2, \dots$) **Standart Normal Dağılımdan (Standard Normal Distribution)** seçildiği varsayılır.
+* **Hesaplama:** Bir modelin olasılığı, tüm bu katsayıları seçme olasılıklarının çarpımıdır.
+* **Basitlik ve Olasılık:** Basit bir modelin (Model 1: 1 katsayı) olasılığı, karmaşık bir modelden (Model 3: 10 katsayı) daha yüksektir, çünkü katsayıların çarpımı daha azdır. Bu da, Bayesçi yaklaşımın, **Basitlik Prensibini (Ockham's Razor)** otomatik olarak model seçimine dahil ettiğini gösterir.
+
+# ✍️ Özet Tablo: Bayesçi ve Regresyon Kavramlarının Eşleştirilmesi
+
+Bu tablo, Bayesçi yaklaşımın (özellikle MAP) logaritma ve eksi işareti dönüşümleri sayesinde Regresyon ve Düzenlileştirme (Regularization) olarak bilinen kavramlarla nasıl matematiksel olarak eşleştiğini göstermektedir.
+
+| Bayesçi Kavram | Matematiksel İşlem | Regresyon Kavramı |
+| :--- | :--- | :--- |
+| **Maksimumlaştır** $P(\text{Veri} \mid \text{Model})$ | Logaritma Almak ve Eksilisini Almak | **Minimize Et** Kare Kaybı (Square Loss) 📉 |
+| **Maksimumlaştır** $P(\text{Model})$ | Logaritma Almak ve Eksilisini Almak | **Minimize Et** Düzenlileştirme Terimi (Regularization Term) 🎚️ |
+| **MAP** ($P(\text{Veri} \mid \text{Model}) \cdot P(\text{Model})$) | Logaritma Toplamı | **Minimize Et** Toplam Kayıp Fonksiyonu (Total Loss Function) 💰 |
