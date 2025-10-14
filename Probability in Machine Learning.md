@@ -848,3 +848,73 @@ Buradan varyans için MLE tahmini:
 $$\hat{\sigma}^2 = \frac{\sum(x_i-\bar{x})^2}{n}$$
 
 **Sonuç:** Standart sapma için MLE ($\hat{\sigma}$), bu ifadenin kareköküdür. Bu ifade, örneklem standart sapması (sample standard deviation) için öğrendiğiniz formüle çok benzerdir, tek fark **$1/n$** ile normalleştirme yapılmasıdır. Örneklem standart sapması ise **$1/(n-1)$** kullanır.
+---
+
+# 📊 Veri Bilimi ve Makine Öğrenimi Öğrenim Planı
+
+Bu belge, Veri Bilimi ve Makine Öğrenimi alanındaki Coursera eğitimlerini mantıksal aşamalara göre gruplandırılmış bir çalışma planını sunar.
+
+---
+
+## 🚀 Maksimum Olabilirlik Tahmincisi (MLE) Açıklaması
+
+MLE, eldeki veriyi en olası (highest likelihood) kılan model parametrelerini bulma yöntemidir. ML'de Çapraz Entropi gibi maliyet fonksiyonlarının temelini oluşturur.
+
+### MLE vs. En Küçük Kareler (Least Squares) Karşılaştırması
+
+| Kriter | Maksimum Olabilirlik Tahmincisi (MLE) 🎯 | En Küçük Kareler (Least Squares - LS) 📏 |
+| :--- | :--- | :--- |
+| **Temel Felsefe** | Olasılığa (Likelihood) dayanır. | Hataların karesini minimize etmeye dayanır. |
+| **Hesaplama Amacı** | Gözlemleri **en olası** yapan $\theta$ parametrelerini bulmak. | Tahminler ($ \hat{y} $) ile gerçek değerler ($ y $) arasındaki **mesafeyi** minimize etmek. |
+| **Gereken Varsayım** | Verinin **olasılık dağılımını** bilmek zorunludur (Normal, Bernoulli vb.). | Hatanın dağılımı hakkında açık bir varsayım yapmaz. |
+| **ML'deki Karşılığı** | Çapraz Entropi Kaybı (Cross-Entropy Loss), Lojistik Regresyon. | Ortalama Karesel Hata (Mean Squared Error - MSE). |
+| **Eşitlik Durumu** | Hata terimleri **Normal Dağılım'a** sahipse, MLE'yi maksimize etmek, LS'yi minimize etmeye eşdeğerdir. |
+
+---
+
+## Aşamalı Çalışma Planı (Coursera Eğitimleri)
+
+### Aşama 1: Temel Bilgiler ve Programlama Altyapısı (Zemin Oluşturma)
+
+| Grup | Eğitimler | Odak Noktası |
+| :--- | :--- | :--- |
+| **Python Programlama** | Python Fundamentals | Python dilinin temel yapısını ve sözdizimini öğrenme. |
+| **Python Programlama** | Get Started with Python | Pratik uygulamalarla Python'a başlangıç. |
+| **Veri Yapıları** | Data Structures in Python | Verimli kod yazmak için veri yapılarını (listeler, sözlükler, vb.) anlama. |
+| **Matematik** | Mathematics for Machine Learning and Data Science | ML algoritmalarının arkasındaki lineer cebir ve kalkülüs gibi temel matematik altyapısını kurma. |
+
+### Aşama 2: Veri Keşfi ve Temizliği (Exploratory Data Analysis - EDA)
+
+| Grup | Eğitimler | Odak Noktası |
+| :--- | :--- | :--- |
+| **Veri Temizliği** | Clean Your Data (2 kez listelenmiş) | Eksik, hatalı ve gereksiz verileri tespit edip düzeltme. |
+| **Veri Temizliği** | Explore Raw Data | Ham verileri anlamlandırma ve hazırlık süreci. |
+| **Python ile Veri Analizi** | Exploratory Data Analysis (2 kez listelenmiş) | Veri setlerinin ilk analizi, özet istatistikler ve örüntü keşfi. |
+| **Python ile Veri Analizi** | Data Analysis in Python: Using Pandas DataFrames | Python'ın temel kütüphanesi **Pandas** ile veri işleme ve manipülasyonu. |
+| **Python ile Veri Analizi** | Python for Data Visualization and Analysis | Verileri anlamlı grafiklerle sunma (**Matplotlib/Seaborn**). |
+| **Python ile Veri Analizi** | Advanced Data Analysis and Visualization with Pandas | İleri düzey veri manipülasyonu ve görselleştirme teknikleri. |
+
+### Aşama 3: İstatistik ve Olasılık (Model Kurulumunun Temeli)
+
+| Grup | Eğitimler | Odak Noktası |
+| :--- | :--- | :--- |
+| **Temel İstatistik** | The Power of Statistics | İstatistiğin temel kavramlarını ve veri üzerindeki gücünü anlama. |
+| **Temel İstatistik** | Statistical Methods (2 kez listelenmiş) | Genel istatistiksel testler, dağılımlar ve hipotez testleri. |
+| **İleri İstatistik** | Advanced Statistical Analysis and Tools | Karmaşık istatistiksel yöntemler ve araçların kullanımı. |
+| **İleri İstatistik** | Advanced Statistics for Data Science (2 kez listelenmiş) | Veri bilimi için özel olarak tasarlanmış ileri istatistik. |
+| **İleri İstatistik** | Advanced Probability and Statistical Methods | İleri düzey olasılık teorisi ve istatistiksel modelleme. |
+| **Özel Konular** | Bayesian Statistics: From Concept to Data Analysis | Farklı bir modelleme yaklaşımı olan Bayesçi istatistiğe giriş. |
+
+### Aşama 4: Makine Öğrenimi ve İleri Uygulamalar (Uygulama ve Sertifikasyon)
+
+| Grup | Eğitimler | Odak Noktası |
+| :--- | :--- | :--- |
+| **ML Temelleri** | Foundations of Machine Learning | ML'in çekirdek kavramları, denetimli/denetimsiz öğrenme. |
+| **ML Temelleri** | Machine Learning | Genel ML algoritmaları ve uygulama teknikleri. |
+| **ML Temelleri** | Exploratory Data Analysis & Core ML Algorithms | EDA sonrası temel ML modellerini hızlıca uygulama. |
+| **İleri ML/Veri Hazırlığı** | Data Prep for Machine Learning in Python | ML modellerine veri beslemeden önceki son hazırlık adımları. |
+| **İleri ML/Veri Hazırlığı** | Advanced Statistical Techniques for Data Science (2 kez listelenmiş) | ML için istatistiksel teknikleri uygulama. |
+| **Proje ve Sertifikasyon** | Machine Learning Capstone | Öğrenilen bilgileri bir nihai projede uygulama. |
+| **Proje ve Sertifikasyon** | IBM Machine Learning | Sektöre özgü sertifika programı. |
+| **Proje ve Sertifikasyon** | Market Research Methods and Data Analysis Certificate | Pazarlama ve iş analitiği alanına yönelik özel sertifika. |
+| **Proje ve Sertifikasyon** | Google Data Analysis with Python | Google'ın veri analizi metodolojisi ve araçları. |
