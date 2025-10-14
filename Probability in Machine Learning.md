@@ -777,4 +777,14 @@ $$\mathbf{\text{Cov}(X, Y) = 0.11}$$
 
 ---
 
+# 📈 Merkezi Limit Teoremi (CLT) vs. Büyük Sayılar Yasası (LLN) Karşılaştırması
 
+| Özellik | Merkezi Limit Teoremi (CLT) 💡 | Büyük Sayılar Yasası (LLN) ⚖️ |
+| :--- | :--- | :--- |
+| **Temel Tanım** | Bir popülasyondan alınan bağımsız ve aynı dağılıma sahip **örneklem ortalamalarının dağılımı**, örneklem büyüklüğü ($n$) yeterince arttıkça, popülasyonun orijinal dağılımı ne olursa olsun, **Normal Dağılıma** yaklaşır. | Örneklem büyüklüğü ($n$) arttıkça, **örneklem ortalaması ($\bar{x}$)**, popülasyonun gerçek **ortalamasına ($\mu$)** yaklaşır ve ona yakın kalır. |
+| **Odak Noktası** | **Dağılımın Şekli** (Örneklem ortalamalarının dağılımı nasıl görünür?) | **Ortalamanın Değeri** (Örneklem ortalaması nereye gider?) |
+| **İstenen $n$** | Dağılımın Normal'e yakınsaması için genellikle $n \ge 30$ olması beklenir. | Ne kadar büyük olursa o kadar iyi; yakınsama için tek şart $n \to \infty$ (sonsuz) olmasıdır. |
+| **Matematiksel İfade** | $$\bar{X} \xrightarrow{d} N(\mu, \sigma^2/n)$$ (Dağılım, Normal Dağılıma yakınsar) | $$\bar{X} \xrightarrow{p} \mu$$ (Ortalama, değere olasılıkla yakınsar) |
+| **Varyans İlişkisi** | Örnekleme dağılımının varyansı $\sigma^2/n$'dir, bu da $n$ arttıkça **dağılımın daraldığı** anlamına gelir (Daha kesin tahmin). | LLN, esas olarak merkezi eğilimle ilgilenir, varyansın azalması CLT'nin bir sonucudur. |
+| **Pratik Anlamı** | İstatistiksel testlerin (t-testi, Z-testi) ve güven aralıklarının oluşturulmasının temelini sağlar. Popülasyon bilinmese bile çıkarım yapmayı mümkün kılar. | Uzun vadede gözlemlenen sonucun teorik beklentiye eşit olacağını garanti eder (Ör. 1000 kez yazı tura atıldığında yazı gelme oranının %50'ye yaklaşması). |
+| **Örnek** | Bir madeni parayı 30 kez çevirip ortalama tura gelme sayısını defalarca kaydettiğinizde, bu ortalamaların bir histogramı çan eğrisine benzer. | Bir madeni parayı defalarca çevirdiğinizde, tura gelme oranının $\frac{1}{2}$ değerine giderek daha çok yaklaşması. |
