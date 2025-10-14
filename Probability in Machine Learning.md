@@ -788,3 +788,10 @@ $$\mathbf{\text{Cov}(X, Y) = 0.11}$$
 | **Varyans İlişkisi** | Örnekleme dağılımının varyansı $\sigma^2/n$'dir, bu da $n$ arttıkça **dağılımın daraldığı** anlamına gelir (Daha kesin tahmin). | LLN, esas olarak merkezi eğilimle ilgilenir, varyansın azalması CLT'nin bir sonucudur. |
 | **Pratik Anlamı** | İstatistiksel testlerin (t-testi, Z-testi) ve güven aralıklarının oluşturulmasının temelini sağlar. Popülasyon bilinmese bile çıkarım yapmayı mümkün kılar. | Uzun vadede gözlemlenen sonucun teorik beklentiye eşit olacağını garanti eder (Ör. 1000 kez yazı tura atıldığında yazı gelme oranının %50'ye yaklaşması). |
 | **Örnek** | Bir madeni parayı 30 kez çevirip ortalama tura gelme sayısını defalarca kaydettiğinizde, bu ortalamaların bir histogramı çan eğrisine benzer. | Bir madeni parayı defalarca çevirdiğinizde, tura gelme oranının $\frac{1}{2}$ değerine giderek daha çok yaklaşması. |
+
+### Metaforik Karşılaştırma (Örnekler) 🎲🎯
+
+| Teorem | Metafor | Açıklama |
+| :--- | :--- | :--- |
+| **Merkezi Limit Teoremi (CLT) 📏** | **Oyunun Kuralları** | Bir zar oyunu oynarken, tek bir zarın sonucu rastgele (düzgün dağılım). Ancak **çok sayıda** tur oynarsanız ve her turdaki ortalama puanı toplarsanız, bu ortalama puanların grafiği bir **çan eğrisi** (normal dağılım) şeklini alır. CLT bize, oyunun kuralları (dağılımın şekli) ne olursa olsun, *büyük serilerin* hep aynı şekilde davrandığını söyler. |
+| **Büyük Sayılar Yasası (LLN) 🎯** | **Hedefe Ulaşma** | Bir hedef tahtasına atış yapıyorsunuz. İlk birkaç atışınız rastgele yerlere düşebilir. Ancak atış sayınızı **binlerceye** çıkardığınızda, atışlarınızın **ortalaması** (merkezi) hedefin tam ortasına (gerçek popülasyon ortalamasına) giderek daha çok yaklaşacaktır. LLN, bize yeterince deneme yaparsak **hedefi vuracağımızı** garanti eder. |
