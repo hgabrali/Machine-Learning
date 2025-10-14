@@ -795,3 +795,56 @@ $$\mathbf{\text{Cov}(X, Y) = 0.11}$$
 | :--- | :--- | :--- |
 | **Merkezi Limit Teoremi (CLT) 📏** | **Oyunun Kuralları** | Bir zar oyunu oynarken, tek bir zarın sonucu rastgele (düzgün dağılım). Ancak **çok sayıda** tur oynarsanız ve her turdaki ortalama puanı toplarsanız, bu ortalama puanların grafiği bir **çan eğrisi** (normal dağılım) şeklini alır. CLT bize, oyunun kuralları (dağılımın şekli) ne olursa olsun, *büyük serilerin* hep aynı şekilde davrandığını söyler. |
 | **Büyük Sayılar Yasası (LLN) 🎯** | **Hedefe Ulaşma** | Bir hedef tahtasına atış yapıyorsunuz. İlk birkaç atışınız rastgele yerlere düşebilir. Ancak atış sayınızı **binlerceye** çıkardığınızda, atışlarınızın **ortalaması** (merkezi) hedefin tam ortasına (gerçek popülasyon ortalamasına) giderek daha çok yaklaşacaktır. LLN, bize yeterince deneme yaparsak **hedefi vuracağımızı** garanti eder. |
+
+---
+
+# Maksimum Olabilirlik Tahmincisi (Maximum Likelihood Estimation - MLE)
+## Gauss Popülasyonu İçin MLE (MLE for Gaussian Population)
+
+
+### Matematiksel Formülasyon (Mathematical Formulation)
+Ortalaması $\mu$ ve varyansı $\sigma^2$ olan bir Gauss dağılımından alınan $n$ örnekleme $X=(X_1, X_2, \dots, X_n)$ sahip olduğunuzu varsayalım. Bu, $X_i \sim_{i.i.d.} N(\mu, \sigma^2)$ anlamına gelir.
+
+Eğer $\mu$ ve $\sigma$ için MLE istiyorsanız, ilk adım **Olabilirlik Fonksiyonu (Likelihood)**'nu tanımlamaktır. Eğer hem $\mu$ hem de $\sigma$ bilinmiyorsa, olabilirlik bu iki parametrenin bir fonksiyonu olacaktır. $x=(x_1, x_2, \dots, x_n)$ ile verilen $X$'in bir gerçekleşimi (realization) için:
+
+$$ L(\mu,\sigma; \boldsymbol{x}) = \prod_{i=1}^n f_{X_i}(x_i) = \prod_{i=1}^n \frac{1}{\sqrt{2\pi}\sigma } e^{-\frac{1}{2}\frac{(x_i-\mu)^2}{\sigma^2}} $$
+$$ L(\mu,\sigma; \boldsymbol{x}) = \frac{1}{(\sqrt{2\pi})^n\sigma^n }e^{-\frac{1}{2}\frac{\sum_{i=1}^n (x_i-\mu)^2}{\sigma^2}} $$
+
+Şimdi yapmanız gereken tek şey, olabilirlik $L(\mu, \sigma; \boldsymbol{x})$'i maksimize eden $\mu$ ve $\sigma$ değerlerini bulmaktır.
+
+### Log-Olabilirlik (Log-Likelihood) Fonksiyonu
+
+Olabilirlik fonksiyonunun türevini almak karmaşık olduğu için, logaritma fonksiyonunun her zaman artan olmasından faydalanarak **Log-Olabilirlik Fonksiyonu** kullanılır:
+
+$$ \ell(\mu,\sigma) = \log(L(\mu,\sigma; \boldsymbol{x})) $$
+
+Logaritmanın çarpımı toplama dönüştürme özelliğini ($\log(a \cdot b) = \log(a) + \log(b)$) ve diğer logaritma özelliklerini kullanarak Log-Olabilirlik şu şekilde basitleştirilir:
+
+$$ \ell(\mu,\sigma) = -\frac{n}{2}\log(2\pi) - n\log(\sigma) - \frac{1}{2}\frac{\sum_{i=1}^n (x_i-\mu)^2}{\sigma^2} $$
+
+### MLE'nin Türetilmesi (Derivation of MLE)
+
+MLE için $\mu$ ve $\sigma$ değerlerini bulmak için, Log-Olabilirlik'in kısmi türevleri (partial derivatives) alınır ve sıfıra eşitlenir.
+
+#### a) $\mu$ İçin Kısmi Türev ($\partial / \partial \mu$):
+
+$$\frac{\partial }{\partial \mu}\ell(\mu, \sigma) = \frac{1}{\sigma^2}\left(\sum_{i=1}^n x_i - n\mu\right) = 0$$
+
+$\sigma > 0$ olduğu için $\sum_{i=1}^n x_i - n\mu = 0$ olmalıdır. Buradan $\mu$ için MLE tahmini:
+
+$$\hat{\mu} = \frac{\sum_{i=1}^n x_i}{n} = \bar{x}$$
+**Sonuç:** Ortalama için MLE, **Örneklem Ortalaması (Sample Mean)**'dır.
+
+#### b) $\sigma$ İçin Kısmi Türev ($\partial / \partial \sigma$):
+
+$$\frac{\partial }{\partial \sigma}\ell(\mu, \sigma) = -\frac{n}{\sigma} + \left(\sum_{i=1}^n (x_i-\mu)^2\right)\frac{1}{\sigma^3} = 0$$
+
+$\mu$'yu $\hat{\mu}=\bar{x}$ ile değiştirip $\sigma > 0$ olduğu için ifadeyi basitleştirirsek:
+
+$$\frac{\partial }{\partial \sigma}\ell(\mu, \sigma) = -n + \left(\sum_{i=1}^n (x_i-\bar{x})^2\right)\frac{1}{\sigma^2} = 0$$
+
+Buradan varyans için MLE tahmini:
+
+$$\hat{\sigma}^2 = \frac{\sum(x_i-\bar{x})^2}{n}$$
+
+**Sonuç:** Standart sapma için MLE ($\hat{\sigma}$), bu ifadenin kareköküdür. Bu ifade, örneklem standart sapması (sample standard deviation) için öğrendiğiniz formüle çok benzerdir, tek fark **$1/n$** ile normalleştirme yapılmasıdır. Örneklem standart sapması ise **$1/(n-1)$** kullanır.
