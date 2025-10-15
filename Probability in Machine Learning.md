@@ -1611,3 +1611,18 @@ Bu görsel, istatistikteki %95 Güven Seviyesinin (Confidence Level) doğru ve y
 
 Güven Seviyesi, **"Bu aralığı oluşturan yönteme %95 oranında güveniyorum"** demektir. Olasılık ise **tek bir olayın** gerçekleşme şansıdır.
 
+# 🤖 Makine Öğrenmesi (ML) Regresyon Metrikleri
+
+Bu metrikler, bir regresyon modelinin tahminlerinin, gerçek değerlere ne kadar yakın olduğunu (model hatasını) ölçmek için kullanılır.
+
+| Metrik (Kısaltma) | İngilizce Adı | Açılımı ve Hesaplama Yöntemi | ML'deki Önemi ve Kullanımı | Emoji |
+| :---: | :--- | :--- | :--- | :---: |
+| **MSE** | **Mean Squared Error** | **Ortalama Karesel Hata.** Hata (gerçek değer - tahmin) hesaplanır, karesi alınır ve tüm örnekler için ortalaması bulunur. Büyük hataları cezalandırır. | ⚡ **Kullanım:** Türevlenebilir olması nedeniyle Gradyan İniş (Gradient Descent) gibi optimizasyon algoritmalarında yaygın olarak kayıp fonksiyonu (loss function) olarak kullanılır. **Dezavantaj:** Birimi, hedef değişkenin biriminin karesidir. |  squared |
+| **MAE** | **Mean Absolute Error** | **Ortalama Mutlak Hata.** Hatanın mutlak değeri alınır ve tüm örnekler için ortalaması bulunur. | 🛡️ **Kullanım:** Birim ile aynı birimde olduğu için sonuçların yorumlanması kolaydır. Özellikle aykırı değerlerin (outliers) cezalandırılmasının istenmediği durumlarda tercih edilir. **Dezavantaj:** Mutlak değer fonksiyonu nedeniyle türevi her yerde yoktur, optimizasyonda zorluk çıkarabilir. | 🔢 |
+| **MAPE** | **Mean Absolute Percentage Error** | **Ortalama Mutlak Yüzde Hata.** Mutlak hata, gerçek değere bölünerek yüzdeye çevrilir ve ortalaması alınır. | เปอร์เซ็นต์ **Kullanım:** Tahmin doğruluğunu yüzde cinsinden ifade ettiği için iş birimleri ve yönetim tarafından kolayca anlaşılır. **Dezavantaj:** Gerçek değer sıfıra yakın olduğunda tanımsız olabilir veya çok büyük değerler alabilir. | 💰 |
+| **Max Error** | **Maximum Error** | **Maksimum Hata.** Tahmin edilen değer ile gerçek değer arasındaki mutlak farkın, veri setindeki en büyük değeridir. | 🚨 **Kullanım:** Modelin **en kötü** durumda ne kadar yanlış tahmin yaptığını gösterir. Özellikle güvenlik ve kritik sistemlerdeki en büyük riskin ölçülmesi için önemlidir. | ❌ |
+| **R-squared** | **Coefficient of Determination** | **Belirlilik Katsayısı.** Modelin, hedef değişkendeki varyasyonun ne kadarını açıkladığını gösterir. 0 ile 1 arasında değer alır (bazı durumlarda negatif olabilir). | ✨ **Kullanım:** Modelin ne kadar iyi oturduğunu ve ne kadar açıklayıcı olduğunu anlamak için en popüler metriktir. Yüksek değerler (1'e yakın), modelin veriyi iyi açıkladığını gösterir. **Dikkat:** Fazla parametre eklendiğinde R-squared her zaman artar, bu nedenle *Adjusted R-squared* (Düzeltilmiş R-squared) tercih edilebilir. | 🔍 |
+
+
+
+
