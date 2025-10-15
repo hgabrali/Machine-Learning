@@ -1625,16 +1625,3 @@ Bu metrikler, bir regresyon modelinin tahminlerinin, gerçek değerlere ne kadar
 
 --
 
-# 🤖 Machine Learning Regression Metrics
-
-These metrics are fundamental for evaluating the performance of machine learning models designed for **regression tasks** (predicting a continuous output value).
-
-| Metric | Full English Name | Definition & Formula Concept | ML Importance & Usage | Example |
-| :---: | :--- | :--- | :--- | :--- |
-| **MSE** 📈 | **Mean Squared Error** | The average of the **squared** differences between predicted ($\hat{y}$) and actual ($y$) values. Squaring ensures positive error values and heavily penalizes large errors. $$MSE = \frac{1}{N}\sum_{i=1}^{N}(y_i - \hat{y}_i)^2$$ | **Sensitive to Outliers:** Used as the primary **Loss Function** in many models. High scores indicate a few very large errors need addressing. | If your model predicts house prices, a single prediction off by **$100,000** will contribute **10,000,000,000** to the total error sum. |
-| **MAE** 📏 | **Mean Absolute Error** | The average of the **absolute** differences between predicted and actual values. It measures the average magnitude of the errors without considering direction. $$MAE = \frac{1}{N}\sum_{i=1}^{N}|y_i - \hat{y}_i|$$ | **Robust to Outliers:** Provides a linear penalty for errors, making it less sensitive to extremes than MSE. Better for interpretation as its unit matches the target variable. | If the MAE for a model predicting temperature is **2°C**, it means, on average, the prediction is off by 2 degrees. |
-| **MAPE** 📊 | **Mean Absolute Percentage Error** | The average of the absolute errors expressed as a **percentage** of the actual values (error relative to the actual value). $$MAPE = \frac{100\%}{N}\sum_{i=1}^{N}\left|\frac{y_i - \hat{y}_i}{y_i}\right|$$ | **Scale-Independent:** Excellent for comparing model performance across different datasets or forecasting targets with varying scales. | If MAPE is **15%** for a sales forecast, the average prediction is off by 15% of the actual sales value. |
-| **Max Error** 🛑 | **Maximum Error** | The largest difference between the predicted value and the actual value in the dataset. $$\text{Max Error} = \max(|y_i - \hat{y}_i|)$$ | **Worst-Case Scenario:** Identifies the single worst prediction made by the model. Critical in risk-sensitive applications where maximum error must be constrained. | If a model predicts stock prices, the Max Error tells you the largest dollar amount your model was wrong by at any single point. |
-| **R-squared** (R²) ✨ | **Coefficient of Determination** | Measures the proportion of the variance in the dependent variable that is predictable from the independent variables. $$R^2 = 1 - \frac{\text{Sum of Squared Residuals (SSE)}}{\text{Total Sum of Squares (SST)}}$$ | **Goodness of Fit:** Indicates how well the model fits the observed data, relative to a simple mean model. A value closer to 1 is better. | An R² of **0.85** means 85% of the variation in the target variable can be explained by the model's features. |
-
-
