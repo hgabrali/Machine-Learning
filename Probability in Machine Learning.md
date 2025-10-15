@@ -1865,7 +1865,439 @@ Bu istatistiksel araç, Makine Öğrenmesi (ML) uzmanları için model performan
 
 **Oranlar için güven aralığı, ML'de sınıflandırma modellerinin performans metriklerinin (Accuracy, Precision, Recall) ne kadar güvenilir olduğunu istatistiksel olarak kanıtlamak için kullanılan temel bir araçtır.** 🛠️
 
+<img width="589" height="111" alt="image" src="https://github.com/user-attachments/assets/0efaf29e-5d2e-4236-b492-e1dffd5b2465" />
 
+* Bu görseldeki soru, bir örneklem oranına (sample proportion) dayalı olarak %95 güven aralığının nasıl hesaplandığını sormaktadır.
+
+Bu hesaplama, kategorik (ikili/binary) veriler için, yani bir popülasyonda belirli bir özelliğin oranını tahmin etmek için kullanılır.
+
+İşte hesaplama adımları ve kullanılan formül:
+
+
+# ✍️ Güven Aralığı Hesaplama Varsayımları (Assumptions)
+
+Güven aralıklarının geçerli ve doğru olması için veri setinin aşağıdaki temel istatistiksel varsayımları karşılaması gerekir:
+
+| Varsayım | Açıklama | Emoji |
+| :--- | :--- | :---: |
+| **Simple random sample (Basit rastgele örneklem)** | Popülasyondaki her bireyin örnekleme seçilme şansı eşit olmalıdır. Bu, örneklemin popülasyonu tarafsız bir şekilde temsil etmesini sağlar. | 🎲 |
+| **Sample size > 30 or population is approximately normal (Örneklem büyüklüğü > 30 VEYA popülasyon yaklaşık normal dağılımlı)** | Eğer popülasyon dağılımı bilinmiyorsa, Merkezi Limit Teoremi'ne (Central Limit Theorem, CLT) göre örneklem ortalamasının dağılımının Normal dağılıma yaklaşması için örneklem büyüklüğü genellikle 30'dan büyük olmalıdır. Popülasyon zaten Normal dağılımlıysa, $n>30$ şartı aranmaz. | 📏 |
+
+# 🎯 Oranlar İçin %95 Güven Aralığı Hesaplama (95% Confidence Interval for Proportions)
+
+Bu görseldeki soru, bir **Örneklem Oranına (Sample Proportion)** dayalı olarak %95 **Güven Aralığının (Confidence Interval)** nasıl hesaplandığını sormaktadır. Bu hesaplama, **kategorik (ikili/binary)** veriler için, yani bir popülasyonda belirli bir özelliğin oranını tahmin etmek için kullanılır.
+
+### 1. %95 Güven Aralığı Hesaplama Adımları (Oranlar İçin)
+
+| Adım # | Açıklama | Formül/İfade | İhtiyaç Duyulan Değer | Emoji |
+| :---: | :--- | :--- | :--- | :---: |
+| **1.** | **Örneklem Oranını Hesaplama** ($\hat{p}$) | Örneklemde başarılı sonuç sayısı ($x$), toplam örneklem büyüklüğüne ($n$) bölünür. | $$\hat{p} = \frac{x}{n}$$ | ➗ |
+| **2.** | **Güven Seviyesini Belirleme** (Confidence Level) | Soru zaten %95 Güven Seviyesini belirtmiştir. | $$1 - \alpha = 0.95$$ | ✅ |
+| **3.** | **Kritik Z-Skorunu Bulma** (Critical Z-Score) | %95 güven seviyesine karşılık gelen kritik Z-skoru ($Z_{\alpha/2}$) bulunur. | $$Z_{0.025} = 1.96$$ | 📐 |
+| **4.** | **Standart Hatayı Hesaplama** (Standard Error, $\text{SE}_{\hat{p}}$) | Örneklem oranının standart hatası hesaplanır. | $$\text{SE}_{\hat{p}} = \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$ | 🌐 |
+| **5.** | **Hata Payını Hesaplama** (Margin of Error, ME) | Kritik Z-skoru ile Standart Hata çarpılarak hata payı bulunur. | $$\text{ME} = Z_{1-\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$ | 🧭 |
+| **6.** | **Güven Aralığını Hesaplama** (Calculate CI) | Hata payı, örneklem oranına eklenir ve çıkarılır. | $$\text{GA} = \hat{p} \pm \text{ME}$$ | 📈 |
+
+### 2. 🔍 Kullanılan Temel Formül (Final Formula)
+
+$\%95$ Güven Aralığı ($\text{GA}$) için genel formül şöyledir:
+
+$$\text{GA} = \hat{p} \pm Z_{\alpha/2} \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+Veya spesifik olarak %95 için:
+
+$$\text{GA} = \hat{p} \pm 1.96 \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+### 3. Ön Şart (Assumption)
+
+Bu formülün geçerli olması için, örneklem büyüklüğü ($n$) yeterince büyük olmalıdır. Genellikle şu koşulun sağlanması beklenir (**Normal Yaklaşım Varsayımı**):
+
+$$n \cdot \hat{p} \geq 10 \quad \text{ve} \quad n \cdot (1-\hat{p}) \geq 10$$
+
+
+<img width="761" height="287" alt="image" src="https://github.com/user-attachments/assets/32e0495d-5fca-4f1a-9227-8fb1d89a851b" />
+
+# 📏 Güven Aralığı ve Örneklem Büyüklüğü İlişkisi (Sample Size vs. Confidence Interval)
+
+✅ **The confidence interval for set X is larger than the confidence interval for set Y.**
+(X kümesi için güven aralığı, Y kümesi için güven aralığından daha büyüktür.)
+
+### Ayrıntılı Açıklama
+
+Bu sonuç, **Örneklem Büyüklüğü (Sample Size)** ile **Hata Payı (Margin of Error, ME)** arasındaki **ters orantılı** ilişkiye dayanır.
+
+**1. Güven Aralığı (GA) Temel Formülü:**
+
+$$\text{GA} = \text{Örneklem Ortalaması} \pm \text{Hata Payı}$$
+
+**2. Hata Payı İlişkisi:**
+
+Hata Payı ($\text{ME}$), örneklem büyüklüğünün kareköküyle ters orantılıdır:
+
+$$\text{ME} \propto \frac{1}{\sqrt{n}}$$
+
+Yani, Hata Payı formülünün bir parçası olan **Standart Hata (Standard Error)** aşağıdaki gibidir:
+
+$$\text{Standart Hata} = \frac{\sigma}{\sqrt{n}}$$
+
+### 3. Küme Karşılaştırması
+
+| Küme | Örneklem Büyüklüğü ($n$) | Standart Hata ($\frac{1}{\sqrt{n}}$) | Hata Payı ($\text{ME}$) | Güven Aralığı |
+| :---: | :---: | :---: | :---: | :---: |
+| **X Kümesi** | Küçük ($n=10$) | Büyük | Büyük | **Geniş (Larger)** ⬆️ |
+| **Y Kümesi** | Büyük ($n=100$) | Küçük | Küçük | **Dar (Smaller)** ⬇️ |
+
+### 4. Sonuç
+
+1.  Örneklem büyüklüğü ($n$) ne kadar **küçük** olursa, $\frac{1}{\sqrt{n}}$ değeri o kadar **büyük** olur.
+2.  Büyük bir $\frac{1}{\sqrt{n}}$ değeri, büyük bir **Hata Payı** ($\text{ME}$) demektir.
+3.  Büyük Hata Payı ise **geniş** bir **Güven Aralığı** demektir.
+
+Dolayısıyla, $n=10$ olan X kümesinin güven aralığı, $n=100$ olan Y kümesinin güven aralığından daha **geniş** olacaktır, çünkü X kümesinde belirsizlik daha fazladır.
+
+<img width="753" height="273" alt="image" src="https://github.com/user-attachments/assets/3f44bce8-9d90-4801-948e-5c1a3490cbb9" />
+
+# ❌ Hata Analizi: Güven Aralığı İfadesindeki Yanlışlık
+
+Bu analiz, soruda yapılan hatanın nedenini ve doğru ifadeyi bulmak için Hata Payı (Margin of Error) formülünün nasıl kullanılması gerektiğini açıklamaktadır.
+
+### 1. Hata Payı Formülü (Doğru Kullanım) ✍️
+
+Popülasyon standart sapması ($\sigma$) bilindiği için kullanılan Hata Payı ($\text{ME}$) formülü şöyledir:
+
+$$\text{ME} = Z_{\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$
+
+### 2. Verilen Değerlerin Yerine Konması 🔢
+
+| Parametre | Sembol | Değer | Hesaplama |
+| :---: | :---: | :---: | :--- |
+| **Güven Seviyesi** | $1-\alpha$ | %99 | $\alpha/2 = 0.01/2 = 0.005 \quad \rightarrow Z_{0.005}$ |
+| **Pop. Std. Sapma** | $\sigma$ | $1\text{ cm}$ | $\sigma$ yerine $1$ kullanılır. |
+| **Örneklem Büyüklüğü** | $n$ | 100 | $\sqrt{n} = \sqrt{100} = 10$ |
+
+Doğru ifade, bu değerler formüle yerleştirildiğinde elde edilen ifadedir:
+
+$$\text{ME} = Z_{0.005} \cdot \frac{1}{10}$$
+
+---
+
+### 3. Neden "Not Quite" Geri Bildirimi Geldi? (Hatanın Kaynağı) 🚨
+
+| Kavram | Sizin İşaretlediğiniz Şık | Doğrusu | Hata Kaynağı |
+| :---: | :---: | :---: | :--- |
+| **İşaretlenen İfade** | $$Z_{0.005} \cdot \frac{1}{100}$$|$$Z_{0.005} \cdot \frac{1}{10}$$ | **Standart Hata Oranı ($\frac{\sigma}{\sqrt{n}}$):** $\sqrt{n}$ yerine yanlışlıkla $n$ (yani $\sqrt{100}$ yerine $100$) kullanılmıştır. |
+
+**Sonuç:** Sizin seçtiğiniz şıkta, örneklem büyüklüğünün karekökü (10) alınması gerekirken, doğrudan örneklem büyüklüğü (100) kullanıldığı için sistem tarafından **"Not quite." (Tam olarak değil/Yanlış)** uyarısı gelmiştir.
+
+### 4. Doğru Şıkkın Kontrolü ✅
+
+Doğru cevap, yukarıdaki hesaplamaya göre, $$Z_{0.005} \cdot \frac{1}{10}$$ ifadesini içeren **Üçüncü Şık** olmalıdır.
+
+-----
+
+# 📊 İstatistik ve Makine Öğreniminde Hipotez Testi
+
+Bu çerçeve, **Hipotez Testi (Hypothesis Testing)** olarak adlandırılan istatistiksel bir yapıyı temsil eder ve **Makine Öğrenimi'nde (Machine Learning - ML)** özellikle **Sınıflandırma (Classification)** problemleriyle ve **Hata Tipleri (Error Types)** ile yakından ilişkilidir.
+
+İşte bu konunun ayrıntılı açıklaması:
+
+## 1. Temel İstatistiksel Kavramlar
+
+Görsel, bir e-postanın bir durumdan (varsayılan durum) iki karşılıklı dışlayıcı (**mutually exclusive**) durumdan birine atanması sürecini basitçe resmetmektedir.
+
+### a. Hipotezler 🧠
+
+İstatistiksel hipotez testi, bir popülasyon parametresi hakkında bir iddiayı (hipotezi) test etme sürecidir. Her zaman iki hipotez vardır:
+
+#### 🔵 Sıfır Hipotezi ($\mathbf{H_0}$ - Null Hypothesis):
+
+* Bu, mevcut durumu, varsayılan inancı veya değişimin olmadığı iddia edilen durumu temsil eder.
+* Görseldeki mavi zarf, varsayılan durum olan **"Email is assumed to be ham (yararlı, spam olmayan)"** durumunu temsil eder.
+* Testin amacı, $H_0$'ın yanlış olduğunu kanıtlamak için yeterli kanıt olup olmadığını görmektir.
+
+#### 🔴 Alternatif Hipotez ($\mathbf{H_1}$ - Alternative Hypothesis):
+
+* Bu, sıfır hipotezinin doğru olmadığı durumdur. Değişimin, etkinin veya iddianın doğru olduğunu öne sürer.
+* Görseldeki kırmızı zarf, **"E-posta'nın spam olduğu"** durumunu temsil eder.
+
+### b. Karşılıklı Dışlayıcılık (Mutually Exclusive) ↔️
+
+* $H_0$ ve $H_1$ her zaman karşılıklı dışlayıcıdır, yani bir e-posta aynı anda hem yararlı hem de spam olamaz.
+* Bir hipotez doğruysa, diğeri yanlış olmalıdır.
+
+
+## b. Hata Metrikleri ve Karar Eşiği (Threshold) ⚖️
+
+ML'de "Hata Tipleri" terimi, sınıflandırma performansını ölçmek için kullanılan **Karmaşıklık Matrisi (Confusion Matrix)** ve türetilmiş metriklerin temelini oluşturur:
+
+| ML Metriği | Açıklama | Hipotez Hata Tipi |
+| :---: | :--- | :--- |
+| **True Positive (TP)** | Spam'i doğru spam olarak tespit etme. | $H_1$ doğru, $H_0$ reddedildi. |
+| **True Negative (TN)** | Ham'ı doğru ham olarak tespit etme. | $H_0$ doğru, $H_0$ reddedilemedi. |
+| **False Positive (FP)** | Ham'ı yanlışlıkla spam olarak tespit etme. | **Tip I Hata** |
+| **False Negative (FN)** | Spam'i yanlışlıkla ham olarak tespit etme. | **Tip II Hata** |
+
+Bu metrikler, modelin doğruluğunu, hassasiyetini (**Precision**), duyarlılığını (**Recall/Sensitivity**) ve **F1 skorunu** hesaplamada kullanılır.
+
+### c. Önemli Uygulamalar 🎯
+
+#### 📧 Spam Filtreleme:
+
+* En bariz örnek. Hangi hatanın daha maliyetli olduğuna karar vermek gerekir.
+* **Tip I Hata (FP - Ham'ı Spam Yapma):** Kullanıcının önemli bir e-postasını kaçırmasına neden olur. **Yüksek maliyetli.**
+* **Tip II Hata (FN - Spam'i Ham Yapma):** Kullanıcının gelen kutusuna spam ulaşmasına neden olur. **Orta maliyetli.**
+* Bu nedenle, spam filtreleri genellikle Tip I hatayı en aza indirecek şekilde ayarlanır.
+
+#### 🏥 Tıbbi Tanı:
+
+* $H_0$: Hasta sağlıklı. $H_1$: Hastalık mevcut.
+* **Tip I Hata (FP):** Sağlıklı birine yanlışlıkla hastalık teşhisi koymak. (Gereksiz stres, maliyetli testler).
+* **Tip II Hata (FN):** Hasta birine sağlıklı teşhisi koymak. (Tedavinin gecikmesi, **çok yüksek maliyetli**).
+* Bu durumda, Tip II hatayı en aza indirmek (Recall'ı maksimize etmek) genellikle daha önemlidir.
+
+---
+
+# 🔥 Tip I ve Tip II Hataları: Metaforlarla Karşılaştırma
+
+Hipotez testinin temel mantığı: Bir iddiayı test ederiz ($\mathbf{H_0}$ - Sıfır Hipotezi) ve verilerimize dayanarak onu reddedip reddetmeyeceğimize karar veririz.
+
+| Hata Tipi | İsim | Temel Tanım | Spam Filtresi Metaforu 📧 | Tıbbi Tanı Metaforu 🩺 |
+| :---: | :--- | :--- | :--- | :--- |
+| **TIP I HATA ($\mathbf{\alpha}$)** | **Yanlış Pozitif (False Positive - FP)** | **$H_0$ doğruyken** ($H_0$'ın geçerli olduğu durumda) $H_0$'ı **reddetme** kararı. | **Ham e-postayı** (önemli mesaj) **yanlışlıkla SPAM** olarak işaretleme. | **Sağlıklı bir kişiye** **yanlışlıkla HASTA** teşhisi koyma. |
+| **Maliyet/Sonuç** | Yanlış Alarm. Olan bir şeyi yadsıma. | **Kullanıcı önemli bir mesajı kaçırır.** (Yüksek maliyetli) | Gereksiz tedavi, stres, maliyetli ileri testler. |
+| **TIP II HATA ($\mathbf{\beta}$)** | **Yanlış Negatif (False Negative - FN)** | **$H_1$ doğruyken** ($H_1$'ın geçerli olduğu durumda) $H_0$'ı **reddedememe** kararı. | **SPAM e-postayı** **yanlışlıkla HAM** olarak işaretleme. | **Hasta bir kişiye** **yanlışlıkla SAĞLIKLI** teşhisi koyma. |
+| **Maliyet/Sonuç** | Gözden Kaçırma. Olmayan bir şeyi doğrulama. | **Kullanıcının gelen kutusuna spam ulaşır.** (Orta maliyetli) | Hastalığın teşhis edilememesi, tedavinin gecikmesi. **(Çok yüksek maliyetli)** |
+
+## Makine Öğrenimi Metrikleriyle İlişkisi ⚙️
+
+| ML Metriği | Tanım | Hata Tipi İlişkisi |
+| :---: | :--- | :--- |
+| **False Positive (FP)** | Gerçekte Negatif (Ham) olanı Pozitif (Spam) olarak sınıflandırma. | **Tip I Hata** |
+| **False Negative (FN)** | Gerçekte Pozitif (Spam) olanı Negatif (Ham) olarak sınıflandırma. | **Tip II Hata** |
+
+Anlıyorum. Tip I ve Tip II hatalar, istatistik ve makine öğreniminde kritik öneme sahiptir ve en iyi şekilde gerçek dünya senaryoları ve metaforlarla anlaşılır.
+
+İşte bu kavramları karşılaştırmalı olarak açıklayan, anlama kolaylığı sağlayan bir tablo:
+
+# 🚨 Tip I ve Tip II Hataları: Metaforlarla Karşılaştırma
+
+Hipotez testinin temel mantığı: Bir iddiayı test ederiz ($\mathbf{H_0}$ - Sıfır Hipotezi) ve verilerimize dayanarak onu reddedip reddetmeyeceğimize karar veririz.
+
+| Hata Tipi | İsim | Temel Tanım | Spam Filtresi Metaforu 📧 | Tıbbi Tanı Metaforu 🩺 |
+| :---: | :--- | :--- | :--- | :--- |
+| **TIP I HATA ($\mathbf{\alpha}$)** | **Yanlış Pozitif (False Positive - FP)** | **$H_0$ doğruyken** ($H_0$'ın geçerli olduğu durumda) $H_0$'ı **reddetme** kararı. | **Ham e-postayı** (önemli mesaj) **yanlışlıkla SPAM** olarak işaretleme. | **Sağlıklı bir kişiye** **yanlışlıkla HASTA** teşhisi koyma. |
+| **Maliyet/Sonuç** | Yanlış Alarm. Olan bir şeyi yadsıma. | **Kullanıcı önemli bir mesajı kaçırır.** (Yüksek maliyetli) | Gereksiz tedavi, stres, maliyetli ileri testler. |
+| **TIP II HATA ($\mathbf{\beta}$)** | **Yanlış Negatif (False Negative - FN)** | **$H_1$ doğruyken** ($H_1$'ın geçerli olduğu durumda) $H_0$'ı **reddedememe** kararı. | **SPAM e-postayı** **yanlışlıkla HAM** olarak işaretleme. | **Hasta bir kişiye** **yanlışlıkla SAĞLIKLI** teşhisi koyma. |
+| **Maliyet/Sonuç** | Gözden Kaçırma. Olmayan bir şeyi doğrulama. | **Kullanıcının gelen kutusuna spam ulaşır.** (Orta maliyetli) | Hastalığın teşhis edilememesi, tedavinin gecikmesi. **(Çok yüksek maliyetli)** |
+
+---
+
+## Makine Öğrenimi Metrikleriyle İlişkisi ⚙️
+
+| ML Metriği | Tanım | Hata Tipi İlişkisi |
+| :---: | :--- | :--- |
+| **False Positive (FP)** | Gerçekte Negatif (Ham) olanı Pozitif (Spam) olarak sınıflandırma. | **Tip I Hata** |
+| **False Negative (FN)** | Gerçekte Pozitif (Spam) olanı Negatif (Ham) olarak sınıflandırma. | **Tip II Hata** |
+
+---
+
+## Ne Zaman Hangi Hata Daha Önemlidir? ⚖️
+
+Hangi hatanın daha "kötü" olduğuna, uygulama alanının risklerine göre karar verilir:
+
+1.  **📧 Spam Filtreleme:** Tip I Hata (FP) daha kötüdür. Kimse önemli bir iş e-postasını kaçırmak istemez. Bu yüzden filtreler, genellikle Tip I hatayı en aza indirecek şekilde ayarlanır. (Yüksek **Precision** hedeflenir).
+
+2.  **🩺 Tıbbi Tarama (Erken Teşhis):** Tip II Hata (FN) daha kötüdür. Ölümcül bir hastalığı atlamak, yanlış pozitif vermekten çok daha tehlikelidir. Bu durumda, Tip II hatayı en aza indirmek için modelin hassasiyeti (duyarlılığı - **Recall**) artırılır.
+
+### Özet Metafor (Mahkeme Salonu) 👨‍⚖️:
+
+* $H_0$: Sanık suçsuzdur (Varsayılan durum).
+* $H_1$: Sanık suçludur.
+* **Tip I Hata (FP):** **Suçsuz birini** **suçlu bulmak**. (Çok büyük hata - Adaletsizlik)
+* **Tip II Hata (FN):** **Suçlu birini** **suçsuz bulmak**. (Kötü bir durum - Güvenlik sorunu)
+
+Çoğu hukuk sisteminde, Tip I hatadan (suçsuzun cezalandırılması) kaçınmak, Tip II hatadan (suçlunun serbest kalması) kaçınmaktan daha önemlidir.
+
+# 📉 Type I and Type II Errors (Tip I ve Tip II Hatalar)
+
+Bu tablo, kararımızın gerçek durum (Reality) karşısındaki olası dört sonucunu özetlemektedir:
+
+| Karar (Decision) | Gerçek Durum (Reality) | Gerçek Durum (Reality) |
+| :--- | :---: | :---: |
+| | $\mathbf{H_0}$ True (Not spam) | $\mathbf{H_0}$ False (Spam) |
+| **Reject $\mathbf{H_0}$** (Decide spam) | **Type I error** (Tip I Hata) 🟠 | **Correct** (Doğru Karar) ✅ |
+| **Don't reject $\mathbf{H_0}$** (Decide not spam) | **Correct** (Doğru Karar) ✅ | **Type II error** (Tip II Hata) 🟠 |
+
+<img width="1205" height="552" alt="image" src="https://github.com/user-attachments/assets/f475496f-916a-422f-8e8f-6c8c1aa05c80" />
+
+
+# 🔥 Anlamlılık Düzeyi (Significance Level - $\mathbf{\alpha}$)
+
+Anlamlılık düzeyi ($\alpha$), bir Hipotez Testinde kabul edebileceğimiz **en yüksek Tip I Hata yapma olasılığıdır**.
+
+## 1. $\mathbf{\alpha}$ Tanımı ve Matematiği
+
+$\alpha$'nın temel amacı, Tip I Hata riskimizi belirlemektir.
+
+> "Tip I Hata yapmaya ne kadar tolerans göstermeye hazırsınız?"
+
+$$\mathbf{\alpha = \max P(Type \ I \ error)}$$
+$$\mathbf{\alpha = \max P(Reject \ H_0 \mid H_0 \ is \ True)}$$
+
+* $\alpha$'nın değeri, testinizi tasarlamak için belirlediğiniz kriterdir.
+* Belirli bir örneklem için, $\alpha$ değeri $H_0$'ı reddedip reddetmeyeceğinizi belirler.
+
+---
+
+## 2. $\mathbf{\alpha}$ ve Hata Dengesi (Trade-off)
+
+$\alpha$ değerini $0$ ile $1$ arasında hareket ettirmek, modelin Tip I ve Tip II hataları arasındaki dengeyi belirler:
+
+| $\mathbf{\alpha}$ Değeri | Karar Verici Tipi | Tip I Hata (FP) | Tip II Hata (FN) | Sonuç |
+| :---: | :---: | :---: | :---: | :--- |
+| **Yakın 0** | Aşırı Muhafazakâr | $\downarrow$ Düşük | $\uparrow$ Yüksek | Her e-posta Ham kabul edilir. (Tip I Hata yok) |
+| **Yakın 1** | Aşırı Agresif | $\uparrow$ Yüksek | $\downarrow$ Düşük | Her e-posta Spam kabul edilir. (Her Ham e-posta, Tip I Hatadır) |
+
+> **Kilit Nokta:** Hem 0 hem de 1'e yakın değerler, kötü karar vericilerdir. Küçük bir $\alpha$ istenir, ancak sıfır olmamalıdır.
+
+## 3. Risk ve Tolerans Örneği (Spam vs. Ham)
+
+E-posta sınıflandırmasında, Tip I hata (önemli e-postayı spam'e göndermek) genellikle Tip II hatadan (spam'i gelen kutusuna almak) daha maliyetlidir.
+
+* **Tip I Hata (🔥 Büyük Ateş):** Normal bir e-postayı spam'e göndermek, önemli bir mesajı kaybetmeye neden olur. (Daha Kötü)
+* **Tip II Hata (🔥 Küçük Ateş):** Bir spam e-postasını gelen kutusuna göndermemek.
+
+Bu nedenle, **kabul etmeye istekli olduğumuz en büyük Tip I hata olasılığı** ($\alpha$), genellikle düşük (örneğin $0.05$) seçilir.
+
+# Data Quality:
+
+
+<img width="977" height="210" alt="image" src="https://github.com/user-attachments/assets/a218872b-e85a-4a28-8f84-82d774957ad0" />
+
+<img width="1191" height="569" alt="image" src="https://github.com/user-attachments/assets/7e18caae-6aae-451e-af41-e0c52e57f5be" />
+
+
+<img width="1184" height="454" alt="image" src="https://github.com/user-attachments/assets/ae2ce1d0-9010-4c6d-bf6b-694c414d60d7" />
+
+# 📏 Örnek: Boy Uzunlukları ve Hipotez Testi Türleri
+
+Hipotez testleri, test etmek istediğimiz iddia türüne (Alternatif Hipotez, $\mathbf{H_1}$) göre yönlü (Tek Kuyruk - One-Tailed) veya yönsüz (Çift Kuyruk - Two-Tailed) olabilir. Bu örnek, $1970$'lerde ABD'deki $18$ yaşındaki bireylerin ortalama boy uzunluğu ($\mu$) hakkındaki iddiaları göstermektedir.
+
+**Varsayılan Durum (Sıfır Hipotezi, $\mathbf{H_0}$):** Ortalama boy **66.7 inç**'tir ($\mu = 66.7$).
+
+## 🔍 Hipotez Testi Türleri Tablosu
+
+Aşağıdaki tablo, olası iki Tek Kuyruk (One-Tailed) test senaryosunu ve hipotez çiftlerini göstermektedir:
+
+| Test Türü | Soru (İddia) | Sıfır Hipotezi ($\mathbf{H_0}$) 🔵 | Alternatif Hipotez ($\mathbf{H_1}$) 🟠 |
+| :---: | :--- | :---: | :---: |
+| **Sağ Kuyruk Testi** (Right-Tailed Test) ⬆️ | Ortalama boyun **artıp artmadığını** test eder. (Büyüktür iddiası) | $\mu = 66.7$ | $\mathbf{\mu > 66.7}$ |
+| **Sol Kuyruk Testi** (Left-Tailed Test) ⬇️ | Ortalama boyun **azalıp azalmadığını** test eder. (Küçüktür iddiası) | $\mu = 66.7$ | $\mathbf{\mu < 66.7}$ |
+
+---
+
+### Ek Açıklamalar
+
+#### 1. Sıfır Hipotezi ($\mathbf{H_0}$) 🔵
+
+Her iki test türünde de sıfır hipotezi aynıdır ve **eşitlik** içerir:
+$$\mathbf{H_0: \mu = 66.7}$$
+Bu, mevcut veya varsayılan durumu temsil eder.
+
+#### 2. Alternatif Hipotez ($\mathbf{H_1}$) 🟠
+
+Alternatif hipotez, testin yönünü belirler:
+
+* **Sağ Kuyruk Testi ($H_1: \mu > 66.7$):** İddia, yeni ortalamanın eski ortalamadan **daha büyük** olduğunu öne sürer. Ret bölgesi dağılımın sağ ucundadır.
+* **Sol Kuyruk Testi ($H_1: \mu < 66.7$):** İddia, yeni ortalamanın eski ortalamadan **daha küçük** olduğunu öne sürer. Ret bölgesi dağılımın sol ucundadır.
+
+**Not:** Bu iki testin dışında, ortalamanın **farklı** olup olmadığını test eden bir **Çift Kuyruk Testi (Two-Tailed Test)** de vardır: $H_0: \mu = 66.7$ vs. $H_1: \mu \neq 66.7$.
+
+<img width="1107" height="117" alt="image" src="https://github.com/user-attachments/assets/aae80426-34e9-4eb2-b211-e280f4f78dba" />
+
+# ↔️ Çift Kuyruk Testi (Two-Tailed Test)
+
+Çift Kuyruk Testi, ortalama ($\mathbf{\mu}$) değerinin bir referans değerden (**farklı olup olmadığını**) test etmek istediğimizde kullanılır. Bu test, değişimin her iki yönde de (hem artış hem de azalış) anlamlı olup olmadığını araştırır.
+
+## 🔍 Hipotez Çifti Tablosu
+
+Aşağıdaki tablo, Çift Kuyruk Testi'nin hipotez çiftini göstermektedir:
+
+| Test Türü | Soru (İddia) | Sıfır Hipotezi ($\mathbf{H_0}$) 🔵 | Alternatif Hipotez ($\mathbf{H_1}$) 🟠 |
+| :---: | :--- | :---: | :---: |
+| **Çift Kuyruk Testi** (Two-Tailed Test) ❌ | Ortalama değerin **farklı olup olmadığını** test eder. | $\mathbf{H_0: \mu = 66.7}$ | $\mathbf{H_1: \mu \neq 66.7}$ |
+
+---
+
+### Ek Açıklamalar
+
+#### 1. Sıfır Hipotezi ($\mathbf{H_0}$) 🔵
+
+Sıfır hipotezi, her zaman eşitlik içerir ve varsayılan durumu temsil eder:
+$$\mathbf{H_0: \mu = 66.7}$$
+(*Ortalama boy hâlâ 66.7 inç'tir.*)
+
+#### 2. Alternatif Hipotez ($\mathbf{H_1}$) 🟠
+
+Alternatif hipotez, değişimin herhangi bir yönde olduğunu iddia eder:
+$$\mathbf{H_1: \mu \neq 66.7}$$
+(*Ortalama boy, 66.7 inç'ten **farklıdır**.*)
+
+#### 3. Karar Bölgesi (Rejection Region)
+
+Çift kuyruk testinde, $H_0$'ı reddetme bölgesi dağılımın **hem solunda hem de sağında** yer alır. Anlamlılık düzeyi ($\alpha$) iki eşit parçaya bölünür ($\alpha/2$), bu parçalar dağılımın iki ucunda bulunur.
+
+<img width="1110" height="354" alt="image" src="https://github.com/user-attachments/assets/b3c6c92b-fe1c-42c1-a5ad-9aa267092fca" />
+
+# 🔍 Boy Örneğinde Tip I ve Tip II Hataların Tanımlanması
+
+Hipotez testi bağlamında Tip I ve Tip II hataların tanımları şunlardır:
+
+* **Sıfır Hipotezi ($\mathbf{H_0}$):** $\mu = 66.7$
+* **Alternatif Hipotez ($\mathbf{H_1}$):** $\mu < 66.7$ (Sol Kuyruk Testi)
+
+---
+
+## 🛑 Tip I Hata ($\mathbf{\alpha}$ - Yanlış Pozitif)
+
+* **Tanım:** $H_0$ **doğruyken** $H_0$'ı **reddetme** kararı.
+* **Gerçek Durum:** $\mu = 66.7$ (veya $\mu \ge 66.7$ - popülasyon ortalaması değişmedi veya arttı).
+* **Karar (Hata):** $H_0$'ı reddetmek, yani $H_1$'ı kabul etmek: $\mu < 66.7$ sonucuna varmak.
+* **Tip I Hata:** $\mu < 66.7$ sonucuna varmak, **gerçekte** $\mu = 66.7$ (veya $\mu \ge 66.7$) iken.
+
+## ⚠️ Tip II Hata ($\mathbf{\beta}$ - Yanlış Negatif)
+
+* **Tanım:** $H_0$ **yanlışken** $H_0$'ı **reddewememe** kararı.
+* **Gerçek Durum:** $\mu < 66.7$ ($H_1$ doğru).
+* **Karar (Hata):** $H_0$'ı reddetmemek, yani $\mu = 66.7$ (veya $\mu \ge 66.7$) sonucuna varmak.
+* **Tip II Hata:** $\mu = 66.7$ sonucuna varmak, **gerçekte** $\mu < 66.7$ iken.
+
+---
+
+## ✅ Seçeneklerin İncelenmesi ve Doğru Cevap
+
+Seçenekleri inceleyelim:
+
+### Birinci Seçenek:
+* Tip I error: Determining that $\mu < 66.7$ when the population mean did not change ($\mu = 66.7$). **(Doğru)**
+* Type II error: Determining that $\mu = 66.7$ when $\mu < 66.7$ is true. **(Doğru)**
+
+### İkinci Seçenek:
+* Type I error: Determining that $\mu < 66.7$ when $\mu \ge 66.7$ is true. **(Doğru)**
+* Type II error: Determining that $\mu = 66.7$ in when $\mu \ge 66.7$ is true. (Bu, $H_0$ doğruyken $H_0$'ı reddetmemek demektir; **Doğru Karar**.) **(Yanlış)**
+
+### Üçüncü Seçenek:
+* Type I error: Determining that $\mu = 66.7$ in when $\mu < 66.7$ is true. (Bu, $H_1$ doğruyken $H_0$'ı reddetmemek demektir; **Tip II Hata**.) **(Yanlış)**
+* Type II error: Determining that $\mu < 66.7$ when the population mean did not change ($\mu=66.7$). (Bu, $H_0$ doğruyken $H_0$'ı reddetmek demektir; **Tip I Hata**.) **(Yanlış)**
+
+### 🏆 Doğru Cevap:
+
+İlk seçenek, Tip I ve Tip II hataların bu bağlamdaki doğru tanımlarını içerir:
+
+* **Tip I error:** Determining that $\mu < 66.7$ when the population mean did not change ($\mu = 66.7$).
+* **Type II error:** Determining that $\mu = 66.7$ when $\mu < 66.7$ is true.
+
+<img width="1206" height="575" alt="image" src="https://github.com/user-attachments/assets/6f465bd1-bd40-4e96-89b0-862e2795f6b5" />
 
 
 
