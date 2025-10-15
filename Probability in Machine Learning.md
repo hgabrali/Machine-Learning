@@ -1398,3 +1398,216 @@ Deneyimli Bayesçilerin çoğu, güçlü bir önselin $10$ atışlık zayıf bir
 
 **Doğru cevap ilk seçenektir:** **Bayesian 1: $P(H)=0.49$, Bayesian 2: $P(H)=0.30$.**
 
+---
+---
+---
+
+### 📊 Nicel İstatistik: Güven Aralığı (Confidence Interval) Kavramları
+
+* Görseldeki maddeler, nicel istatistiğin temel konularından biri olan Güven Aralığı (Confidence Interval) kavramını ve bu aralığı etkileyen faktörleri açıklamaktadır.
+  
+Güven aralığı, bir popülasyon parametresini (örneğin ortalama $\mu$) tahmin etmek için kullanılan, örneklem verisine dayalı istatistiksel bir aralıktır.
+
+| Kavram | Açıklama | Anahtar Çıkarım | Emoji |
+| :--- | :--- | :--- | :---: |
+| **Confidence Intervals** (Güven Aralıkları) | Güven aralıkları, örneklem ortalamasına ($\bar{x}$) her iki taraftan da bir hata payının eklenmesiyle elde edilir. $$\text{GA} = \bar{x} \pm \text{Hata Payı}$$ | Popülasyon parametresi için tahmini bir aralık sunar. | 📏 |
+| **Confidence Level** (Güven Seviyesi) | Bir güven aralığının, tahmin edilen gerçek popülasyon ortalamasını ($\mu$) içerme olasılığıdır (örneğin %95). | Güven aralığının gerçek parametreyi yakalama olasılığını gösterir. | 🎯 |
+| **Ideally** (İdeal Durum) | İdeal olarak, hem yüksek güven seviyesine hem de dar bir aralığa sahip olmak istenir. (Yüksek kesinlik + Yüksek doğruluk) | Yüksek güven ve dar aralık bir çelişkidir; bu hedefe ancak daha fazla veriyle ulaşılabilir. | ✨ |
+| **Larger Samples** (Daha Büyük Örneklemler) | Daha büyük örneklemler (daha fazla veri), hata payını düşürerek daha dar bir aralık sağlayacaktır. | Dar aralık ve yüksek güven elde etmenin en güvenilir yoludur. | 📈 |
+| **Decreasing Confidence Level** (Güven Seviyesini Düşürmek) | Güven seviyesini düşürmek (%99'dan %95'e gibi) de aralığı daraltacaktır. | Aralığı daraltır (kesinliği artırır) ancak gerçek ortalamayı yakalama olasılığını (güveni) azaltır. | 📉 |
+
+<img width="1213" height="590" alt="image" src="https://github.com/user-attachments/assets/11d81451-7fa5-4ee5-966c-caa7cb609d9f" />
+
+# 📈 Hata Payı (Margin of Error) Tahmini ve İstatistiksel Temeller
+
+Bu bölümdeki görsel, **Hata Payı (Margin of Error)** kavramını ve bir popülasyonun **Normal Dağılım** özelliğini ($X \sim N(\mu, \sigma^2)$) göstermektedir. Hata Payı'nı tahmin etmek, yani bir **Güven Aralığı** oluşturmak için kullanılan formül, elinizdeki istatistiksel bilgiye ve örneklem büyüklüğüne bağlı olarak değişir.
+
+---
+
+## Temel Formül ve Bileşenler
+
+Hata Payı'nın temel formülü şöyledir:
+
+$$\text{Hata Payı} = \text{Kritik Değer} \times \text{Standart Hata}$$
+
+| Bileşen | Açıklama |
+| :--- | :--- |
+| **Kritik Değer** ($\boldsymbol{Z}$ veya $\boldsymbol{t}$) | Seçtiğiniz Güven Seviyesine (örneğin, %95) göre Normal Dağılım ($Z$) veya t-Dağılım ($t$) tablosundan belirlenen değerdir. |
+| **Standart Hata** | Örneklem ortalamasının, popülasyon ortalamasından ne kadar uzakta olabileceğinin bir ölçüsüdür. |
+
+---
+
+## 🔬 Tahmin Durumları
+
+Görselde popülasyonun Normal dağılıma sahip olduğu belirtildiği için (bu, nicel istatistikte sıklıkla varsayılır), tahmin formülü şu iki ana duruma göre belirlenir:
+
+### Durum 1: Popülasyon Standart Sapması ($\sigma$) **BİLİNİYORSA**
+
+Bu durumda (pratikte nadir) Hata Payı'nı hesaplamak için **Z-Skoru (Normal Dağılım)** kullanılır.
+
+$$\text{Hata Payı} = Z_{\alpha/2} \times \frac{\sigma}{\sqrt{n}}$$
+
+| Parametre | Açıklama | Örnek Değerler |
+| :--- | :--- | :--- |
+| $\boldsymbol{Z_{\alpha/2}}$ (Kritik Değer) | Seçilen güven seviyesine karşılık gelen $z$-skoru. | %95 Güven Seviyesi için $Z_{\alpha/2} \approx 1.96$ |
+| $\boldsymbol{\sigma}$ | Popülasyon Standart Sapması (Görselde $\sigma^2$ (varyans) ile gösterilen değerin karekökü). | |
+| $\boldsymbol{n}$ | Örneklem Büyüklüğü (Toplanan veri sayısı). | |
+| $\boldsymbol{\frac{\sigma}{\sqrt{n}}}$ | Standart Hata (Örneklem ortalamasının standart sapması). | |
+
+---
+
+### Durum 2: Popülasyon Standart Sapması ($\sigma$) **BİLİNMİYORSA**
+
+Pratikte en yaygın durum budur. Bu durumda, popülasyon standart sapması yerine **örneklem standart sapması ($s$)** kullanılır ve genellikle **t-Dağılımı** kullanılır.
+
+$$\text{Hata Payı} = t_{n-1, \alpha/2} \times \frac{s}{\sqrt{n}}$$
+
+| Parametre | Açıklama |
+| :--- | :--- |
+| $\boldsymbol{t_{n-1, \alpha/2}}$ (Kritik Değer) | Seçilen güven seviyesine ve serbestlik derecesine ($n-1$) karşılık gelen $t$-skoru. |
+| $\boldsymbol{s}$ | Örneklem Standart Sapması (Topladığınız örneklem verisinin standart sapması). |
+| $\boldsymbol{n}$ | Örneklem Büyüklüğü (Toplanan veri sayısı). |
+
+### ⚠️ Önemli Not (Merkezi Limit Teoremi)
+
+Eğer örneklem büyüklüğü ($n$) yeterince büyükse (genellikle $n \ge 30$ kabul edilir), **Merkezi Limit Teoremi** gereği popülasyonun dağılımı ne olursa olsun, örneklem ortalamasının dağılımı normale yaklaşır ve bu durumda $t$-Dağılımı yerine yine yaklaşık olarak $Z$-Dağılımı kullanılabilir.
+
+---
+
+## 🤖 Makine Öğrenmesi Bağlamında Önemi
+
+Hata Payı ve Güven Aralığı kavramı, makine öğrenmesi ve veri analizinde özellikle kritik noktalarda devreye girer:
+
+1.  **Regresyon Analizi (Tahminler):**
+    * Tahmin edilen katsayılar için güven aralıkları hesaplanır. Bu, katsayının gerçek değerinin büyük olasılıkla hangi aralıkta olduğunu gösterir.
+
+2.  **A/B Testi (Karşılaştırma):**
+    * İki grup arasındaki farkın istatistiksel olarak anlamlı olup olmadığını test ederken, fark için bir güven aralığı oluşturulur. Eğer bu aralık sıfırı içermiyorsa, farkın anlamlı olduğu sonucuna varılır.
+
+3.  **Model Değerlendirme (Güvenilirlik):**
+    * Modelinizin performans ölçümlerine (örneğin Doğruluk - Accuracy) Güven Aralığı eklemek, tahminlerinizin ne kadar güvenilir olduğunu daha şeffaf bir şekilde gösterir.
+  
+<img width="1183" height="560" alt="image" src="https://github.com/user-attachments/assets/811d0dac-3743-4465-9eb3-65a637c0db8d" />
+
+# ⚖️ Veri Dağılımları Üzerine: Merkezi Limit Teoremi (CLT)
+
+Bu görsel, istatistikteki en önemli kavram olan **Örneklem Ortalamasının Dağılımı (Sampling Distribution of the Mean)** ve **Merkezi Limit Teoremi'ni (CLT)** açıklamaktadır.
+
+## Temel Kural
+
+Bir popülasyondan alınan örneklem ortalamalarının dağılımı, her zaman popülasyon ortalaması ($\mu$) etrafında merkezlenir ve varyansı popülasyon varyansının ($\sigma^2$) örneklem büyüklüğüne ($n$) bölünmesiyle bulunur: $\frac{\sigma^2}{n}$.
+
+| Senaryo | Popülasyon (Ana Kitle) Dağılımı | Uygulama Kuralı | Örneklem Ortalamasının Dağılımı ($\bar{X}$) | Anlamı |
+| :---: | :--- | :--- | :--- | :--- |
+| **Senaryo 1** 🎯 | **Normal Dağılım** ($\boldsymbol{X \sim N(\mu, \sigma^2)}$) | **Doğrudan Kural:** Popülasyon Normal olduğu için, örneklem dağılımı her zaman normaldir. | **Normal Dağılım:** $$\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)$$ | Örneklem büyüklüğü ($n$) ne olursa olsun, istatistiksel çıkarım için Normal Dağılım kuralları uygulanabilir. |
+| **Senaryo 2** 💡 | **Bilinmiyor veya Normal Değil** ($\boldsymbol{X}$ unknown or not Normal) | **Merkezi Limit Teoremi (CLT):** Yeterince büyük bir örneklem alınmalıdır ($n \ge 30$). | **Yaklaşık Normal Dağılım:** $$\bar{X} \sim N\left(\mu, \frac{\sigma^2}{n}\right)$$ | Popülasyonun şekli önemli değildir. Büyük örneklemler sayesinde, istatistiksel analizler için Normal Dağılımın güçlü matematiksel araçlarını kullanabiliriz. |
+
+## 🌟 Merkezi Limit Teoremi (CLT) Nedir?
+
+CLT, **veri biliminin ve çıkarımsal istatistiğin bel kemiğidir.**
+
+* **Tanım:** Bir popülasyonun dağılımı ne olursa olsun, o popülasyondan alınan rastgele ve yeterince büyük örneklemlerin ortalamalarının dağılımı, yaklaşık olarak Normal Dağılıma uyar.
+* **Pratikteki Önemi:** Veri bilimcileri ve analistler, çoğu zaman popülasyonun tamamını bilemezler veya ölçemezler. CLT sayesinde, sadece **büyük bir örneklem** toplayarak, popülasyon hakkında güvenilir istatistiksel tahminler yapabilirler.
+
+<img width="1205" height="589" alt="image" src="https://github.com/user-attachments/assets/9564ba7e-eb04-4435-9720-a81e5a77e4b9" />
+
+# 🎯 Güven Aralığı (Confidence Interval) - Hesaplama Adımları
+
+Bu görsel, popülasyon standart sapmasının ($\sigma$) bilindiği veya büyük örneklemle (Z-Dağılımı) çalışıldığı durumda Güven Aralığı hesaplamasını özetler.
+
+## 📝 Hesaplama Adımları (STEPS)
+
+Güven Aralığı: $\text{GA} = \bar{x} \pm Z_{1-\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$
+
+| Adım # | Açıklama | Amacı ve Rolü | Emoji |
+| :---: | :--- | :--- | :---: |
+| **1** | **Find the sample mean ($\bar{x}$)** | Örneklem ortalamasını bulun. Bu, güven aralığının merkezini oluşturur. | 📋 |
+| **2** | **Define a desired confidence level ($\mathbf{1-\alpha}$)** | İstenen güven seviyesini (%95 gibi) tanımlayın. Kritik değeri belirlemeye yarar. | ✅ |
+| **3** | **Get the critical value ($\mathbf{Z_{1-\alpha/2}}$)** | Seçilen güven seviyesine karşılık gelen Z-skorunu bulun (Örn: %95 için $\pm 1.96$). | 📐 |
+| **4** | **Find the standard error ($\mathbf{\frac{\sigma}{\sqrt{n}}}$)** | Standart hatayı hesaplayın. Bu, örneklem ortalamalarının yayılımını ölçer. | 🌐 |
+| **5** | **Find the margin of error (Hata Payını Bulun)** | Kritik değer ile Standart Hatayı çarpın: $$\text{Hata Payı} = Z_{1-\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$ | 🧭 |
+| **6** | **Add/subtract the margin of error to the sample mean** | Hata payını örneklem ortalamasına ($\bar{x}$) ekleyip çıkarın. Bu, aralığın alt ve üst limitlerini belirler. | ➕➖ |
+
+## 📊 Güven Aralığı Formülü ve Bileşenleri
+
+| Bileşen | Formül/Gösterim | Açıklama |
+| :--- | :--- | :--- |
+| **Güven Aralığı** | $$\bar{x} \pm \text{Hata Payı}$$ | Popülasyon ortalamasının büyük ihtimalle içinde bulunduğu aralık. |
+| **Hata Payı (Margin of Error)** | $$Z_{1-\alpha/2} \cdot \frac{\sigma}{\sqrt{n}}$$ | Örneklem ortalamasının, gerçek popülasyon ortalamasından sapabileceği maksimum değer. |
+| **Kritik Değer** | $$Z_{1-\alpha/2}$$ | Güven seviyesini temsil eden Z-Skoru (Örn: 1.96). |
+| **Standart Hata** | $$\frac{\sigma}{\sqrt{n}}$$ | Örneklem ortalamalarının standart sapması. |
+
+# ⚙️ İstatistiksel Çıkarım Varsayımları (Assumptions)
+
+Bu varsayımlar, Güven Aralığı ve Hipotez Testleri gibi çıkarımsal istatistik yöntemlerinin geçerli ve güvenilir olması için kritik öneme sahiptir.
+
+| Varsayım | Açıklama | Neden Önemli? | Emoji |
+| :--- | :--- | :--- | :---: |
+| **Simple random sample** (Basit Rastgele Örneklem) | Örneklem, popülasyondaki her bireyin eşit seçilme şansına sahip olduğu bir yöntemle toplanmalıdır. | 🛡️ **Tarafsızlık ve Bağımsızlık:** Örneklemin popülasyonu tarafsız (önyargısız) temsil etmesini ve gözlemlerin birbirinden bağımsız olmasını sağlar. | 🎲 |
+| **Sample size > 30 OR** **Population is approximately normal** | **(VEYA)** Örneklem büyüklüğü $n > 30$'dan büyük olmalıdır **ya da** popülasyonun kendisi yaklaşık olarak Normal dağılıma sahip olmalıdır. | 🔔 **Merkezi Limit Teoremi (CLT):** Bu koşullardan birinin sağlanması, örneklem ortalamalarının dağılımının (yaklaşık olarak) Normal Dağılıma uymasını garanti eder. İstatistiksel testlerin temelini oluşturur. | 🧠 |
+
+---
+
+
+<img width="1197" height="586" alt="image" src="https://github.com/user-attachments/assets/4e1c9de9-af26-4cba-b240-2f1f8c5a30cd" />
+
+* Bu görsel, istatistikteki en yaygın yanlış anlaşılmalardan biri olan Güven (Confidence) ve Olasılık (Probability) arasındaki farkı mükemmel bir şekilde özetlemektedir.
+
+# 🎯 Güven (Confidence) ve Olasılık (Probability) Arasındaki Fark
+
+Bu ayrım, istatistikteki Güven Aralığı kavramının doğru anlaşılması için kritik öneme sahiptir. Temel fark: **Parametre Sabit, Aralık Değişken.**
+
+---
+
+## 1. Doğru Yorumlama (Güven Seviyesi) - ✅
+
+**İfade:** The confidence interval contains the true population parameter approximately 95% of the time.
+**(Türkçe: Güven aralığı, gerçek popülasyon parametresini yaklaşık olarak zamanın %95'inde içerir.)**
+
+### ✍️ Açıklama
+
+Güven seviyesi, **yöntemin güvenilirliğini** gösterir. Bir güven aralığı hesaplama sürecini (örneklem alma, aralık hesaplama) sonsuz kez tekrarladığınızı varsayın. Oluşturduğunuz aralıkların yaklaşık %95'i, gerçekten doğru popülasyon parametresini (örneğin $\mu$) yakalayacaktır. **Güven, bu tekrarlanan süreçten gelir.**
+
+### 💰 Örnek
+
+* Bir şirketteki çalışanların gerçek ortalama maaşını ($X$ TL) tahmin etmek istiyorsunuz.
+* Her gün 100 farklı çalışan grubundan bir örneklem alıp, 100 farklı %95 güven aralığı hesaplıyorsunuz.
+* Bu 100 aralıktan yaklaşık **95 tanesi** gerçek ortalama maaş olan $X$ değerini içerecektir. Geri kalan 5 tanesi ise içermeyecektir.
+
+---
+
+## 2. Yanlış Yorumlama (Olasılık) - ❌
+
+**İfade:** There's a 95% probability that the population parameter falls within the confidence interval.
+**(Türkçe: Popülasyon parametresinin güven aralığı içine düşme olasılığı %95'tir.)**
+
+### ✍️ Açıklama
+
+Tek bir güven aralığı hesaplandıktan ve sınırları belirlendikten sonra, gerçek popülasyon parametresi **ya o aralığın içindedir (Olasılık 1) ya da dışındadır (Olasılık 0).** Parametrenin aralığa düşme olasılığı %95 olamaz, çünkü **parametre sabittir.** Sizin yaptığınız şey, doğru sonucu yakalayan bir aralık oluşturma yöntemine %95 oranında güvenmektir.
+
+### 🛑 Örnek
+
+* Sadece **bir kez** %95 güven aralığı hesapladınız ve aralık $[4000 \text{ TL}, 4500 \text{ TL}]$ çıktı.
+* Gerçek ortalama maaş ($\mu$) **ya bu aralığın içindedir ya da dışındadır.** $\mu$'nun bu aralığın içine düşme olasılığı %95 **değildir.**
+
+---
+
+**Kısacası: Parametre sabit, aralık değişkendir.**
+
+# ⚖️ Güven (Confidence) ve Olasılık (Probability) Arasındaki Fark
+
+Bu görsel, istatistikteki %95 Güven Seviyesinin (Confidence Level) doğru ve yanlış yorumlanma şekillerini göstererek temel bir kavram hatasını düzeltmektedir.
+
+## Temel İlke
+
+İstatistiksel çıkarımda **popülasyon parametresi (örneğin $\mu$) sabittir**, **güven aralığı ise örneğe göre değişen değişkendir**. Bu nedenle, tek bir aralık için olasılıktan bahsedilemez.
+
+| Durum | İfade | Yorumlama (Neden Doğru/Yanlış?) | Emoji |
+| :---: | :--- | :--- | :---: |
+| **DOĞRU** ✅ | **The confidence interval contains the true population parameter approximately 95% of the time.** (Güven aralığı, gerçek popülasyon parametresini yaklaşık olarak zamanın %95'inde içerir.) | **✅ Yönteme Güven:** Bu ifade, **tekrarlanan deneme sürecinin** başarı oranını belirtir. Yöntem, oluşturulan aralıkların %95'inin gerçek parametreyi yakalaması için tasarlanmıştır. | 🎯 |
+| **YANLIŞ** ❌ | **There's a 95% probability that the population parameter falls within the confidence interval.** (Popülasyon parametresinin güven aralığı içine düşme olasılığı %95'tir.) | **❌ Tekil Olasılık:** Tek bir aralık hesaplandıktan sonra, gerçek parametre ya aralığın içindedir (Olasılık 1) ya da dışındadır (Olasılık 0). Parametre sabit olduğu için, onun aralığa düşme olasılığından söz etmek hatalıdır. | 🛑 |
+
+## Özet
+
+Güven Seviyesi, **"Bu aralığı oluşturan yönteme %95 oranında güveniyorum"** demektir. Olasılık ise **tek bir olayın** gerçekleşme şansıdır.
+
