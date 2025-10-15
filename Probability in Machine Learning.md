@@ -1687,3 +1687,55 @@ Bu ilişkiler, bir regresyon modelinin hata dağılımını anlamak ve modelin g
 
 * $\text{MAPE}$'nin değeri, gerçek değer ($y_i$) sıfıra yakın olduğunda ($\text{MAPE} = \frac{\dots}{y_i}$ formülünden dolayı) aşırı yüksek ve kararsız çıkabilir.
 * Bu yüzden sıfır veya sıfıra yakın değerler içeren veri setlerinde dikkatli kullanılmalıdır.
+* 
+----
+
+# 🚀 Öğrenme Sürecinizi Yapılandırın: Öncelik Sırası
+
+"Kopyala-yapıştır" döngüsünden kurtulmak için, **teorik bilgiyi (kitap)** **pratik uygulamayla (online kurs)** birleştirmelisiniz.
+
+| Öncelik | Alan | Ne Yapmalı? | Amacı | Emoji |
+| :---: | :--- | :--- | :--- | :---: |
+| **1.** Öncelik | **Nicel İstatistik Temelleri** 🧠 | Kitabınızdaki nicel kısımları çalışın. Temel kavramları (ortalama, varyans, dağılım, korelasyon, hipotez testi) iyice öğrenin. | Makine öğrenmesi algoritmalarının **neden** çalıştığını anlamak. | 📚 |
+| **2.** Öncelik | **Programlama ve Veri İşleme (Python/R)** 💻 | Coursera veya başka bir platformdan temel Python (Pandas, NumPy) veya R kursuna başlayın. Sadece istatistik bilginizi **pratik etmeye** odaklanın. | Veriyi manipüle etme, temizleme ve hazırlama yeteneği kazanmak. | 🛠️ |
+| **3.** Öncelik | **İstatistik + Programlama Uygulaması** 💡 | Kitaptan öğrendiğiniz temel istatistikleri (ortalama hesaplama, korelasyon bulma, basit regresyon) programlama diliyle kendiniz yazarak uygulayın. **Kurs materyalini kopyalamak yerine, kendi verinizle (veya küçük örneklerle) uygulayın.** | Kitaptaki teorinin kodda nasıl çalıştığını görmek ve akılda kalıcılığı artırmak. | ✨ |
+| **4.** Öncelik | **Makine Öğrenmesi Kursları** 🤖 | Coursera'daki makine öğrenmesi kurslarına başlayın. Artık istatistik ve programlama bilginiz olduğu için, algoritmaların (Linear Regression, Lojistik Regresyon) mantığını daha iyi anlayacaksınız. | Temel algoritmalarda uzmanlaşmak ve ileri seviye konulara geçmek. | 🎓 |
+
+# 🤖 Steps from True Value to Prediction
+
+These steps outline the fundamental Machine Learning (ML) pipeline for classification tasks, transforming raw data into an actionable prediction.
+
+| Step # | Process Name | Objective | Description |
+| :---: | :--- | :--- | :--- |
+| **1** 🧱 | **Data Preparation & Feature Engineering** | To convert raw data into a usable format for model training. | Raw data, such as email text, must be quantified. Features (e.g., word frequency like 'spam' or 'not-spam' using Bag-of-Words, or character count) are created from the text. |
+| **2** 🧠 | **Model Selection & Training** | To build a model capable of predicting the true labels (Column B). | A suitable classification algorithm (e.g., Naive Bayes, Logistic Regression, Support Vector Machine, etc.) is selected. The model is trained using the **actual labels (Column B / Actual/Truth)**. |
+| **3** ⚙️ | **Model Prediction** | To enable the trained model to make predictions on new or unseen data. | The model takes **new input data (Features/Text only)** it hasn't seen during training and predicts Column B, filling in **Column D (Y Predicted)**. |
+| **4** ✅ | **Performance Evaluation** | To determine the model's success rate. | At this stage, Column B (Actual) is compared against Column D (Predicted). Classification metrics such as **Accuracy, Recall, and Precision** are calculated based on this comparison. |
+
+# ⚙️ Makine Öğrenmesi (ML) Süreç Hattı (Pipeline) Adımları
+
+Bu tablo, standart bir Makine Öğrenmesi projesinde izlenmesi gereken adımların sırasını ve her adıma dair yorumları içerir.
+
+| ML'deki Standart Sıra | Adım | Açıklama / Düzeltme | Emoji |
+| :---: | :--- | :--- | :---: |
+| **1.** 🥇 | **Historical Target & Features** | **Doğru.** İlk olarak, hedef değişken (sonuç) ve tahmin için kullanılacak özellikler (girdiler) belirlenir. | 🎯 |
+| **2.** 🛠️ | **Preprocessing** | **Düzeltme Gerekir.** Veriyi bölmeden önce temizlemek ve dönüştürmek gerekir. (Ancak, veri sızıntısını önlemek için bazı ölçekleme işlemleri bölme sonrası yapılır.) | 🧹 |
+| **3.** ✂️ | **Split (train/test)** | **Düzeltme Gerekir.** Hazırlanan veri, modeli test etmek için **eğitim (train)** ve **test** setlerine ayrılır. | ➗ |
+| **4.** 🧠 | **Fit Model (algorithm)** | **Doğru.** Model, eğitim verisi kullanılarak eğitilir. | 🎓 |
+| **5.** ➡️ | **Predicted** | **Doğru.** Eğitilmiş model, test verisi için tahmin yapar. | 🔮 |
+| **6.** ✅ | **Evaluation** | **Doğru.** Tahminler, gerçek değerlerle karşılaştırılarak model performansı değerlendirilir. | 📈 |
+
+* **Not:** Görseldeki "split (train/test)"in preprocessing'ten önce gelmesi genellikle doğru değildir. Veri sızıntısını (data leakage) önlemek için ölçekleme (scaling) gibi işlemler split sonrası yapılsa da, eksik veri doldurma gibi temel işlemler önce yapılır.
+
+* # 💡 2. Bu Basamaklarda Kullanılan İstatistik ve Olasılık İşlemleri
+
+Bu ML Pipeline'ının her aşaması, temel nicel istatistik ve olasılık kavramlarına dayanır:
+
+| ML Pipeline Basamağı | İstatistiksel Kavramlar, Metrikler ve İşlemler | Emoji |
+| :--- | :--- | :---: |
+| **Historical Target & Features** | **Tanımlayıcı İstatistikler:** Ortalama ($\mu$), Medyan, Mod, Standart Sapma ($\sigma$), Varyans. **Korelasyon:** Özellikler arasındaki ve özellik-hedef arasındaki ilişkilerin analizi. **Dağılım Analizi:** Normal dağılım, çarpıklık (Skewness) ve basıklık (Kurtosis) kontrolü. | 📊 |
+| **Preprocessing** | **Eksik Değer Doldurma:** Mod, Medyan veya Ortalama kullanılarak (İstatistiksel Imputation). **Aykırı Değer Tespiti:** Z-Skoru veya IQR (Çeyrekler Arası Aralık) yöntemleri. **Ölçekleme/Normalizasyon:** Veri dağılımını standartlaştırma (Normal Dağılım varsayımına yaklaştırma). | 🧹 |
+| **Split (train/test)** | **Rastgele Örnekleme:** Veri setinin tarafsız bir şekilde eğitim ve test setlerine bölünmesi (Basit Rastgele Örneklem varsayımı). **Olasılık:** Her bir örneğin test setine düşme olasılığı sabittir. | ➗ |
+| **Fit Model (algorithm)** | **Regresyon:** En Küçük Kareler (Least Squares) yöntemi, Hipotez Testi (katsayıların anlamlılığı). **Sınıflandırma:** Olasılık ve Koşullu Olasılık (Naive Bayes), Lojistik Fonksiyon (Lojistik Regresyon). **Maksimum Olabilirlik Tahmini (Maximum Likelihood Estimation):** Birçok modelin temelindeki parametre tahmin yöntemi. | 🧠 |
+| **Predicted** | **Olasılık Tahmini:** Sınıflandırma modellerinin çıktısı (örneğin, bir e-postanın SPAM olma olasılığı %85'tir). **Nokta Tahmini:** Regresyon modellerinin çıktısı (örneğin, evin tahmini fiyatı 500.000 TL'dir). | 🔮 |
+| **Evaluation** | **Regresyon Metrikleri:** MSE, RMSE, MAE (Hata analizi). **Sınıflandırma Metrikleri:** Doğruluk (Accuracy), Kesinlik (Precision), Duyarlılık (Recall) ve F1 Skoru (Koşullu Olasılık ve Ortalama bazlı). **Güven Aralığı:** Model tahminlerinin güvenilirlik aralığının hesaplanması. | ✅ |
