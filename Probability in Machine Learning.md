@@ -2299,6 +2299,235 @@ Seçenekleri inceleyelim:
 
 <img width="1206" height="575" alt="image" src="https://github.com/user-attachments/assets/6f465bd1-bd40-4e96-89b0-862e2795f6b5" />
 
+---
+
+<img width="1220" height="581" alt="image" src="https://github.com/user-attachments/assets/34708834-22e5-4d33-a50f-d6bb2c9623a9" />
 
 
+# 📊 Sağ Kuyruk Testi Sonucu (Right-Tailed Test Conclusion)
+
+Bu görsel, Popülasyon Standart Sapması ($\mathbf{\sigma}$) bilinen Normal Dağılımlı veriler için yapılan hipotez testinin sonuçlarını özetlemektedir.
+
+## 📈 Test Parametreleri ve Hipotezler
+
+* **Varsayılan Boy Ortalaması ($\mathbf{H_0}$) 🔵:** $\mu = 66.7$ in.
+* **İddia (Alternatif Hipotez) 🟠:** $\mu > 66.7$
+* **Örneklem Ortalaması ($\mathbf{\bar{x}}$):** $68.442$ in.
+* **Anlamlılık Düzeyi ($\mathbf{\alpha}$):** $0.05$
+
+### Tip I Hata Tanımı
+
+* **Tip I error:** Popülasyon ortalaması **değişmemişken** ($\mu = 66.7$), ortalamanın $\mu > 66.7$ olduğu sonucuna varmaktır.
+
+## 🔢 p-Değeri Hesaplaması
+
+$H_0$ doğruyken (yani $\mu = 66.7$ iken), $\bar{x} = 68.442$'den daha büyük bir ortalama gözlemleme olasılığı (p-değeri) hesaplanmıştır:
+
+$$\mathbf{P}(\bar{x} > 68.442 \mid \mu = 66.7) = 0.0332$$
+
+## ✅ Karar ve Sonuç
+
+Hesaplanan $p$-değeri ($\mathbf{0.0332}$) ve Anlamlılık Düzeyi ($\mathbf{\alpha}$) karşılaştırılır:
+
+$$0.0332 < \alpha \ (0.05)$$
+
+**Conclusion (Sonuç):** **reject $\mathbf{H_0}$** (with a $5\%$ significance level).
+
+$p$-değeri $\alpha$'dan küçük olduğu için, Sıfır Hipotezi reddedilir. İstatistiksel olarak, $18$ yaşındaki bireylerin ortalama boyunun $66.7$ inç'ten **daha büyük** olduğu sonucuna varılır.
+
+<img width="1195" height="563" alt="image" src="https://github.com/user-attachments/assets/8d1f64a4-777d-4b04-9aa0-786770257bd8" />
+
+# 📉 P-Değerleri (P-Values)
+
+## 1. P-Değeri Neyi Ölçer? ❓
+
+Bir $\mathbf{p\text{-value}}$, **$H_0$ doğru varsayıldığında**, test istatistiğinin **gözlemlenen değer** kadar ya da ondan **daha uç** bir değer alma olasılığıdır.
+
+* Bu olasılık, gözlemlenen değerden itibaren **$H_1$'in yönüne doğru** hesaplanır. (Görselde $\mu = 66.7$ ve $H_1: \mu > 66.7$ olduğu için sağa doğru.)
+
+## 2. P-Değeri'nin Anlamı 💡
+
+$p$-değeri, Sıfır Hipotezi'ne ($H_0$) karşı elde edilen kanıtın gücünü gösterir:
+
+| $\mathbf{p\text{-value}}$ Durumu | Anlamı | Sonuç | Kanıt |
+| :---: | :--- | :--- | :--- |
+| **Küçük** ($\mathbf{\le \alpha}$) | Verilerin şans eseri oluşma olasılığı düşüktür. | $H_0$ Yanlıştır. | **Güçlü Kanıt** (Reject $H_0$) |
+| **Büyük** ($\mathbf{> \alpha}$) | Verilerin şans eseri oluşma olasılığı yüksektir. | $H_0$ Reddedilemez. | **Zayıf Kanıt** (Don't reject $H_0$) |
+
+## 3. Karar Kuralı (Decision Rule) ⚖️
+
+$p$-değeri, hipotez testinin nihai kararını belirleyen ana kuralı oluşturur:
+
+* **If $\mathbf{p\text{-value} < \alpha}$** $\rightarrow$ **reject $\mathbf{H_0}$** (and accept $H_1$ as true)
+* **If $\mathbf{p\text{-value} > \alpha}$** $\rightarrow$ **don't reject $\mathbf{H_0}$**
+
+<img width="1198" height="571" alt="image" src="https://github.com/user-attachments/assets/b7db3aa1-759e-413f-ba0b-0a725522d940" />
+
+# 📈 P-Değerleri ($P$-Values) ve Test Türleri
+
+## Tanım
+Bir $\mathbf{p\text{-value}}$, **Sıfır Hipotezi ($\mathbf{H_0}$) doğru varsayıldığında**, test istatistiğinin (örneğin $T(X)$) gözlemlenen değer ($t$) kadar ya da ondan **daha uç** bir değer alma olasılığıdır.
+
+* **Test İstatistiği:** $T(X)$
+* **Gözlemlenen İstatistik:** $t$
+* **Sıfır Hipotezi:** $\mathbf{H_0: \mu = \mu_0}$
+
+## 📐 P-Değeri Hesaplamaları Tablosu
+
+$p$-değerinin hesaplanma şekli, Alternatif Hipotezin ($\mathbf{H_1}$) yönüne göre değişir:
+
+| Test Türü | Alternatif Hipotez ($\mathbf{H_1}$) | Grafiksel Gösterim | P-Değeri Hesaplama Formülü |
+| :---: | :---: | :---: | :---: |
+| **Sağ Kuyruk Testi** ➡️ | $\mathbf{\mu > \mu_0}$ | Dağılımın sağ ucu taranır. | $\mathbf{P(T(X) > t \mid H_0)}$ |
+| **Çift Kuyruk Testi** ↔️ | $\mathbf{\mu \neq \mu_0}$ | Dağılımın hem sol hem sağ ucu taranır. | $\mathbf{P(|T(X) - \mu_0| > |t - \mu_0| \mid H_0)}$ |
+| **Sol Kuyruk Testi** ⬅️ | $\mathbf{\mu < \mu_0}$ | Dağılımın sol ucu taranır. | $\mathbf{P(T(X) < t \mid H_0)}$ |
+
+---
+
+### Ek Açıklamalar
+
+#### 1. Sağ Kuyruk Testi ➡️
+$p$-değeri, gözlemlenen $t$ değerinden büyük değerler alma olasılığını (sağdaki kuyruğu) hesaplar.
+
+#### 2. Çift Kuyruk Testi ↔️
+Bu testte, $p$-değeri **iki kuyruğa** yayılır. Gözlemlenen $t$ değerinin $\mu_0$'dan uzaklığına mutlak değer olarak eşit veya daha büyük bir fark görme olasılığı hesaplanır. (Pratikte, tek kuyruk olasılığı hesaplanır ve $2$ ile çarpılır.)
+
+#### 3. Sol Kuyruk Testi ⬅️
+$p$-değeri, gözlemlenen $t$ değerinden küçük değerler alma olasılığını (soldaki kuyruğu) hesaplar.
+
+<img width="1215" height="585" alt="image" src="https://github.com/user-attachments/assets/b663bc75-876b-45d0-af4d-bd60c256feb5" />
+
+# ↔️ Çift Kuyruk Testi Sonucu (Two-Tailed Test Conclusion)
+
+Bu görsel, **Normal Dağılımlı Veriler İçin Çift Kuyruk Testi (Popülasyon Standart Sapması $\mathbf{\sigma}$ Biliniyor)** örneğini ve sonucunu açıklamaktadır. Bu test, önceki örnekteki boy verilerini kullanmakta, ancak farklı bir hipotez öne sürmektedir.
+
+**Senaryo:** Bu örnek, $1970$'lerde ABD'deki $18$ yaşındaki bireylerin ortalama boyunun $66.7$ inç olduğu bilgisine dayanmaktadır. Amaç, günümüz ortalama boyunun **farklı olup olmadığını** (artıp artmadığını değil) test etmektir.
+
+## 1. Hipotezler:
+
+* **Sıfır Hipotezi ($\mathbf{H_0}$) 🔵:** Popülasyon ortalama boyu değişmemiştir; $\mathbf{\mu = 66.7}$.
+* **Alternatif Hipotez ($\mathbf{H_1}$) 🟠:** Popülasyon ortalama boyu farklıdır; $\mathbf{\mu \neq 66.7}$. (Bu bir Çift Kuyruk Testi'dir.)
+
+## 2. Verilen Parametreler:
+
+* Popülasyon standart sapması ($\mathbf{\sigma}$): $3$
+* Örneklem büyüklüğü ($\mathbf{n}$): $10$
+* Örneklem ortalaması ($\mathbf{\bar{x}}$): $68.442$ inç
+* Anlamlılık Düzeyi ($\mathbf{\alpha}$): $0.05$ (Tip I Hata olasılığının üst sınırı.)
+
+## 3. Amaç ve Tip I Hata:
+
+* **Testin Amacı (Goal) 🎯:** Tip I Hata olasılığını $\mathbf{\alpha < 0.05}$ altında tutarak, $H_0$'ı reddetmek için yeterli kanıt olup olmadığını görmektir.
+* **Tip I Hata:** Popülasyon ortalaması aslında $66.7$ iken, ortalamanın $\mathbf{\mu \neq 66.7}$ olduğu sonucuna varmaktır.
+
+## 4. Olasılık Hesaplaması ($\mathbf{p}$-Değeri):
+
+Çift kuyruk testinde $p$-değeri, gözlemlenen farkın mutlak değeri kadar veya ondan daha büyük bir fark görme olasılığını ölçer.
+
+$$\mathbf{\text{Fark Mutlak Değeri}: |\bar{x} - 66.7| = |68.442 - 66.7| = 1.742}$$
+
+$p$-değeri, $1.742$ farkının (veya $-1.742$'den küçük bir farkın) $H_0$ doğru iken görülme olasılığıdır:
+
+$$\mathbf{P}(|\bar{X} - 66.7| > |68.442 - 66.7| \mid \mu = 66.7) = 0.0663$$
+
+Bu $p$-değeri $\mathbf{0.0663}$ olarak hesaplanmıştır.
+
+## 5. Karar (Sonuç) ✅
+
+Hesaplanan $p$-değeri ($0.0663$), belirlenen anlamlılık düzeyi $\alpha = 0.05$'ten **büyüktür**:
+
+$$\mathbf{0.0663 > 0.05}$$
+
+* **Kural:** Eğer $p$-değeri $\alpha$'dan büyükse, Sıfır Hipotezi ($H_0$) reddedilmez.
+* **Conclusion (Sonuç):** **Do not reject $\mathbf{H_0}$** ($H_0$ reddedilmez).
+
+## 6. Anlamı 💡
+
+Bu sonuç, $\mathbf{5\%}$ anlamlılık düzeyinde, ortalama boyun $66.7$ inç'ten farklı olduğuna dair **yeterli istatistiksel kanıt olmadığı** anlamına gelir. Örneklem ortalaması $68.442$ olmasına rağmen, bu sapma, $H_0$'ın doğru olduğu durumda bile ($5\%$ hata payıyla) şans eseri görülebilecek bir değer aralığındadır (görselde taralı olmayan beyaz alan).
+
+
+<img width="1214" height="591" alt="image" src="https://github.com/user-attachments/assets/9a884acc-3ae0-4cac-a9a7-21cc6a6ab24e" />
+
+# 📉 Sol Kuyruk Testi Sonucu (Left-Tailed Test Conclusion)
+
+Bu görsel, **Normal Dağılımlı Veriler İçin Sol Kuyruk Testi (Popülasyon Standart Sapması $\mathbf{\sigma}$ Biliniyor)** örneğini ve sonucunu açıklamaktadır. Bu test, $1970$'lerdeki $18$ yaşındaki bireylerin ortalama boyunun **azalıp azalmadığını** test etmeyi amaçlar.
+
+**Senaryo:** Bu örnekte, $1970$'lerde ABD'deki $18$ yaşındaki bireylerin ortalama boyunun $66.7$ inç olduğu bilgisi kullanılmaktadır.
+
+## 1. Hipotezler:
+
+* **Sıfır Hipotezi ($\mathbf{H_0}$) 🔵:** Popülasyon ortalama boyu değişmemiştir; $\mathbf{\mu = 66.7}$.
+* **Alternatif Hipotez ($\mathbf{H_1}$) 🟠:** Popülasyon ortalama boyu azalmıştır; $\mathbf{\mu < 66.7}$. (Bu bir Sol Kuyruk Testi'dir.)
+
+## 2. Verilen Parametreler:
+
+* Popülasyon standart sapması ($\mathbf{\sigma}$): $3$
+* Örneklem büyüklüğü ($\mathbf{n}$): $10$
+* Örneklem ortalaması ($\mathbf{\bar{x}}$): $64.252$ inç
+* Anlamlılık Düzeyi ($\mathbf{\alpha}$): $0.05$ (Tip I Hata olasılığının üst sınırı.)
+
+## 3. Amaç ve Tip I Hata:
+
+* **Testin Amacı (Goal) 🎯:** Tip I Hata olasılığını $\mathbf{\alpha < 0.05}$ altında tutarak, $H_0$'ı reddetmek için yeterli kanıt olup olmadığını görmektir.
+* **Tip I Hata:** Popülasyon ortalaması aslında değişmemişken ($\mu=66.7$ iken) $\mathbf{\mu < 66.7}$ sonucuna varmaktır (**yanlış alarm**).
+
+## 4. Olasılık Hesaplaması ($\mathbf{p}$-Değeri):
+
+Sol kuyruk testinde $p$-değeri, $H_0$'ın doğru olduğu varsayımı altında ($\mu=66.7$ iken), elde edilen $\bar{x}=64.252$'den daha küçük veya eşit bir örneklem ortalaması elde etme olasılığını (sol kuyruktaki taranmış alan) ölçer:
+
+$$\mathbf{P}(\bar{X} < 64.252 \mid \mu = 66.7) = 0.0049$$
+
+Bu $p$-değeri $\mathbf{0.0049}$ olarak hesaplanmıştır.
+
+## 5. Karar (Sonuç) ✅
+
+Hesaplanan $p$-değeri ($\mathbf{0.0049}$), belirlenen anlamlılık düzeyi $\alpha = 0.05$'ten **küçüktür**:
+
+$$\mathbf{0.0049 < 0.05}$$
+
+* **Kural:** Eğer $p$-değeri $\alpha$'dan küçükse, Sıfır Hipotezi ($H_0$) reddedilir.
+* **Conclusion (Sonuç):** **reject $\mathbf{H_0}$** ($H_0$ reddedilir).
+
+## 6. Anlamı 💡
+
+Bu sonuç, $\mathbf{5\%}$ anlamlılık düzeyinde, $1970$'lerden bu yana ABD'deki $18$ yaşındaki bireylerin ortalama boyunun **azaldığına** dair istatistiksel olarak **yeterli kanıt olduğu** anlamına gelir. $\bar{x}=64.252$ değeri, $H_0$ altında kabul edilemeyecek kadar uç bir değerdir (taranmış alan içinde kalmaktadır).
+
+# ✅ P-Değeri (P-Value) Temel Kuralları
+
+Hipotez testinde karar verme süreci ve $p$-değerinin anlamı aşağıdaki gibidir:
+
+| Kural/Tanım | Açıklama |
+| :---: | :--- |
+| **Karar Kuralı** ⚖️ | If the **p-value is less than $\mathbf{\alpha}$** (significance level), then you **reject the null hypothesis**. |
+| **Tanım** 💡 | The **p-value** represents the probability of observing the data or more extreme results under the assumption that the **null hypothesis is true**. |
+| **Kanıt Gücü** 💪 | A smaller **p-value** indicates **stronger evidence** against the null hypothesis. |
+
+# 📊 Z-İstatistiği (Z-Test) Uygulamaları: Tek Kuyruk ve Çift Kuyruk Testleri
+
+Z-İstatistiği testleri, hipotezimizin yönüne bağlı olarak üç farklı şekilde kullanılır.
+
+## ⚖️ Hipotez Testi Türleri ve Kullanım Amaçları
+
+| Test Türü | Alternatif Hipotez ($\mathbf{H_1}$) İfadesi | P-Değeri Hesaplama Yönü | Kullanım Amacı 🎯 |
+| :---: | :---: | :---: | :--- |
+| **Çift Kuyruk Testi** ↔️ | $\mathbf{\mu \neq \mu_0}$ (Farklıdır) | İki Kuyruk (Sağ ve Sol) | Ortalama değerin, varsayılan ($\mu_0$) değerden **herhangi bir yönde** (hem büyük hem de küçük) anlamlı bir şekilde farklı olup olmadığını test eder. |
+| **Sağ Kuyruk Testi** ➡️ | $\mathbf{\mu > \mu_0}$ (Büyüktür) | Tek Kuyruk (Sağ) | Ortalama değerin, varsayılan ($\mu_0$) değerden **daha büyük** olup olmadığını test eder. (Örn: Bir ürünün etkinliğinin **artıp** artmadığı.) |
+| **Sol Kuyruk Testi** ⬅️ | $\mathbf{\mu < \mu_0}$ (Küçüktür) | Tek Kuyruk (Sol) | Ortalama değerin, varsayılan ($\mu_0$) değerden **daha küçük** olup olmadığını test eder. (Örn: Bir makinenin hata oranının **azalıp** azalmadığı.) |
+
+---
+
+## 📝 Hipotez İfadelerinin Karşılaştırılması
+
+Her üç test türünde de Sıfır Hipotezi ($H_0$) her zaman eşitliği içerir. Alternatif Hipotez ($H_1$) ise testin yönünü belirler.
+
+| Test Türü | Sıfır Hipotezi ($\mathbf{H_0}$) 🔵 | Alternatif Hipotez ($\mathbf{H_1}$) 🟠 |
+| :---: | :---: | :---: |
+| **Çift Kuyruk** ↔️ | $\mathbf{\mu = \mu_0}$ | $\mathbf{\mu \neq \mu_0}$ |
+| **Sağ Kuyruk** ➡️ | $\mathbf{\mu \le \mu_0}$ (Veya $\mu = \mu_0$) | $\mathbf{\mu > \mu_0}$ |
+| **Sol Kuyruk** ⬅️ | $\mathbf{\mu \ge \mu_0}$ (Veya $\mu = \mu_0$) | $\mathbf{\mu < \mu_0}$ |
+
+### Kullanım Amacı Açıklamaları:
+
+* **Tek Kuyruk Testleri (Sağ/Sol):** Bu testler **yönlüdür**. Eğer bir etkinin (örneğin bir ilacın) sadece **pozitif bir etki** yarattığını kanıtlamak istiyorsanız Sağ Kuyruk, sadece **negatif bir etki** yarattığını kanıtlamak istiyorsanız Sol Kuyruk Testi kullanılır. Tek kuyruk testleri, $H_0$'ı reddetmek için Çift Kuyruk Testine göre daha az kanıt gerektirir (daha fazla **güç** sağlar).
+* **Çift Kuyruk Testi:** Bu test **yönsüzdür**. Sadece bir değişikliğin (farklılığın) olup olmadığını, değişikliğin hangi yönde olduğunu varsaymadan test etmek için kullanılır.
 
