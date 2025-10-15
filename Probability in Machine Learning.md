@@ -2,6 +2,19 @@
 
 Makine öğrenimi, büyük ölçüde bilinmeyen bir sonucun, elimizdeki verilere dayanarak ortaya çıkma **olasılığını hesaplama** sanatıdır. Temelde ML, bir olasılık hesaplama makinesi olarak işlev görür.
 
+[JSXGraph](https://jsxgraph.uni-bayreuth.de/home/)
+
+[Bootstrap](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+
+##### The following books were used as references in this course.
+
+* Probability and Statistics (4th Edition) , Morris H. DeGroot, Mark J. Schervish, Pearson, 2011
+
+* All of Statistics: A Concise Course in Statistical Inference by Larry Wasserman, Springer, 2010 
+
+* Probabilistic Machine Learning: An Introduction by Kevin Patrick Murphy. MIT Press, March 2022.  
+
+
 --- 
 
 ## 1. Koşullu Olasılık (Conditional Probability) 📊
@@ -1077,3 +1090,311 @@ Bu tablo, Bayesçi yaklaşımın (özellikle MAP) logaritma ve eksi işareti dö
 | **Maksimumlaştır** $P(\text{Veri} \mid \text{Model})$ | Logaritma Almak ve Eksilisini Almak | **Minimize Et** Kare Kaybı (Square Loss) 📉 |
 | **Maksimumlaştır** $P(\text{Model})$ | Logaritma Almak ve Eksilisini Almak | **Minimize Et** Düzenlileştirme Terimi (Regularization Term) 🎚️ |
 | **MAP** ($P(\text{Veri} \mid \text{Model}) \cdot P(\text{Model})$) | Logaritma Toplamı | **Minimize Et** Toplam Kayıp Fonksiyonu (Total Loss Function) 💰 |
+
+---
+---
+
+### ❓ "Bir Modelin Olasılığı Nedir?" (What Is the Probability of a Model?)
+
+"Bir Modelin Olasılığı Nedir?" sorusu, tek başına kesin bir istatistiksel tanıma sahip değildir. Genellikle bu soru, bağlama göre iki ana yoruma gelir:
+
+1.  **Bayesçi İstatistik Yorumu (Asıl Anlam) 🧠:**
+    * **Anlamı:** Modelin, eldeki veriler göz önüne alındığında doğru olma olasılığı nedir?
+    * **Kullanım Alanı:** Model Karşılaştırma ve Seçimi.
+
+2.  **Klasik İstatistik Yorumu (Pratik Anlam) 🎯:**
+    * **Anlamı:** Modelin bir tahmininin (örneğin bir sınıflandırma modelinin) belirli bir sınıfa ait olma olasılığı nedir?
+    * **Kullanım Alanı:** Modelin Çıktısı (Tahmin Güveni).
+
+Bu iki temel yoruma ve ilgili parametrelere detaylı olarak bakmak gereklidir.
+
+| Parametre / Konu | Ne? | Neden Kullanılır? | Nasıl/Niçin Kullanılır? |
+| :--- | :--- | :--- | :--- |
+| **1. Modelin Posterior Olasılığı ($P(M|D)$) 🧠** | **Bayesçi İstatistik**'te, modelin ($M$), eldeki gözlemlenen veriler ($D$) göz önüne alındığında doğru olma olasılığıdır. | Farklı modelleri (veya model parametrelerini) doğrudan bir olasılıkla karşılaştırmak ve hangi modelin verileri en iyi açıkladığını belirlemek için. | **Bayes Teoremi** kullanılarak hesaplanır: $$P(M|D) = \frac{P(D|M) \cdot P(M)}{P(D)}$$ Burada $P(D|M)$ **Olasılık (Likelihood)**, $P(M)$ **Önsel (Prior)** olasılıktır. |
+| **2. Marjinal Olasılık (Model Kanıtı)📊** | **$P(D|M)$ (Likelihood):** Modelin, belirli parametreler altında gözlemlenen verileri üretme olasılığıdır. | Modelin, tahmin edilen parametre değerlerinin ne kadar iyi uyum sağladığını gösterir. | Modeli eğitirken kullanılan veriye uyumu ölçmek ve model parametrelerini optimize etmek için (Maksimum Olabilirlik Tahmini - MLE). |
+| **3. Bayes Faktörü (BF) ⚖️** | İki rakip modelin ($M_1$ ve $M_2$), veriler tarafından ne kadar desteklendiğini gösteren oran: $BF = \frac{P(D|M_1)}{P(D|M_2)}$. | İki modelin birbirine karşı destek düzeyini ölçmek ve hangisinin daha olası olduğunu belirlemek için. | Genellikle $\ln(BF)$ logaritması alınarak yorumlanır; $BF > 1$ ise $M_1$ daha olasıdır. |
+| **4. Tahmin Olasılığı (Model Çıktısı)🎯** | Bir sınıflandırma modelinin (Lojistik Regresyon, Sınıflandırıcılar vb.) yeni bir veri noktasını belirli bir sınıfa atama olasılığı. | Modelin tahminindeki **belirsizliği** ölçmek ve yalnızca yüksek güvene sahip tahminleri kabul etmek için. | $P(Sınıf|Veri)$. Bu çıktı, genellikle bir Softmax veya Sigmoid aktivasyon fonksiyonu kullanılarak elde edilir. |
+| **5. Model Güven Aralığı (Confidence Interval) 🚧** | Bir model parametresinin (örneğin, regresyon katsayısı $\beta$) veya tahmininin gerçek değerini belirli bir güven düzeyinde (örneğin %95) içerme olasılığı. | Model sonuçlarının ne kadar güvenilir veya hassas olduğunu nicel olarak belirtmek için. | Tahmin edilen değer $\pm$ Hata Marjini şeklinde ifade edilir. |
+| **6. Model Değerlendirme Metrikleri 📈** | | | |
+| a) $R^2$ (Belirleme Katsayısı) | Modelin bağımlı değişkendeki varyasyonu ne ölçüde açıkladığını gösterir. | Regresyon modellerinin genel uyumunu ve açıklama gücünü ölçmek için. | $0$ ile $1$ arasında değişir ($1$ en iyi uyumdur). |
+| b) AUC-ROC Eğrisi Altındaki Alan | Modelin rastgele seçilen pozitif bir örneği, rastgele seçilen negatif bir örnekten daha yüksek bir skorla sıralama olasılığıdır. | Sınıflandırma modelinin ayırma gücünü tüm olası eşikler boyunca ölçmek için. | $0.5$ (rastgele tahmin) ile $1.0$ (mükemmel tahmin) arasında değişir. |
+| c) P-Değeri | Gözlemlenen etkinin (veya daha aşırı bir etkinin) null hipotezi doğruyken elde edilme olasılığı. | Bir değişkenin (özellik) model üzerinde istatistiksel olarak anlamlı bir etkiye sahip olup olmadığını test etmek için. | Genellikle $p < 0.05$ olduğunda null hipotez reddedilir. |
+
+### 📋 Özetle Cevap Yaklaşımı
+
+Bu soru bir Data Scientist mülakatında sorulduğunda, en doğru ve kapsamlı cevap, iki ana perspektife değinmektir:
+
+1.  **Teorik/Bayesçi Perspektif 🧠:** Soru, genellikle **Bayesçi Model Karşılaştırması** bağlamında **Modelin Posterior Olasılığını ($P(M|D)$)** ifade eder. Bu, modelin kendisinin doğru olma olasılığıdır.
+
+2.  **Pratik/Uygulama Perspektifi ⚙️:** Soru, günlük iş akışında kullanılan bir sınıflandırma modelinin ürettiği **Tahmin Olasılığını** ifade ediyor olabilir.
+
+Bu ayrımları yaparak ve her iki alandaki kritik parametreleri (Posterior Olasılık, Bayes Faktörü ve AUC, $R^2$ gibi pratik metrikler) açıklayarak konuya hakimiyetinizi gösterebilirsiniz.
+
+---
+
+<img width="733" height="205" alt="image" src="https://github.com/user-attachments/assets/d608d7e7-ef6f-46df-9385-29459b775943" />
+
+* Sorunun amacı, popülasyonun temel parametrelerini (varyans, ortalama, oran) tahmin etmek için kullanılan genel istatistiksel yöntemi sormaktadır:
+
+### 🎯 Point Estimation (Nokta Tahmini)
+
+* **Point Estimation (Nokta Tahmini):** Bir popülasyon parametresini (örneğin popülasyon ortalaması $\mu$, varyansı $\sigma^2$ veya oranı $p$) tek bir değerle tahmin etme yöntemidir.
+    * **Örneklem Ortalaması ($\bar{x}$)** popülasyon ortalaması ($\mu$) için bir nokta tahminidir.
+    * **Örneklem Varyansı ($s^2$)** popülasyon varyansı ($\sigma^2$) için bir nokta tahminidir.
+    * **Örneklem Oranı ($\hat{p}$)** popülasyon oranı ($p$) için bir nokta tahminidir.
+
+* Bu nedenle, Nokta Tahmini hem ortalamayı, hem varyansı hem de oranı tahmin etmek için kullanılan genel bir **yöntemdir**.
+
+---
+
+<img width="755" height="260" alt="image" src="https://github.com/user-attachments/assets/373b3968-9db1-4e53-bdd3-ff4b80f5b6b6" />
+
+* 
+Bu soru, Maksimum Olabilirlik Tahmini (Maximum Likelihood Estimation - MLE) yöntemini kullanarak bir Bernoulli denemesindeki (madeni para atışı) başarı olasılığını (p) bulmaya ilişkindir.
+
+Sorunun çözümü için izlenmesi gereken adımlar ve kullanılacak fonksiyon şunlardır:
+
+### 🪙 Maksimum Olabilirlik Tahmini (MLE) ile Madeni Para Atışı Sorununun Çözümü
+
+#### 1. Problemi Tanımlama
+
+| Parametre | Değer | Açıklama |
+| :--- | :--- | :--- |
+| Toplam Deneme Sayısı ($n$) | 10 | (10 kez yazı tura atıldı). |
+| Başarı Sayısı ($k$) | 6 | (6 kez tura geldi - "heads"). |
+| Başarısızlık Sayısı ($n-k$) | 4 | (4 kez yazı geldi - "tails"). |
+| Tahmin Edilecek Parametre | $p$ | Tura gelme olasılığı. |
+
+#### 2. Olabilirlik Fonksiyonu (Likelihood Function) Kurma 📝
+
+Bir madeni para atışı dizisindeki sonuçların olasılığı, Binom Dağılımı kullanılarak hesaplanır. Ancak, MLE'de biz sadece belirli bir dizinin (örneğimizde 6 tura ve 4 yazı) gerçekleşme olasılığını maksimize etmeye odaklanırız.
+
+$p$ tura gelme olasılığı ve $(1-p)$ yazı gelme olasılığı olmak üzere, herhangi bir 6 tura ve 4 yazı dizisinin gerçekleşme olasılığı (olabilirlik fonksiyonu $L(p)$) şu şekilde ifade edilir:
+
+$$L(p) = P(\text{veriler}|p) \propto p^k \cdot (1-p)^{n-k}$$
+
+*Burada $\propto$, Binom olasılık fonksiyonundaki $\binom{n}{k}$ katsayısını (bu katsayı $p$ parametresine bağlı olmadığı için MLE sürecinde genellikle göz ardı edilir) içerdiğini belirtir.*
+
+#### 3. Değerleri Yerine Koyma
+
+Bulduğumuz değerleri fonksiyonda yerine koyarız:
+
+* $k=6$
+* $n-k=4$
+
+$$L(p) = p^6 \cdot (1-p)^4$$
+
+#### 4. Maksimum Olabilirlik Tahminini Bulma (Ek Bilgi) 💡
+
+Soruda sadece maksimize edilmesi gereken fonksiyon sorulsa da, tam MLE değeri de bu fonksiyondan türetilir:
+
+* Bu fonksiyonu maksimize eden $p$ değeri, $\frac{d(\ln L(p))}{dp} = 0$ denklemi çözülerek bulunur.
+* Bu tür Binom durumlarında, Maksimum Olabilirlik Tahmini her zaman basitçe gözlemlenen oran ($\hat{p}$) olur:
+
+$$\hat{p} = \frac{\text{Başarı Sayısı}}{\text{Toplam Deneme Sayısı}} = \frac{6}{10} = 0.6$$
+
+---
+<img width="777" height="235" alt="image" src="https://github.com/user-attachments/assets/f37673c8-ed85-4d46-8edf-ad374e5528d8" />
+
+* Basit Lineer Regresyon modelinin (En Küçük Kareler Yöntemi - Ordinary Least Squares, OLS) temel çalışma prensibini tam olarak açıklamaktadır:
+* (Lineer regresyon, noktalar ve uydurulan çizgi arasındaki karesel mesafelerin toplamını minimize ederek veriye en iyi uyumu sağlar.)
+  
+---
+
+<img width="724" height="225" alt="image" src="https://github.com/user-attachments/assets/10ef8e7c-81bd-401d-891c-d34b45ba484e" />
+
+### 🛡️ Düzenlileştirme (Regularization) Amacı
+
+**Doğru İfade:**
+> Regularization prevents overfitting by penalizing models with large coefficients or weights.
+> (Düzenlileştirme, büyük katsayılara veya ağırlıklara sahip modelleri cezalandırarak aşırı uydurmayı (overfitting) önler.)
+
+#### Neden Bu Tanım Doğrudur?
+
+Düzenlileştirmenin temel amacı ve mekanizması şunlardır:
+
+* **Birincil Amaç 🎯:** Düzenlileştirmenin (**L1 - Lasso** veya **L2 - Ridge** gibi) asıl amacı, modelin **karmaşıklığını** kontrol altına alarak eğitim verisine aşırı derecede uyum sağlamasını (**overfitting**) engellemektir.
+* **Mekanizma ⚖️:** Bu, kayıp fonksiyonuna (**loss function**) katsayıların (ağırlıkların) büyüklüğüne bağlı bir **ceza terimi (penalty term)** eklenerek yapılır.
+* **Etkisi 📉:** Büyük katsayılar, modelin verideki küçük dalgalanmalara karşı çok hassas olduğu anlamına gelir. Bu katsayıları cezalandırmak, modeli daha **genelleştirilebilir** (basit) hale getirir.
+
+---
+
+<img width="768" height="229" alt="image" src="https://github.com/user-attachments/assets/7a35c4b7-8958-4c9d-8c49-a51c50b44ad8" />
+
+### 📏 L2 Düzenlileştirme Hata Değeri Hesaplaması (Ridge Penalty)
+
+Soruda istenen, verilen $M = 4x^4 + 3x^2 + 1$ modeli için **L2 Düzenlileştirme Hata Değeri**'ni (L2 regularization error value) hesaplamaktır.
+
+L2 düzenlileştirme (Ridge Regresyonu), modelin katsayılarının (ağırlıklarının) karesinin toplamına eşittir. **Bias terimi** (kesişim/sabit terim) genellikle düzenlileştirmeye dahil edilmez.
+
+#### 1. Modelin Katsayılarını (Ağırlıklarını) Belirleme:
+
+Verilen model:
+$$M = 4x^4 + 3x^2 + 1$$
+
+Bu modelin katsayıları (ağırlıkları) şunlardır:
+* $x^4$ teriminin katsayısı ($w_4$): $4$
+* $x^2$ teriminin katsayısı ($w_2$): $3$
+* Sabit terim/Bias ($b$): $1$
+
+#### 2. L2 Düzenlileştirme Hata Değeri Formülü:
+
+L2 cezası (penalty) katsayıların karesinin toplamıdır:
+$$\text{L2 Cezası} = \sum_{i} w_i^2$$
+
+#### 3. Hesaplama 🔢:
+
+Bias terimini ($1$) hariç tutarak katsayıların karesini toplarız:
+
+$$\text{L2 Cezası} = (4)^2 + (3)^2$$
+$$\text{L2 Cezası} = 16 + 9$$
+$$\text{L2 Cezası} = 25$$
+
+---
+
+**Sonuç:** L2 düzenlileştirme hata değeri **25**'tir.
+
+**Not 📌:** Bu değer, toplam kayıp fonksiyonuna ($\text{Loss}$) $\lambda$ (lambda) hiperparametresi ile çarpılarak eklenir: $\text{Toplam Loss} = \text{MSE} + \lambda \cdot (\text{L2 Cezası})$. Ancak soruda sadece ceza değerinin kendisi (25) istenmiştir.
+
+---
+
+### 🔎 Maksimum Olabilirlik ile Dağılım Karşılaştırması
+
+<img width="821" height="616" alt="image" src="https://github.com/user-attachments/assets/e2d0af40-ec6e-479d-8d23-401e98490320" />
+
+
+Bu soru, $S = \{-1, 2\}$ örneklemini üretme olasılığı en yüksek olan dağılımı bulmak için **Maksimum Olabilirlik (Maximum Likelihood - ML)** ilkesini kullanmayı gerektirir.
+
+Örneklemdeki gözlemler bağımsız kabul edildiğinden, bir dağılımın ($M$) Olabilirlik Fonksiyonu (L(M)), şu şekilde hesaplanır:
+
+$$L(M) = f(x_1 | M) \cdot f(x_2 | M)$$
+
+$f(x|M)$ değeri, grafikteki **Yoğunluk (Density)** değerleridir.
+
+---
+
+#### 1. Dağılım $N(0, 2^2)$ İçin Olabilirlik Hesaplaması 🟢
+
+Bu dağılım için $\mu=0$ ve $\sigma=2$'dir.
+
+| Nokta ($x$) | Yoğunluk $f(x)$ Değeri |
+| :---: | :---: |
+| $x_1 = -1$ | $0.18$ |
+| $x_2 = 2$ | $0.12$ |
+
+$$\text{L}(N(0, 2^2)) = 0.18 \cdot 0.12 = 0.0216$$
+
+#### 2. Dağılım $N(1, 1^2)$ İçin Olabilirlik Hesaplaması 🔴
+
+Bu dağılım için $\mu=1$ ve $\sigma=1$'dir.
+
+| Nokta ($x$) | Yoğunluk $f(x)$ Değeri |
+| :---: | :---: |
+| $x_1 = -1$ | $0.05$ |
+| $x_2 = 2$ | $0.24$ |
+
+$$\text{L}(N(1, 1^2)) = 0.05 \cdot 0.24 = 0.0120$$
+
+---
+
+#### 3. Karşılaştırma Sonucu
+
+| Dağılım | Olabilirlik Değeri ($L$) |
+| :--- | :--- |
+| $N(0, 2^2)$ | **$0.0216$** |
+| $N(1, 1^2)$ | $0.0120$ |
+
+$0.0216 > 0.0120$ olduğundan, **$N(0, 2^2)$ dağılımının** verilen örneklemi üretme olasılığı (olabilirliği) daha yüksektir.
+
+**Doğru Cevap: $N(0, 2^2)$**
+
+---
+
+<img width="734" height="239" alt="image" src="https://github.com/user-attachments/assets/72cc4f4d-fa93-427d-9b9f-ae1406a500f4" />
+
+### 💡 Önsel (Prior) İnançların Bayes İstatistiğindeki Rolü
+
+Kavramsal olarak "önsel" (prior) terimi, herhangi bir veri gözlemlemeden önce bir parametrenin dağılımı hakkındaki **başlangıç inançlarını** yansıtır.
+
+Ancak, Bayes istatistiğinde, bu önsel inançların gücü, gözlemlenen veriler tarafından yönlendirilen sistematik bir **güncelleme süreci** aracılığıyla değiştirilir:
+
+* **Güncelleme Mekanizması 🔄:** Bu güncelleme, Bayes teoremi aracılığıyla yapılır. Bu süreç, önsel inançların, verilerden elde edilen bilgilerle rafine edilmesini ve hizalanmasını sağlar.
+* **Verinin Merkezi Rolü 📊:** Bayes analizinde **veri asla göz ardı edilmez veya dışlanmaz**. Veri, temel gerçekliği daha iyi yansıtmak üzere önsel dağılımı ayarlamada ve şekillendirmede merkezi bir rol oynar.
+
+---
+
+<img width="834" height="600" alt="image" src="https://github.com/user-attachments/assets/975ba114-e275-4f23-82c7-435517229ad4" />
+
+### ⚖️ MAP (Maximum A Posteriori) Tahmini ve Önsel Karşılaştırması
+
+Bu çözüm, farklı **Önsel (Prior)** inançlara sahip iki Bayesçi'nin, aynı veriyi gözlemledikten sonra ulaştıkları **Maksimum Ardsıl Olasılık (MAP)** tahminlerini karşılaştırmaktadır.
+
+#### 1. Veri ve Modeli Tanımlama 📊
+
+| Parametre | Değer |
+| :--- | :--- |
+| Deneme Sayısı ($n$) | 10 |
+| Tura Sayısı (Başarı, $k$) | 3 |
+| Yazı Sayısı (Başarısızlık, $n-k$) | 7 |
+| Tahmin Edilecek Parametre | Tura gelme olasılığı ($\theta = P(H)$) |
+
+**Olabilirlik (Likelihood) Fonksiyonu:** $\propto \theta^3 (1-\theta)^7$
+
+---
+
+#### 2. Bayesçi 2'nin MAP Tahmini (Uniform/Zayıf Önsel)
+
+Bayesçi 2, **uniform önsel** ($\text{Prior} \propto 1$) kullanır. Bu, tüm olasılıklara eşit ağırlık verdiği için bilgi içermez.
+
+$$\text{Posterior} \propto \theta^3 (1-\theta)^7 \cdot 1$$
+
+* Bu durumda MAP tahmini, **Maksimum Olabilirlik Tahmini (MLE)** ile aynıdır:
+    $$\text{MAP}_{\text{Bayesçi 2}} = \frac{\text{Başarı Sayısı}}{\text{Toplam Deneme Sayısı}} = \frac{3}{10} = \mathbf{0.30}$$
+
+---
+
+#### 3. Bayesçi 1'in MAP Tahmini (Güçlü Önsel)
+
+Bayesçi 1, paranın adil ($\mathbf{P(H)=0.5}$) olduğuna dair **güçlü bir önsel** inanç kullanır. Bu güçlü önsel, zayıf veriye rağmen sonucu kendi ortalamasına yaklaştırır.
+
+$$\text{MAP}_{\text{Bayesçi 1}} \text{ değeri } \in [0.30, 0.50]$$
+
+* **Prensip 🎯:** Güçlü bir önsel, zayıf bir veriyi tamamen ezemez, ancak tahminin veri oranı ($0.30$) ile önselin ortalaması ($0.50$) arasında kalmasını sağlar. Önsel güçlü olduğu için, sonuç **$0.50$'ye daha yakın** olacaktır.
+* **Makul Değerler:** $0.30$ ve $0.50$ arasındaki $0.49$ veya $0.51$ seçenekleri, güçlü önselin etkisini yansıtır.
+
+**Beklenen Sonuç:**
+* Bayesçi 1: Güçlü önsel nedeniyle $0.50$'ye yakın (örn., $\mathbf{0.49}$)
+* Bayesçi 2: Veri oranı olduğu için $\mathbf{0.30}$
+
+---
+
+### 4. Seçeneklerin Değerlendirilmesi (Bayesçi MAP Karşılaştırması) 🧠
+
+| Seçenek | Bayesçi 1 (Güçlü Önsel, 0.5 civarı) | Bayesçi 2 (Zayıf Önsel, 0.3 civarı) | Karar |
+| :---: | :---: | :---: | :--- |
+| **A** | $P(H) = 0.49$ | $P(H) = 0.30$ | **Mantıklı** (Bayesçi 1, 0.30 ile 0.50 arasını, 0.50'ye yakın seçmiştir.) |
+| **B** | $P(H) = 0.51$ | $P(H) = 0.30$ | Mantıklı (Bayesçi 1, 0.50'nin biraz üzerine kaymıştır.) |
+| **C** | $P(H) = 0.30$ | $P(H) = 0.30$ | Yanlış (Bayesçi 1'in güçlü önseli yok sayılmıştır.) |
+| **D** | $P(H) = 0.30$ | $P(H) = 0.49$ | Yanlış (Bayesçi 1'in ve Bayesçi 2'nin sonuçları karıştırılmıştır.) |
+
+**Not:** Bu karşılaştırmada, Bayesçi 2'nin uniform önseli nedeniyle MAP değeri doğrudan gözlemlenen orana (0.30) eşit çıkarken; Bayesçi 1'in güçlü önseli, sonucu 0.50'ye yakın tutmaktadır.
+
+### 🌟 Bayesçi Sonuçların Yorumlanması (MAP Kararı)
+
+Bayesçi modellemede, güçlü bir önselin zayıf bir veri kümesiyle karşılaştığı durumlar önemlidir:
+
+* Hem **$0.49$** hem de **$0.51$** mantıklıdır, ancak Bayesçi modelleme genellikle sonuçları önselin ortalamasına yakın tutar.
+* Bu tür çoktan seçmeli sorularda, genellikle güçlü önselin $0.50$'den sadece biraz uzaklaştığı kabul edilir.
+* Gözlemlenen Veri ($0.30$) ve Önsel ($0.50$) arasında, $0.50$'ye en yakın olan değerler $0.49$ veya $0.51$'dir.
+
+Deneyimli Bayesçilerin çoğu, güçlü bir önselin $10$ atışlık zayıf bir veriyi tamamen ezemeyeceğini bilir, bu yüzden $0.50$'nin hemen yanındaki $0.49$ veya $0.51$ en olası değerlerdir.
+
+**Bu bağlamda, ilk seçenek (A) en tipik Bayesçi sonucu yansıtır:**
+
+| Bayesçi | Önsel Tipi | Sonuç Yorumu | MAP Değeri |
+| :---: | :---: | :--- | :---: |
+| **Bayesçi 1** | Güçlü Önsel | $\text{Güçlü Önsel} + \text{Zayıf Veri} \implies$ Önsele yakın | $\mathbf{0.49}$ |
+| **Bayesçi 2** | Uniform Önsel | $\text{Uniform Önsel} + \text{Zayıf Veri} \implies$ Veriye eşit | $\mathbf{0.30}$ |
+
+**Doğru cevap ilk seçenektir:** **Bayesian 1: $P(H)=0.49$, Bayesian 2: $P(H)=0.30$.**
+
