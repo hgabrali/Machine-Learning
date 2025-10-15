@@ -1624,4 +1624,66 @@ Bu metrikler, bir regresyon modelinin tahminlerinin, gerçek değerlere ne kadar
 | **R-squared** | **Coefficient of Determination** | **Belirlilik Katsayısı.** Modelin, hedef değişkendeki varyasyonun ne kadarını açıkladığını gösterir. 0 ile 1 arasında değer alır (bazı durumlarda negatif olabilir). | ✨ **Kullanım:** Modelin ne kadar iyi oturduğunu ve ne kadar açıklayıcı olduğunu anlamak için en popüler metriktir. Yüksek değerler (1'e yakın), modelin veriyi iyi açıkladığını gösterir. **Dikkat:** Fazla parametre eklendiğinde R-squared her zaman artar, bu nedenle *Adjusted R-squared* (Düzeltilmiş R-squared) tercih edilebilir. | 🔍 |
 
 --
+# 📉 Regression Model Performance Metrics Interpretation
 
+These metrics provide different perspectives on the model's prediction accuracy and error distribution. Lower values generally indicate better model performance, except for R-squared (which is not present here).
+
+| Metric | Full English Name | Numerical Value | Interpretation (What the Number Means) | Usage and Context in ML |
+| :---: | :--- | :---: | :--- | :--- |
+| **MSE** | **Mean Squared Error** | 72.4 | The average of the **squared errors** is 72.4. Since the errors are squared, this value is not directly interpretable in the unit of the target variable. | Used primarily as the **loss function** during model training. It heavily penalizes large errors (outliers), making it sensitive to them. |
+| **RMSE** | **Root Mean Squared Error** | 7.6 | The square root of the MSE. This value represents the **standard deviation of the prediction errors** and is in the same unit as the target variable. | Provides a better, more interpretable measure of average error magnitude than MSE. It still penalizes large errors more than MAE. |
+| **MAE** | **Mean Absolute Error** | 7.6 | The average **absolute magnitude** of the prediction errors. This means, on average, the model's predictions are off by **7.6 units** of the target variable. | Used when all errors should be weighted equally. It is **robust to outliers** and offers the most straightforward interpretation of the average error. |
+| **Max Error** | **Maximum Error** | 10 | The largest single difference between any predicted value and its actual value in the dataset is **10 units**. | Critical for identifying the **worst-case scenario** performance. This indicates the model's highest level of failure or risk. |
+| **MAPE** | **Mean Absolute Percentage Error** | 10% | The average prediction error is **10%** relative to the actual values. This is a scale-independent measure. | Used for **forecasting** when the relative size of the error is more important than the absolute size. Allows for performance comparison across different target scales. |
+
+---
+
+### Key Observation from the Data:
+
+* **RMSE (7.6)** and **MAE (7.6)** are identical. This is unusual in real-world data and suggests that the error distribution might be perfectly symmetric, or the dataset used for evaluation is very small or synthetic. Typically, **RMSE is higher than MAE** because the squaring in RMSE exaggerates larger errors.
+
+---
+
+# 📉 Regresyon Metrikleri Değerlendirmesi ve İlişkileri
+
+Bu regresyon metriklerinin değerleri için tek bir "ideal" sayı yoktur; modelin bağlamına, hedefine ve iş gereksinimlerine göre yorumlanmalıdırlar.
+
+Ancak, bir makine öğrenmesi modellemesinde bu metriklerin birbirleriyle olan ilişkileri ve nasıl değerlendirilmeleri gerektiği konusunda genel kurallar mevcuttur.
+
+İşte bu metriklerin ML modellemesinde nasıl değerlendirileceği ve aralarındaki ilişkileri açıklayan, temiz ve yapılandırılmış bir Markdown tablosu:
+
+## 📊 Metrikler Arasındaki İlişkiler ve İdeal Değerlendirme
+
+Genel kural, tüm hata metriklerinin (MSE, RMSE, MAE, Max Error, MAPE) mümkün olduğunca **küçük** olmasıdır. Ancak, bu metriklerin birbirine göre büyüklüğü, modelinizin hata dağılımı hakkında önemli ipuçları verir.
+
+| Metrik | İdeal Değer Eğilimi | ML Modellemede Değerlendirme ve İlişki | Tercih Edilme Durumu (Neden?) |
+| :---: | :--- | :--- | :--- |
+| **MSE** 🎯 | Mümkün olduğunca 0'a yakın (Modelin Loss Function'ı olduğu için) | **Outlier (Aykırı Değer) Duyarlılığı:** RMSE ve MAE değerlerine kıyasla çok yüksek bir MSE, modelinizin birkaç büyük hata yaptığını gösterir. | Modeli optimize etmek (eğitmek) için kullanılır. Büyük hataların maliyetinin katlanarak arttığı, finansal tahminler gibi riskli senaryolarda önemlidir. |
+| **RMSE** 📏 | Mümkün olduğunca 0'a yakın | **Hata Dağılımının Standardı:** Bu, hata dağılımının standart sapmasıdır. Genellikle **MAE değerinden daha yüksek** olmalıdır. Eğer $\text{RMSE} \approx \text{MAE}$ ise, hatalarınızın dağılımı simetrik ve aykırı değerlerden arınmış demektir. | Hata metriklerini hedef değişkenin biriminde (unit) yorumlamak gerektiğinde tercih edilir. Büyük hataları cezalandırır ancak MAE'den daha kolay yorumlanır. |
+| **MAE** ⚙️ | Mümkün olduğunca 0'a yakın | **Outlier'a Dayanıklılık:** Hata payının ortalama büyüklüğüdür. **RMSE ile karşılaştırılır.** Eğer $\text{RMSE} \gg \text{MAE}$ ise, model büyük hatalara sahiptir; eğer $\text{RMSE} \approx \text{MAE}$ ise, modelin hata dağılımı tutarlıdır. | İş birimi (business unit) açısından en kolay yorumlanan metriktir. Aykırı değerleri dikkate almadan, hataların "gerçek" ortalama büyüklüğünü görmek istendiğinde kullanılır. |
+| **Max Error** 🚨 | Mümkün olduğunca 0'a yakın | **Risk Kontrolü:** Modelin yapabileceği **en kötü hatayı** gösterir. Diğer metrikler iyi olsa bile, Max Error yüksekse, modelin kritik bir noktada tamamen başarısız olabileceği anlamına gelir. | Tıbbi teşhis veya nükleer santral kontrolü gibi tek bir büyük hatanın bile kabul edilemez olduğu, **güvenlik öncelikli** uygulamalarda çok önemlidir. |
+| **MAPE** 🌍 | Mümkün olduğunca 0'a yakın | **Göreceli Hata:** Modeli farklı ölçeklerdeki veri setleriyle karşılaştırmak için kullanılır. Genellikle %0 ile %10 arasında kabul edilebilir, ancak sektöre göre değişir. | Tahminlerin mutlak değerinden çok, **oranının** önemli olduğu durumlarda (örneğin satış tahmini). Ölçekten bağımsız karşılaştırma sağlar. |
+
+# 🔗 Metrikler Arasındaki Kritik İlişkiler
+
+Bu ilişkiler, bir regresyon modelinin hata dağılımını anlamak ve modelin güçlü/zayıf yönlerini tespit etmek için hayati önem taşır.
+
+### 1. MSE vs. MAE (Outlier Tespiti) 🧐
+
+* Eğer $\text{MSE}$ veya $\text{RMSE}$ değeri $\text{MAE}$ değerinden **çok daha büyükse** $(\text{RMSE} \gg \text{MAE})$, bu modelin **aykırı değerlerden (outliers)** etkilendiği ve bu aykırı değerlerde büyük hatalar yaptığı anlamına gelir.
+    * *Neden?* Çünkü karesel hata metrikleri (MSE, RMSE), büyük hataları doğrusal hata metriklerine (MAE) kıyasla çok daha fazla cezalandırır.
+
+### 2. Max Error vs. Diğerleri (Risk Analizi) 🚨
+
+* $\text{MAE}$ ve $\text{RMSE}$ düşükken, **Max Error yüksekse**, model genel olarak iyi çalışıyor ancak birkaç çok kritik senaryoda başarısız oluyor demektir. Bu durumda o başarısızlık noktalarını incelemek gerekir.
+    * *Kullanım:* Modelin genel performansından bağımsız olarak, en kötü durum senaryosundaki risk seviyesini belirler.
+
+### 3. RMSE vs. MAE (Modelin Cezalandırılması) ⚙️
+
+* Eğitim aşamasında genellikle **MSE/RMSE** kullanılır çünkü türevlenebilir olmaları optimizasyon algoritmaları (Gradient Descent gibi) için daha uygundur.
+* Değerlendirme aşamasında ise yorumlanabilirlik için **MAE** ve **MAPE** daha sık kullanılır.
+
+### 4. MAPE Sınırlaması 🛑
+
+* $\text{MAPE}$'nin değeri, gerçek değer ($y_i$) sıfıra yakın olduğunda ($\text{MAPE} = \frac{\dots}{y_i}$ formülünden dolayı) aşırı yüksek ve kararsız çıkabilir.
+* Bu yüzden sıfır veya sıfıra yakın değerler içeren veri setlerinde dikkatli kullanılmalıdır.
