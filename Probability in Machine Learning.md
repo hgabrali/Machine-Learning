@@ -1739,3 +1739,134 @@ Bu ML Pipeline'ının her aşaması, temel nicel istatistik ve olasılık kavram
 | **Fit Model (algorithm)** | **Regresyon:** En Küçük Kareler (Least Squares) yöntemi, Hipotez Testi (katsayıların anlamlılığı). **Sınıflandırma:** Olasılık ve Koşullu Olasılık (Naive Bayes), Lojistik Fonksiyon (Lojistik Regresyon). **Maksimum Olabilirlik Tahmini (Maximum Likelihood Estimation):** Birçok modelin temelindeki parametre tahmin yöntemi. | 🧠 |
 | **Predicted** | **Olasılık Tahmini:** Sınıflandırma modellerinin çıktısı (örneğin, bir e-postanın SPAM olma olasılığı %85'tir). **Nokta Tahmini:** Regresyon modellerinin çıktısı (örneğin, evin tahmini fiyatı 500.000 TL'dir). | 🔮 |
 | **Evaluation** | **Regresyon Metrikleri:** MSE, RMSE, MAE (Hata analizi). **Sınıflandırma Metrikleri:** Doğruluk (Accuracy), Kesinlik (Precision), Duyarlılık (Recall) ve F1 Skoru (Koşullu Olasılık ve Ortalama bazlı). **Güven Aralığı:** Model tahminlerinin güvenilirlik aralığının hesaplanması. | ✅ |
+
+
+<img width="1213" height="536" alt="image" src="https://github.com/user-attachments/assets/58d93bf3-ec1d-4ef4-827c-793b21d26312" />
+
+
+# 📉 Güven Aralığı - t-Dağılımı ve Serbestlik Derecesi (df) İlişkisi
+
+Bu görsel, popülasyon standart sapması ($\sigma$) bilinmediğinde kullanılan t-Dağılımına dayalı Güven Aralığı formülünü ve dağılımın şeklinin Serbestlik Derecesi (Degrees of Freedom - df) ile nasıl değiştiğini göstermektedir.
+
+## 🧠 Görseldeki Grafiğin Açıklaması
+
+Görselin sağ tarafındaki grafik, farklı serbestlik derecelerine sahip $t$-dağılımlarının bir Normal Dağılım ile karşılaştırmasını göstermektedir.
+
+| Kavram | Açıklama | Sonuç | Emoji |
+| :--- | :--- | :--- | :---: |
+| **Eğrilerin Karşılaştırılması** | Grafikteki kesikli çizgi (Genellikle Normal Dağılımı temsil eder) ile $t$-dağılımı eğrileri (1, 5 ve 10 serbestlik dereceli) karşılaştırılmıştır. | $t$-Dağılımı'nın şekli $\text{df}$'ye bağlıdır. | 📏 |
+| **Kuyruklar (Tails)** | Serbestlik derecesi **küçük olduğunda** (örneğin $\text{df}=1$, turuncu kesikli çizgi), $t$-dağılımı tepe noktasına daha basık ve **kuyrukları daha kalın (ağır)** olur. | Dağılımın merkezden daha uzak değerleri (aykırı değerleri) barındırma olasılığı daha yüksektir. | ⛰️ |
+| **Normal Dağılıma Yakınsama** | Serbestlik derecesi **büyüdükçe** (örneğin $\text{df}=10$, mor eğri), $t$-dağılımı giderek Normal Dağılıma (kesikli çizgiye) yaklaşır ve kuyrukları incelir. | $\text{df} > 30$ olduğunda $t$-Dağılımı, pratik olarak Normal Dağılım ile aynı kabul edilir. | 🔄 |
+
+
+# 🧠 Serbestlik Derecesi (Degrees of Freedom - df) Kavramı
+
+Serbestlik Derecesi, istatistiksel analizlerde, özellikle küçük örneklemlerle çalışırken dağılımın şeklini belirleyen temel bir kavramdır.
+
+| Kavram | Açıklama | Emoji |
+| :---: | :--- | :---: |
+| **Tanım** | Bir veri setindeki toplam gözlem sayısı ($n$) verildiğinde, bir istatistiksel değeri (örneğin ortalamayı) hesaplamak için **serbestçe değişebilen** bağımsız bilgi parçalarının sayısıdır. | 💡 |
+| **Formül** | Tek örneklem ortalaması için $$\text{df} = n - 1.$$ | ➗ |
+| **Örnek** | Üç sayının ortalaması 10 olsun. İlk iki sayı 8 ve 12 ise, üçüncü sayının mutlaka 10 olması gerekir. Sadece $n - 1 = 2$ sayı serbestçe değişebilmiştir. | 🔢 |
+
+
+
+
+# 📉 Güven Aralığı - t-Dağılımı (Confidence Interval - t Distribution)
+
+Bu bölüm, popülasyon standart sapmasının ($\sigma$) bilinmediği durumlarda kullanılan t-Dağılımının yapısını ve Serbestlik Derecesi (df) kavramını açıklamaktadır.
+
+## 1. t-Dağılımına Dayalı Güven Aralığı Formülü
+
+Popülasyon standart sapması ($\sigma$) bilinmiyorsa, popülasyon varyansı yerine örneklem standart sapması ($s$) kullanılır ve kritik değer olarak $t$-skoru tercih edilir:
+
+$$\text{Güven Aralığı} = \bar{x} \pm t_{n-1, \alpha/2} \cdot \frac{s}{\sqrt{n}}$$
+
+| Terim | Anlamı |
+| :--- | :--- |
+| **unknown $\sigma$** | Popülasyon standart sapmasının bilinmediğini belirtir. |
+| **$s$** | Örneklem standart sapması. |
+| **$t_{1-\alpha/2}$** | İstenen güven seviyesine ve Serbestlik Derecesine ($n-1$) göre belirlenen kritik $t$-değeri. |
+| **degrees of freedom** | Serbestlik Derecesi ($\text{df} = n-1$). |
+
+---
+
+## 2. Grafiğin ve Serbestlik Derecesinin Açıklanması 🧠
+
+Grafik, farklı Serbestlik Derecelerine sahip $t$-Dağılımlarını gösterir ve dağılımın şeklinin nasıl değiştiğini açıklar.
+
+| Özellik | Serbestlik Derecesi (df) **KÜÇÜK** ($n$ küçük) | Serbestlik Derecesi (df) **BÜYÜK** ($n$ büyük) | ML Kullanımı |
+| :---: | :--- | :--- | :--- |
+| **$t$-Dağılımı Şekli** | Kuyrukları daha **kalın** (ağır), tepe noktası daha basıktır. Bu, aykırı değerlerin daha olası olduğunu gösterir. | Kuyrukları **incelir** ve dağılım giderek Normal Dağılıma (Z-dağılımı) yaklaşır. | **Parametre Güvenilirliği:** Regresyon katsayılarının güven aralıklarını hesaplamak için kullanılır. |
+| **$t$-Değeri (Kritik Değer)** | Aynı güven seviyesi için $t$-değeri **daha büyüktür**. | $t$-değeri **daha küçüktür** (1.96 gibi $\text{Z}$-değerlerine yaklaşır). | **Örneklem Yetersizliği:** Özellikle $n<30$ olduğunda, küçük örneklemden kaynaklanan belirsizliği telafi eder. |
+| **Güven Aralığı Genişliği** | Örneklem küçük olduğu için belirsizlik yüksektir, bu yüzden aralık **daha geniştir**. | Belirsizlik azalır, bu yüzden aralık **daha dardır** ve tahmin daha kesindir. | **Hipotez Testi:** Regresyon katsayısının 0'dan farklı olup olmadığını test etmek (p-value hesaplama) için kullanılır. |
+| **Serbestlik Derecesi** | $$\text{df} = n-1$$ | $\text{df} \to \infty$ | **Tahmin Kesinliği:** Daha büyük $n$, daha dar aralık ve daha güvenilir istatistiksel çıkarım demektir. |
+
+
+# 🚀 Serbestlik Derecesinin (df) İstatistik ve ML'deki Rolü
+
+Serbestlik derecesinin büyüklüğü, $t$-dağılımının şeklini ve dolayısıyla Güven Aralığının genişliğini doğrudan etkiler.
+
+| Özellik | Serbestlik Derecesi (df) KÜÇÜK ($n$ küçük) | Serbestlik Derecesi (df) BÜYÜK ($n$ büyük) | ML Kullanımı |
+| :---: | :--- | :--- | :--- |
+| **$t$-Dağılımı Şekli** 📉 | Kuyrukları daha kalın, tepe noktası daha basıktır. | Kuyrukları incelir, Normal Dağılıma ($\text{Z}$) yaklaşır. | **Parametre Güvenilirliği:** Regresyon katsayılarının güven aralıklarını hesaplamak için kullanılır. |
+| **$t$-Değeri (Kritik Değer)** 📐 | Daha büyüktür. (Aynı güven seviyesi için) | Daha küçüktür (1.96 gibi $\text{Z}$-değerlerine yaklaşır). | **Örneklem Yetersizliği:** Özellikle $n < 30$ olduğunda $t$-değerleri kullanılır. |
+| **Güven Aralığı Genişliği** 🧭 | Daha geniştir. ($t$-değeri büyük olduğu için) | Daha dardır. ($t$-değeri küçüldüğü için) | **Hipotez Testi:** Regresyon katsayısının 0'dan farklı olup olmadığını test etmek için kullanılır. |
+| **Risk Anlamı** ⚠️ | Örneklem ortalamasının, popülasyon ortalamasından daha fazla sapma riskini yansıtır. | Daha az sapma riski varsayılır. | **Tahmin Kesinliği:** Daha büyük $n$, daha dar aralık ve daha güvenilir katsayılar demektir. |
+
+# 🎯 Oranlar İçin Güven Aralığı (Confidence Interval for Proportions)
+
+Bu istatistiksel yöntem, bir popülasyonda belirli bir özelliğe sahip olanların **oranını (proporsiyonunu)** tahmin etmek için kullanılır.
+
+### 1. Temel Kavramlar
+
+| Kavram | Açıklama | Emoji |
+| :--- | :--- | :---: |
+| **Temel Amaç** | Bilinmeyen bir popülasyon oranını ($p$) tahmin etmek için, örneklemden elde edilen oranı ($\hat{p}$) kullanarak bir aralık belirlemektir. | 📈 |
+| **Veri Tipi** | Kategorik verilerle (Binary, İkili veriler) çalışır. Örneğin: Başarılı/Başarısız, Evet/Hayır, Spam/Spam Değil. | 🗂️ |
+| **Örneklem Oranı** ($\hat{p}$) | Bir örneklemde istenen özelliğe sahip birim sayısının ($x$), toplam örneklem büyüklüğüne ($n$) bölünmesiyle bulunur: $$\hat{p} = \frac{x}{n}$$ | ➗ |
+
+### 2. Hata Payı Formülü (Genel Kural)
+
+Büyük örneklemler için (Normal yaklaşım varsayılır):
+
+$$\text{Hata Payı} = Z \cdot \sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$$
+
+Burada:
+
+* **$Z$**: Seçilen güven seviyesine karşılık gelen kritik $Z$-skoru.
+* **$\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$**: Standart hata (Örneklem Oranlarının Standart Hatası).
+
+---
+
+## 🤖 2. Makine Öğrenmesi (ML) Nerede Kullanırız?
+
+Oranlar için güven aralığı, ML modellerinin çıktılarını değerlendirmede kritik rol oynar, özellikle **Sınıflandırma (Classification)** görevlerinde:
+
+1.  **Model Başarı Oranı (Accuracy) Değerlendirmesi:** Bir sınıflandırma modelinin test veri seti üzerindeki genel başarı oranı (Accuracy) bir orandır. Bu oranı tahmin ederken güven aralığı kullanılır.
+2.  **A/B Testi Analizi:** İki farklı modelin (A ve B) veya iki farklı web sitesi tasarımının başarı oranlarını (örneğin tıklama oranları) karşılaştırırken, bu oranların güven aralıkları üst üste binip binmediğini kontrol ederiz.
+3.  **Hata Tipleri (Precision & Recall):** Kesinlik (Precision) ve Duyarlılık (Recall) metrikleri de oranlardır. Bu metrikler için güven aralıkları hesaplanarak modelin performansının istatistiksel güvenilirliği belirlenir.
+
+## 💡 3. ML'de Ne İşimize Yarar?
+
+Bu istatistiksel araç, makine öğrenmesi uzmanları için şu faydaları sağlar:
+
+# 💡 Oranlar İçin Güven Aralığının ML'deki Faydaları
+
+Bu istatistiksel araç, Makine Öğrenmesi (ML) uzmanları için model performansını sadece bir sayı (nokta tahmini) yerine, istatistiksel güvenilirlikle değerlendirme imkanı sunar.
+
+| Fayda Alanı | Açıklama | Emoji |
+| :--- | :--- | :---: |
+| **Model Güvenilirliği (Model Reliability)** | Bir modelin %90 doğrulukla çalıştığını bulduğunuzda, bu sadece bir **nokta tahminidir**. Güven aralığı, gerçek doğruluk oranının büyük olasılıkla hangi aralıkta olduğunu söyler (Örn: Doğruluk %88 ile %92 arasındadır). Bu, modelin güvenilirliğini kanıtlamaya yardımcı olur. | 🛡️ |
+| **Örneklem Yeterliliği (Sample Sufficiency)** | Hesaplanan güven aralığı çok geniş çıkarsa, bu durum test örneklem büyüklüğünüzün ($n$) modelin performansını güvenilir bir şekilde tahmin etmek için yetersiz olduğu anlamına gelebilir. | 🔍 |
+| **Karşılaştırmalı Karar Verme (Comparative Decision)** | İki farklı modeli (Model A: %85, Model B: %88 doğruluk) karşılaştırırken, farkın istatistiksel olarak anlamlı olup olmadığına karar vermemizi sağlar. Eğer iki modelin güven aralıkları üst üste biniyorsa, Model B'nin daha iyi olduğunu **kesin olarak söyleyemeyiz**. | ⚖️ |
+
+# ✨ Özet: Oranlar İçin Güven Aralığının Önemi
+
+**Oranlar için güven aralığı, ML'de sınıflandırma modellerinin performans metriklerinin (Accuracy, Precision, Recall) ne kadar güvenilir olduğunu istatistiksel olarak kanıtlamak için kullanılan temel bir araçtır.** 🛠️
+
+
+
+
+
+
