@@ -2531,3 +2531,187 @@ Her üç test türünde de Sıfır Hipotezi ($H_0$) her zaman eşitliği içerir
 * **Tek Kuyruk Testleri (Sağ/Sol):** Bu testler **yönlüdür**. Eğer bir etkinin (örneğin bir ilacın) sadece **pozitif bir etki** yarattığını kanıtlamak istiyorsanız Sağ Kuyruk, sadece **negatif bir etki** yarattığını kanıtlamak istiyorsanız Sol Kuyruk Testi kullanılır. Tek kuyruk testleri, $H_0$'ı reddetmek için Çift Kuyruk Testine göre daha az kanıt gerektirir (daha fazla **güç** sağlar).
 * **Çift Kuyruk Testi:** Bu test **yönsüzdür**. Sadece bir değişikliğin (farklılığın) olup olmadığını, değişikliğin hangi yönde olduğunu varsaymadan test etmek için kullanılır.
 
+---
+
+<img width="1178" height="576" alt="image" src="https://github.com/user-attachments/assets/895e7453-3f04-44ea-9bef-c52a660bd0b6" />
+
+# 📈 Testin Gücü (Power of the Test) Açıklaması
+
+Yukarıdaki grafik, hipotez testlerinde önemli bir kavram olan **Testin Gücü** (Power of the Test) kavramını açıklamaktadır.
+
+---
+
+## 🔬 Genel Açıklama
+
+* Grafik, **Güç Eğrisi** (Power Curve) olarak adlandırılır.
+* $\mu$ değerinin (anakütle ortalaması) **Alternatif Hipotez** ($H_1$) altında değişmesiyle **Testin Gücü** ($1 - \beta$) arasındaki ilişkiyi gösterir.
+* **Yatay Eksen ($\mu \in H_1$):** Alternatif hipotez altında anakütle ortalamasının ($\mu$) farklı değerlerini temsil eder.
+* **Dikey Eksen ($1 - \beta$):** Testin gücünü temsil eder.
+
+---
+
+## 📝 Hipotezler
+
+| Hipotez | İfade | Açıklama |
+| :--- | :--- | :--- |
+| **Sıfır Hipotezi** ($H_0$) | $\mu = 66.7$ | Testin başlangıçta doğru kabul edilen durumu. |
+| **Alternatif Hipotez** ($H_1$) | $\mu > 66.7$ | Araştırıcının kanıtlamak istediği, $H_0$'dan farklı durum. |
+
+---
+
+## ✨ Önemli Noktalar ve Terimler
+
+### 🔴 Birinci Tip Hata ($\alpha$)
+
+* **İfade:** $\alpha = 0.05$ (**Type I Error** / Birinci Tip Hata)
+* **Tanım:** **Doğru olan Sıfır Hipotezini Reddetme** olasılığıdır.
+* **Grafikte:** Grafiğin başlangıç noktasında ($\mu = 66.7$) yer alır. Bu noktada $1 - \beta$ değeri (Testin Gücü) $0.05$'tir (ki bu $\alpha$ seviyesidir).
+
+### 📍 $\mu = 68$ Noktası
+
+| Ölçüm | İfade | Değer | Açıklama |
+| :--- | :--- | :--- | :--- |
+| **Testin Gücü** | $\text{P}(\text{Reject } H_0 \mid \mu = 68)$ | $\approx 0.43$ | Yanlış olan $H_0$'ı Reddetme olasılığı. |
+| **İkinci Tip Hata** | $\text{P}(\text{Type II error} \mid \mu = 68)$ | $\beta \approx 0.57$ | Yanlış olan $H_0$'ı Reddetmeme olasılığı. |
+
+### 🎯 $\mu = 70$ Noktası
+
+| Ölçüm | İfade | Değer | Açıklama |
+| :--- | :--- | :--- | :--- |
+| **Testin Gücü** | $\text{P}(\text{Reject } H_0 \mid \mu = 70)$ | $\approx 0.97$ | Yanlış olan $H_0$'ı Reddetme olasılığı. |
+| **İkinci Tip Hata** | $\text{P}(\text{Type II error} \mid \mu = 70)$ | $\beta \approx 0.03$ | Yanlış olan $H_0$'ı Reddetmeme olasılığı. |
+
+---
+
+## ✅ Testin Gücü ($1 - \beta$)
+
+* **Tanım:** **Alternatif Hipotez ($H_1$) doğruyken Sıfır Hipotezini ($H_0$) doğru bir şekilde reddetme** olasılığıdır.
+* **Eğrinin Yorumu:** Gerçek $\mu$ değeri $H_0$ hipotezinden ($66.7$) ne kadar uzaklaşırsa (sağa doğru gittikçe), testin gücü de o kadar artar (eğri $1.0$'a yaklaşır). Bu, **farkı tespit etme olasılığımızın arttığı** anlamına gelir.
+
+<img width="1252" height="591" alt="image" src="https://github.com/user-attachments/assets/bf4299e9-a903-4f98-b973-933d6ff62baf" />
+
+# 📈 $\alpha$ Seviyesinin Testin Gücüne Etkisi (The Effect of $\alpha$ on Power) 
+
+Yukarıdaki grafik, sabit bir Alternatif Hipotez ($\mu=70$) altında, farklı $\alpha$ seviyelerinin **Testin Gücü** (Power of the Test) üzerindeki değişimini gösteren üç farklı **Güç Eğrisi**ni (Power Curve) sunmaktadır.
+
+---
+
+## 📊 Genel Açıklama
+
+* **Yatay Eksen ($\mu$):** Anakütle ortalamasının farklı değerlerini temsil eder.
+* **Dikey Eksen ($1 - \beta$):** Testin gücünü temsil eder.
+* **Sabit Değer:** Tüm grafiklerde $\mu=70$ noktası dikkate alınarak Testin Gücü incelenmiştir.
+
+### Okların Yorumu:
+
+* **Turuncu Ok ($\to$):** **Birinci Tip Hata** ($\alpha$ / Type I Error) soldan sağa doğru **ARTAR**.
+* **Mavi Ok ($\to$):** Buna bağlı olarak **Testin Gücü** ($1 - \beta$ / Power) soldan sağa doğru **ARTAR**.
+
+---
+
+## 📉 Grafikler ve $\alpha$ Değişimi
+
+Üç farklı $\alpha$ seviyesinin, $\mu=70$ noktasındaki Testin Gücüne etkisi:
+
+| Grafik | $\alpha$ Seviyesi | Testin Gücü ($1 - \beta$) | Yorum |
+| :--- | :--- | :--- | :--- |
+| **Sol** | $\mathbf{\alpha = 0.01}$ | $\approx 0.75$ | ❌ En düşük $\alpha$ seviyesi, **en düşük** Test Gücünü verir. ($H_0$'ı doğru reddetme olasılığı düşüktür.) |
+| **Orta** | $\mathbf{\alpha = 0.05}$ | $\approx 0.95$ | 🌟 Standart $\alpha$ seviyesinde **yüksek** Test Gücü elde edilmiştir. |
+| **Sağ** | $\mathbf{\alpha = 0.1}$ | $\approx 0.99$ | ✅ En yüksek $\alpha$ seviyesi, **en yüksek** Test Gücünü verir. ($H_0$'ı doğru reddetme olasılığı çok yüksektir.) |
+
+---
+
+## 🔑 Ana Sonuç (Key Takeaway)
+
+Grafik, hipotez testlerindeki temel ödünleşmeyi (trade-off) kanıtlamaktadır:
+
+> **Birinci Tip Hata ($\alpha$) Olasılığı Arttıkça (Type I Error $\uparrow$), Testin Gücü ($1 - \beta$) de Artar (Power $\uparrow$).**
+
+Bu, araştırmacıların risk iştahına göre (Birinci Tip Hata yapma riski) testin farkı tespit etme kabiliyetinin (Testin Gücü) değiştiği anlamına gelir.
+
+<img width="1261" height="590" alt="image" src="https://github.com/user-attachments/assets/ffb399d3-4544-419a-9bfb-239c10d396f8" />
+
+# ⚖️ Hipotez Hataları Arasındaki Ödünleşme (The Trade-off Between Hypothesis Errors)
+
+Bu görseldeki hataların (**Birinci Tip Hata** ($\alpha$) ve **İkinci Tip Hata** ($\beta$)) farklı olması, **Testin Gücü** (Power of the Test) kavramının temelini oluşturan, bu iki hata arasındaki **doğrudan ödünleşme (trade-off)** ilişkisinden kaynaklanır.
+
+---
+
+## 1. Temel Neden: Birinci Tip Hata ($\alpha$) Seviyesinin Değişmesi
+
+Grafik, $H_0: \mu = 66.7$ hipotezini farklı $\alpha$ seviyeleriyle test etmektedir: $\mathbf{\alpha=0.01}$, $\mathbf{\alpha=0.05}$ ve $\mathbf{\alpha=0.1}$.
+
+* **$\alpha$ (Birinci Tip Hata / Type I Error):** Doğru olan $H_0$'ı reddetme olasılığıdır.
+* Grafikteki **turuncu ok ($\to$)**, soldan sağa doğru $\alpha$ seviyesinin **arttığını** gösterir.
+
+---
+
+## 2. $\alpha$ ve $\beta$ Arasındaki Ödünleşme (Trade-off)
+
+Hipotez testlerinde, kritik bölgeyi (reddetme bölgesini) belirleyen $\alpha$ seviyesini ayarladığınızda, otomatik olarak $\beta$ (İkinci Tip Hata) ve $1-\beta$ (Testin Gücü) da değişir. Bu durum, iki hata türünün birbirine ters yönde hareket etmesine neden olur:
+
+| Değişken | $\alpha$ Seviyesi $\downarrow$ (Sola Gittikçe) | $\alpha$ Seviyesi $\uparrow$ (Sağa Gittikçe) |
+| :--- | :--- | :--- |
+| **Birinci Tip Hata ($\alpha$)** | **Azalır** | **Artar** |
+| **İkinci Tip Hata ($\beta$)** | **Artar** | **Azalır** |
+| **Testin Gücü ($1-\beta$)** | **Azalır** | **Artar** |
+
+---
+
+## 🎯 Grafik Yorumu: Hata İlişkisi
+
+Grafikteki oklar bu ters ilişkiyi özetler:
+
+1.  **Birinci Tip Hata ($\alpha$):** Turuncu ok sağa doğru hareket ettikçe **artar** ($\alpha: 0.01 \to 0.1$).
+2.  **İkinci Tip Hata ($\text{Type II error}$ / $\beta$):** Yeşil ok sola doğru hareket ettikçe **azalır** ($\beta: \text{Yüksek} \to \text{Düşük}$).
+
+**Sonuç:** Bir hipotez testinde, Birinci Tip Hata yapma riskini (yani $\alpha$'yı) ne kadar düşürürsek, İkinci Tip Hata yapma riskimiz ($\beta$) de o kadar yükselir ve bunun tam tersi geçerlidir.
+
+# 🔄 Hipotez Testi Parametreleri Arasındaki İlişki
+
+Bu tablo, hipotez testlerinde $\alpha$ seviyesindeki değişimin, kritik bölge ve hata türleri üzerindeki etkileşimini (ödünleşme/trade-off) özetlemektedir.
+
+---
+
+| Değişim | ◀️ $\alpha$ Seviyesi $\downarrow$ (Sola Gittikçe) | $\alpha$ Seviyesi $\uparrow$ (Sağa Gittikçe) ▶️ |
+| :--- | :--- | :--- |
+| **Kritik Bölge** | Daralır/Küçülür (Daha zor reddedilir) | Genişler/Büyür (Daha kolay reddedilir) |
+| **Birinci Tip Hata ($\alpha$)** | **Azalır** (Doğru $H_0$'ı reddetme riski **düşer** 📉) | **Artar** (Doğru $H_0$'ı reddetme riski **yükselir** 📈) |
+| **İkinci Tip Hata ($\beta$ / Type II Error)** | **Artar** (Yanlış $H_0$'ı reddedememe riski **yükselir** 📈) | **Azalır** (Yanlış $H_0$'ı reddedememe riski **düşer** 📉) |
+
+---
+
+> **Unutulmamalıdır:** Birinci Tip Hata ($\alpha$) azaltıldığında, testin **gücü** ($1-\beta$) de azalır; dolayısıyla İkinci Tip Hata ($\beta$) artar. Bu bir dengeleme (balancing act) durumudur.
+
+# 🔍 Grafik Gözlemleri ve Hata İlişkisi (Visualizing the Error Relationship)
+
+Bu bölümde, hipotez testlerinde $\alpha$ (Birinci Tip Hata) ve $\beta$ (İkinci Tip Hata) arasındaki ters ilişkinin grafik üzerindeki yansımaları açıklanmaktadır.
+
+---
+
+## 3. Grafikteki Gözlem (Sonuç)
+
+Grafikteki oklar bu ödünleşme (trade-off) ilişkisini çok net gösterir:
+
+* **Turuncu Ok ($\to$):** Birinci Tip Hata ($\alpha$) **artıyor** 📈.
+* **Yeşil Ok ($\leftarrow$):** İkinci Tip Hata ($\text{Type II error}$ / $\beta$) **azalıyor** 📉.
+
+### Örnek Durumlar:
+
+#### ◀️ Sol Grafik ($\alpha = 0.01$)
+
+* $\alpha$ çok küçüktür (**reddetmek zordur**).
+* Kritik bölge dar olduğu için, gerçekte $\mu=70$ bile olsa $H_0$'ı reddetmeme olasılığımız ($\beta$) **yüksektir**.
+* Bu yüzden, yeşil ok sola doğru giderken $\beta$ **artar**.
+
+#### ▶️ Sağ Grafik ($\alpha = 0.1$)
+
+* $\alpha$ büyüktür (**reddetmek kolaydır**).
+* Kritik bölge geniş olduğu için, $\mu=70$ ise $H_0$'ı reddetmeme olasılığımız ($\beta$) **düşüktür**.
+* Bu yüzden, yeşil ok sağa doğru giderken $\beta$ **azalır**.
+
+---
+
+## 🛑 Sonuç Olarak
+
+$\alpha$ ve $\beta$ hataları, testin red bölgesinin konumunu belirleyen $\alpha$ seviyesine bağlı olarak birbirine **ters yönde değişir**. Birini azaltmak, genellikle diğerini artırır.
