@@ -11,6 +11,11 @@
 
  [AI, Machine Learning, Deep Learning and Generative AI Explained](https://www.youtube.com/watch?v=qYNweeDHiyU)
 
+
+ <img width="1179" height="665" alt="image" src="https://github.com/user-attachments/assets/ebec45ef-fa9b-4b7b-ac9a-529308cb9546" />
+ 
+* [Picture](https://blogs.sas.com/content/subconsciousmusings/2020/12/09/machine-learning-algorithm-use/)
+
 # 🤖  What is Machine Learning 🧠
 Machine Learning (ML) is a branch of Artificial Intelligence (AI) that teaches computers to learn from data and improve over time—without being explicitly programmed.
 
